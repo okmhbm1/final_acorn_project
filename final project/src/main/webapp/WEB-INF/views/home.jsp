@@ -1,15 +1,439 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+   <meta charset="UTF-8">
+   <title>insert title here</title>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 
-<P>  The time on the server is ${serverTime}. </P>
-success!!
+</head>
+<style type="text/css">
+
+   #header{
+      position:relative;
+      top:0px;
+      width:100%;
+      height:150px;
+
+   }
+
+   #image,#advertisement{
+      display:inline-block;
+      top:0px;
+
+
+   }
+   #image{
+      
+      height:150px;
+      width:340px;
+      display:inline-block;
+   }
+   #searchbar{
+      top:70px;
+      width:270px;
+
+   }
+   #advertisement{
+      height:150px;
+      width:380px;
+      display:inline-block;
+   }
+
+   .nav-container{
+      display:block;
+      top:120px;
+      width:100%;
+      height:50px;
+      border:1px solid white;
+
+      padding:0px;
+
+   }
+
+
+   .body{
+      padding:0;
+      margin:0;
+      width:100%;
+      border:10px solid #ffffff;
+      height:400px;
+
+   }
+
+   .row{
+      width:100%;
+   }
+   .section{
+      position:relative;
+      top:30px;
+      float:right;
+      width:20%;
+      height:100%;
+      border: 1px solid white;
+
+   }
+   .col-xs-2{
+
+      display:block;
+      width:142px;
+   }
+   .left{
+      float:left;
+      width:80%;
+      height:100%;
+      border:1px solid white;
+   }
+   .image{
+      display:inline-block;
+      width:100%;
+      height:100%;
+   }
+   .advertisement{
+      display:inline-block;
+      width:100%;
+      height:100%;
+   }
+
+   .box{
+      width:50%;
+      height:30%;
+   }
+   .no-border{
+            border-right:none
+
+        border-left:none
+
+        border-top:none
+
+        border-bottom:none
+        border: none;
+   }
+   .left{
+    float:left;
+   }
+   .right{
+    float:right;
+   }
+
+   .navbar{
+    padding-left:190px;
+   }
+
+/* borderless table */
+.table.table-borderless td, .table.table-borderless th {
+    border: 0 !important;
+}
+
+.table.table-borderless {
+    margin-bottom: 0px;
+}
+
+</style>
+<body>
+   
+
+   <div class="container">
+      <div id="header">
+      <!-- 메인배너 -->
+      <div class="row">
+      	<div class="col-xs-2 " id="image"> <img class="image" src="images/2.jpg"/></div>
+		
+
+	  <!--헤더 서치바-->   
+      <div class="col-xs-3 ">         
+      	<div class="input-group" id="searchbar">
+	      <input type="text" class="form-control" placeholder="Search for...">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+	      </span>
+      	</div><!-- /input-group -->
+     </div>
+
+
+     <!-- 광고 -->
+   	  <div class="col-xs-4 ol-xs-6 col-xs-offset-1" id="advertisement"><img class="advertisement" src="images/1.jpg"/></div>
+   	</div>
+   	</div>
+   </div>
+
+
+
+   <div class="nav-container">
+	   <div class="navbar navbar-inverse">
+	      <a  href="#" class="navbar-brand">업데이트</a>
+	      <a href="#" class="navbar-brand">웹툰</a>
+	      <a  href="#" class="navbar-brand">게시판</a>
+	      <a  href="#" class="navbar-brand">리뷰</a>
+	   </div>
+   </div> <!--네비바 -->
+
+   
+   <!-- 바디 -->
+   <div class="container">
+   <div class="body">
+   <div class="container left">
+      <h3>종합 인기순</h3>
+      <hr></hr>
+      <div class="row ">
+         <div class="col-xs-2">1</div>
+         <div class="col-xs-2">2</div>
+         <div class="col-xs-2">3</div>
+         <div class="col-xs-2">4</div>
+         <div class="col-xs-2">5</div>
+         <div class="col-xs-2">6</div>
+      </div>
+      <div class="row ">
+         <div class="col-xs-2">1</div>
+         <div class="col-xs-2">2</div>
+         <div class="col-xs-2">3</div>
+         <div class="col-xs-2">4</div>
+         <div class="col-xs-2">5</div>
+         <div class="col-xs-2">6</div>
+      </div>
+   </div> <!-- container left-->
+
+
+   <!-- 로그인 -->
+   <div class="section right">
+      
+        <form class="form-signin" method="POST">
+      <label for="id" class="sr-only">Your ID</label>
+        <input type="text" id="uid" class="form-control" placeholder="Your ID" required autofocus><BR>
+        <label for="pwd" class="sr-only">Password</label>
+        <input type="password" id="pwd" class="form-control" placeholder="Password" required><br>
+        <button id="btn-Yes" class="btn btn-sm btn-primary btn-block" type="submit">로 그 인</button>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> 기억하기 
+          </label>
+          <a href="#">회원가입</a> <a href="#">정보찾기</a>
+        </div>
+      </form>
+
+
+     <!--주간/월간 순위-->
+    <h3>주간/월간 순위</h3>
+  <table class="table table-striped table-condensed">
+    <tbody>
+      <tr>
+        <td>1등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>2등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>3등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>4등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>5등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>6등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>7등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>8등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>9등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>10등</td><td>드래곤볼</td>
+      </tr>
+    </tbody>
+  </table>
+   	</div> <!-- section--> 
+   
+
+
+   	<!--게시판 모음-->
+      <div class="body">
+   <div class="container left">
+      <h3>게시판</h3>
+      <hr></hr>
+      <div class="row ">
+
+         <div class="col-xs-6"><h4>자유게시판</h4>
+          <hr>
+     <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>1등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>2등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>3등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>4등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>5등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>6등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>7등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>8등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>9등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>10등</td><td>드래곤볼</td>
+      </tr>
+  </table>       
+
+	</div><!--자유게시판 끝-->
+
+
+     <div class="col-xs-6"><h4>익명게시판</h4>
+          <hr>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>1등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>2등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>3등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>4등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>5등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>6등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>7등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>8등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>9등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>10등</td><td>드래곤볼</td>
+      </tr>
+      </tbody>
+  </table>
+       </div> <!--익명게시판 끝-->
+         
+      
+
+      <div class="row ">
+         <div class="col-xs-6"><h4>리뷰</h4>
+          <hr>
+  		<table class="table table-borderless ">
+
+    <tbody>
+      <tr>
+        <td>1등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>2등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>3등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>4등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>5등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>6등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>7등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>8등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>9등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>10등</td><td>드래곤볼</td>
+      </tr>
+      
+    </tbody>
+  </table>
+   </div>
+  <!--리뷰 게시판 끝-->
+
+  
+  <div class="col-xs-6">
+  	<h4>질문게시판</h4>
+          <hr>
+  <table class="table table-borderless">
+
+    <tbody>
+      <tr>
+        <td>1등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>2등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>3등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>4등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>5등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>6등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>7등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>8등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>9등</td><td>드래곤볼</td>
+      </tr>
+            <tr>
+        <td>10등</td><td>드래곤볼</td>
+      </tr>
+      
+    </tbody>
+  </table>	
+	</div> <!--질문 게시판 끝-->
+
+  </div><!--body 끝-->
+	</div> <!--container-->
+      
+ 
+
+   
+   
+   
+<!-- jquery 로딩하기-->
+<script src="js/jquery-3.3.1.min.js"></script>
+<!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
