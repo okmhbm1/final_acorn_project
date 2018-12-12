@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +20,15 @@
    }
 
    #image,#advertisement{
+      position:absolute;
       display:inline-block;
       top:0px;
-
+      width:100%;
+      height:100%;
 
    }
    #image{
-      
+      position:relative;
       height:150px;
       width:340px;
       display:inline-block;
@@ -86,7 +89,6 @@
       border:1px solid white;
    }
    .image{
-      display:inline-block;
       width:100%;
       height:100%;
    }
@@ -130,6 +132,26 @@
     margin-bottom: 0px;
 }
 
+.col-xs-12{
+  position:relative;
+}
+.image-full{
+
+  width:100%;
+  height:200px;
+}
+
+.display-none{
+
+}
+
+    @media (max-width: 750px){
+       .display-none{
+        display:none;
+        
+      }
+     
+    }
 </style>
 <body>
    
@@ -138,11 +160,11 @@
       <div id="header">
       <!-- 메인배너 -->
       <div class="row">
-      	<div class="col-xs-2 " id="image"> <img class="image" src="images/2.jpg"/></div>
+      	<div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
 		
 
 	  <!--헤더 서치바-->   
-      <div class="col-xs-3 ">         
+      <div class="col-xs-3 col-xs-offset-1 display-none">         
       	<div class="input-group" id="searchbar">
 	      <input type="text" class="form-control" placeholder="Search for...">
 	      <span class="input-group-btn">
@@ -153,10 +175,11 @@
 
 
      <!-- 광고 -->
-   	  <div class="col-xs-4 ol-xs-6 col-xs-offset-1" id="advertisement"><img class="advertisement" src="images/1.jpg"/></div>
+   	  <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
    	</div>
    	</div>
    </div>
+
 
 
 
@@ -430,7 +453,7 @@
 
    
    
-   
+<a href="detail.html">링크</a>
 <!-- jquery 로딩하기-->
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
