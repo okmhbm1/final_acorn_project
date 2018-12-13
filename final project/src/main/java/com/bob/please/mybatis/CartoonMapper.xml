@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartoon">
+		
+		
+		<select id="selectall" parameterType="cartoondto" resultType="cartoondto">
+			select * from cartoon
+		</select>
+		
+		<select id="selectdetail" parameterType="int" resultType="cartoondto">
+			select * from cartoon where num=#{num}
+		</select>
+		
+		<select id="selectgroup" parameterType="cartoondto" resultType="cartoondto">
+			
+		      SELECT * 
+		      FROM cartoon
+		      <where>
+		         <if test="category != null">
+		            OR category LIKE '%'||#{category}||'%'
+		         </if>
+		         <if test="portal != null">
+		            OR portal LIKE '%'||#{portal}||'%'
+		         </if>
+		         <if test="days != null">
+		            OR days LIKE '%'||#{days}||'%'
+		         </if>
+		      </where>
+  		 </select>
+				
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

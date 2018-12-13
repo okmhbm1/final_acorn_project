@@ -3,22 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<typeAliases>
-		
-	</typeAliases>
-	
-	<mappers>
-		<mapper resource="com/bob/please/mybatis/MemberMapper.xml"/>
-	</mappers>	
+   <typeAliases>
+   	<typeAlias type="com.bob.please.cartoon.dto.CartoonDto" alias="cartoondto"/>   
+   </typeAliases>
+   
+   <mappers>
+            <mapper resource="com/bob/please/mybatis/CartoonMapper.xml"/>
+   </mappers>   
 </configuration>
-
-
-
-
-
-
-
-
-
-
-
