@@ -185,7 +185,7 @@
 
    <div class="nav-container">
 	   <div class="navbar navbar-inverse">
-	      <a  href="#" class="navbar-brand">업데이트</a>
+	      <a  href="#" class="navbar-brand">업데이트  ${title }</a>
 	      <a href="#" class="navbar-brand">웹툰</a>
 	      <a  href="#" class="navbar-brand">게시판</a>
 	      <a  href="#" class="navbar-brand">리뷰</a>
@@ -451,8 +451,7 @@
       
  
 
-   
-   
+  
 <a href="detail.do">detail</a>
 <a href="insertform.do">insertform</a>
 <a href="list.do">list</a>
