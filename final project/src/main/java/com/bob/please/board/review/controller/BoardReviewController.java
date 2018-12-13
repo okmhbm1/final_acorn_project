@@ -22,5 +22,10 @@ public class BoardReviewController {
 		//view 페이지로 forward 이동해서 글 목록 출력하기 
 		return new ModelAndView("board_review/list");
 	}
+	@RequestMapping("/board_review/insertform")
+	public ModelAndView Insertform(HttpServletRequest request) {
+		//view 페이지로 forward 이동해서 새글 작성 폼 출력하기 
+		return new ModelAndView("board_review/insertform");
+	}
 }
 

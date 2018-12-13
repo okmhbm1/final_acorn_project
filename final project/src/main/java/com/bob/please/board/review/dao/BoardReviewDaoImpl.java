@@ -20,4 +20,11 @@ public class BoardReviewDaoImpl implements BoardReviewDao{
 		return session.selectList("boardreview.getList", dto);
 	}
 
+	@Override
+	public void insert(BoardReviewDto dto) {
+		
+		session.insert("boardreview.insert", dto);
+		
+	}
+
 }
