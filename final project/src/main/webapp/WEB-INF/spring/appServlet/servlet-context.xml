@@ -28,6 +28,36 @@
 			ref="sessionFactory"/>
 	</beans:bean>
 	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 하위 패키지를 모두 컴포넌트 스캔하기 -->
+	<context:component-scan base-package="com.bob.please" />
+	<context:component-scan base-package="com.bob.please.board.*" />
+	<context:component-scan base-package="com.bob.please.mybatis" />
+
+	
+	<!-- 어노테이션 기반으로 aop 적용하기 위한 설정 -->
+	
+	
+	<!-- Multipart 폼 전송 처리를 위한 bean 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000"/>
+	</beans:bean>
+	
+	<!-- bean 의 이름으로 view 를 찾아갈수 있도록 설정 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"/>
+	</beans:bean>
 
 
 
@@ -45,8 +75,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.bob.please.mybatis" />
-	<context:component-scan base-package="com.bob.please" />	
 	
 	
 </beans:beans>

@@ -4,11 +4,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		
+		<typeAlias type="com.bob.please.board.review.dto.BoardReviewDto" alias="boardreviewDto"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="com/bob/please/mybatis/MemberMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/BoardReviewMapper.xml"/>
 	</mappers>	
 </configuration>
 
