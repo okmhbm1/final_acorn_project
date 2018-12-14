@@ -39,5 +39,10 @@ public class BoardReviewController {
 		//글 목록 보기로 리다일렉트 이동
 		return new ModelAndView("redirect:/board_review/list.do");
 	}
+	@RequestMapping("/board_review/detail")
+	public ModelAndView detail(HttpServletRequest request) {
+		service.getDetail(request);
+		return new ModelAndView("board_review/detail");
+	}
 }
 
