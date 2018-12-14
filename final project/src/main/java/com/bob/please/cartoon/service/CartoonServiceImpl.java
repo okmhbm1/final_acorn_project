@@ -20,6 +20,13 @@ public class CartoonServiceImpl implements CartoonService{
 	}
 
 
+	@Override
+	public void insert(CartoonDto dto) {
+		dao.insert(dto);
+		
+	}
+
+
 	
 	
 }

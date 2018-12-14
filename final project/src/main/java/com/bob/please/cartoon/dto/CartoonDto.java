@@ -6,13 +6,99 @@ public class CartoonDto {
 	   int num;
 	   String days;
 	   String title;
-	   String description; //설명
-	   String painter;//작가
-	   String category; //장르
-	   int point; //별점
-	   int likes; //추천수
-	   String portal; //포털 별 분류
-	   String regdate; //날짜
-
+	   String description; 
+	   String painter;
+	   String category; 
+	   int point; 
+	   int likes;
+	   String image_url;
+	   String portal; 
+	   String regdate;
+	   
+	   public CartoonDto(){
+		   
+	   }
+	public CartoonDto(int num, String days, String title, String description, String painter, String category,
+			int point, int likes, String image_url, String portal, String regdate) {
+		super();
+		this.num = num;
+		this.days = days;
+		this.title = title;
+		this.description = description;
+		this.painter = painter;
+		this.category = category;
+		this.point = point;
+		this.likes = likes;
+		this.image_url = image_url;
+		this.portal = portal;
+		this.regdate = regdate;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getDays() {
+		return days;
+	}
+	public void setDays(String days) {
+		this.days = days;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getPainter() {
+		return painter;
+	}
+	public void setPainter(String painter) {
+		this.painter = painter;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+	public String getImage_url() {
+		return image_url;
+	}
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+	public String getPortal() {
+		return portal;
+	}
+	public void setPortal(String portal) {
+		this.portal = portal;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	} 
+	   
 
 }

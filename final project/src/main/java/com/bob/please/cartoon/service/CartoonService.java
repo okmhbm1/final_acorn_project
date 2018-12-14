@@ -5,4 +5,5 @@ import com.bob.please.cartoon.dto.CartoonDto;
 public interface CartoonService {
 	
 	void selectall(CartoonDto dto);
+	void insert(CartoonDto dto);
 }

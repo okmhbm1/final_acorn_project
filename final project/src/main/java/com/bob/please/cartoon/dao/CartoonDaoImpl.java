@@ -16,4 +16,9 @@ public class CartoonDaoImpl implements CartoonDao {
 	public void selectall(CartoonDto dto) {
 		session.selectList("cartoon.selectall", dto);
 	}
+
+	@Override
+	public void insert(CartoonDto dto) {
+		session.insert("cartoon.naver_insert",dto);
+	}
 }

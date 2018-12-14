@@ -3,6 +3,11 @@
 <mapper namespace="cartoon">
 		
 		
+		<insert id="naver_insert" parameterType="cartoondto">
+			insert into cartoon(days,title,description,painter,point,likes,image_url,portal,regdate) 
+					value(#{days},#{title},#{description},#{painter},0,0,#{image_url},'naver',now())
+		</insert>
+		
 		<select id="selectall" parameterType="cartoondto" resultType="cartoondto">
 			select * from cartoon
 		</select>
