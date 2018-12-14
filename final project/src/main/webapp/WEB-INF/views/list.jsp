@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -265,31 +265,80 @@
 
       <div class="row">
       <div class="col-xs-2">
-         월요일
+      <div><h4>월요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'mon' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         화요일
+         <div><h4>화요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'tue' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         수요일
+                 <div><h4>수요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'wed' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         목요일
+        <div><h4>목요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'thu' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         금요일
+         <div><h4>금요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'fri' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         토요일
+        <div><h4>토요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'sat' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         일요일
+        <div><h4>일요일</h4></div>
+       <c:forEach items="${list }" var="tmp">
+             <c:if test="${tmp.days eq 'sun' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      </c:forEach>
       </div>
 
 

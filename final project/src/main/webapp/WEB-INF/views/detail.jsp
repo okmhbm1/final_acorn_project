@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -161,35 +161,35 @@
       <div id="header">
       <!-- 메인배너 -->
       <div class="row">
-      	<div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
-		
+         <div class="col-xs-4" id="image"> <img class="image" src="${pageContext.request.contextPath}/resources/images/banner.jpg"/></div>
+      
 
-	  <!--헤더 서치바-->   
+     <!--헤더 서치바-->   
       <div class="col-xs-3 col-xs-offset-1 display-none">         
-      	<div class="input-group" id="searchbar">
-	      <input type="text" class="form-control" placeholder="Search for...">
-	      <span class="input-group-btn">
-	        <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-	      </span>
-      	</div><!-- /input-group -->
+         <div class="input-group" id="searchbar">
+         <input type="text" class="form-control" placeholder="Search for...">
+         <span class="input-group-btn">
+           <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+         </span>
+         </div><!-- /input-group -->
      </div>
 
 
      <!-- 광고 -->
-   	  <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
-   	</div>
-   	</div>
+        <div class="col-xs-3" id="advertisement"><img class="advertisement display-none" src="${pageContext.request.contextPath}/resources/images/advertisement.jpg"/></div>
+      </div>
+      </div>
    </div>
 
 
 
    <div class="nav-container">
-	   <div class="navbar navbar-inverse">
-	      <a  href="#" class="navbar-brand">업데이트</a>
-	      <a href="#" class="navbar-brand">웹툰</a>
-	      <a  href="#" class="navbar-brand">게시판</a>
-	      <a  href="#" class="navbar-brand">리뷰</a>
-	   </div>
+      <div class="navbar navbar-inverse">
+         <a  href="#" class="navbar-brand">업데이트</a>
+         <a href="#" class="navbar-brand">웹툰</a>
+         <a  href="#" class="navbar-brand">게시판</a>
+         <a  href="#" class="navbar-brand">리뷰</a>
+      </div>
    </div> <!--네비바 -->
 
    
@@ -197,18 +197,16 @@
    <div class="container">
    <div class="body">
    <div class="container left">
-      <h3>만화 이름</h3>
+      <h3>${dto.title }</h3>
       <hr></hr>
       <div class="row ">
-         <div class="col-xs-6"><img class="image-full" src="images/pig.png"/></div>
-         <div class="col-xs-6"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div> <!--첫번째 row-->
+         <div class="col-xs-6"><img class="image-full" src="${dto.image_url}"/></div>
+         <div class="col-xs-6">
+         <p>작가 : ${dto.painter }</p>
+         <p>줄거리 : ${dto.description}</p>
+         </div> <!--첫번째 row-->
          <button class="btn btn-primary right"> 즐겨찾기</button>          
-         <button class="btn btn-primary right" style="margin-right:4px">링크</button>
+         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_uri}' " style="margin-right:4px">보러가기</button>
 
          
       </div>
@@ -313,14 +311,14 @@
       </tr>
     </tbody>
   </table>
-   	</div> <!-- section--> 
+      </div> <!-- section--> 
    
 
 
   
 
   </div><!--body 끝-->
-	</div> <!--container-->
+   </div> <!--container-->
 
 
       

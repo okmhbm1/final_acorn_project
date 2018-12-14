@@ -1,9 +1,25 @@
 package com.bob.please.cartoon.dao;
 
+import java.util.List;
+
 import com.bob.please.cartoon.dto.CartoonDto;
 
 public interface CartoonDao {
 
-void selectall(CartoonDto dto);
-void insert(CartoonDto dto);
+	public void selectall(CartoonDto dto);
+	
+	public List<CartoonDto> selectlist(CartoonDto dto);
+	public CartoonDto selectdetail(int num);
+
+
+
+
+
+
+
+
+
+
+public void insert(CartoonDto dto);
+public void insert2(CartoonDto dto);
 }

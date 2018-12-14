@@ -4,34 +4,27 @@
 		
 		
 		<insert id="naver_insert" parameterType="cartoondto">
-			insert into cartoon(days,title,description,painter,point,likes,image_url,portal,regdate) 
-					value(#{days},#{title},#{description},#{painter},0,0,#{image_url},'naver',now())
+			insert into cartoon(days,title,description,painter,point,likes,hit,detail_uri,image_url,portal,regdate) 
+					value(#{days},#{title},#{description},#{painter},0,0,0,#{detail_uri},#{image_url},'naver',now())
 		</insert>
 		
-		<select id="selectall" parameterType="cartoondto" resultType="cartoondto">
-			select * from cartoon
-		</select>
+		<insert id="naver_insert2" parameterType="cartoondto">
+			insert into cartoon(days,title,description,painter,category,point,likes,hit,detail_uri,image_url,portal,regdate) 
+					value(#{days},#{title},#{description},#{painter},#{category},0,0,0,#{detail_uri},#{image_url},'daum',now())
+		</insert>
 		
-		<select id="selectdetail" parameterType="int" resultType="cartoondto">
-			select * from cartoon where num=#{num}
-		</select>
 		
-		<select id="selectgroup" parameterType="cartoondto" resultType="cartoondto">
-			
-		      SELECT * 
-		      FROM cartoon
-		      <where>
-		         <if test="category != null">
-		            OR category LIKE '%'||#{category}||'%'
-		         </if>
-		         <if test="portal != null">
-		            OR portal LIKE '%'||#{portal}||'%'
-		         </if>
-		         <if test="days != null">
-		            OR days LIKE '%'||#{days}||'%'
-		         </if>
-		      </where>
-  		 </select>
+		<select id="selectlist" parameterType="cartoondto" resultType="cartoondto">
+         select num,days,title,point,likes,image_url,portal,regdate
+         FROM cartoon
+      </select>
+      
+      <select id="selectdetail" parameterType="int" resultType="cartoondto">
+         select num,title,description,painter,point,likes,detail_uri,image_url,regdate
+         FROM cartoon
+         WHERE num=#{num}
+      </select>
+      
 				
 
 </mapper>

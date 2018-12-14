@@ -456,6 +456,7 @@
 <a href="insertform.do">insertform</a>
 <a href="list.do">list</a>
 <a href="crawling.do">crawling</a>
+<a href="crawling2.do">crawling2</a>
 <!-- jquery 로딩하기-->
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
