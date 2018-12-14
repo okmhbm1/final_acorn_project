@@ -27,4 +27,10 @@ public class BoardReviewDaoImpl implements BoardReviewDao{
 		
 	}
 
+	@Override
+	public int getCount(BoardReviewDto dto) {
+		
+		return session.selectOne("boardreview.getCount", dto);
+	}
+
 }

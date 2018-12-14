@@ -23,9 +23,24 @@
 	<insert id="insert" parameterType="boardreviewDto">
 		INSERT INTO board_review
 		(num, writer, title, content, viewCount, regdate)
-		SELECT case count(*) WHEN 0 THEN 1 ELSE MAX(seq) + 1 END, #{writer}, #{title}, #{content},
+		SELECT case count(*) WHEN 0 THEN 1 ELSE MAX(num) + 1 END, #{writer}, #{title}, #{content},
 		#{viewCount}, curdate() FROM board_review
 	</insert>
+	<select id="getCount" resultType="int" parameterType="boardreviewDto">
+		SELECT COALESCE(MAX(ROWNUM), 0)
+		FROM board_cafe
+		<where>
+			<if test="writer != null">
+				OR writer LIKE '%'||#{writer}||'%'
+			</if>
+			<if test="title != null">
+				OR title LIKE '%'||#{title}||'%'
+			</if>
+			<if test="content != null">
+				OR content LIKE '%'||#{content}||'%'
+			</if>
+		</where>
+	</select>
 </mapper>
 
 
