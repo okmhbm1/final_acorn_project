@@ -53,7 +53,6 @@ public class CartoonController {
 		System.out.println("fuck");
 		//print all available links on page
 	      Elements information = doc.select(".col_inner");
-	      List <String> list=new ArrayList<String>();
 	      for(Element l : information)
 	      { 
 	    	  Elements temp = l.select("li");
@@ -103,18 +102,22 @@ public class CartoonController {
 		{
 			e.printStackTrace();
 		}
-	     String length="https://comic.naver.com/webtoon/list.nhn?titleId=701081&weekday=";
 		System.out.println("fuck");
 		//print all available links on page
 	      Elements header = doc.select(".header");
 	      Elements body = doc.select(".body");
-
+	      String days[] = new String[header.size()];
+	      int i=0;
 	      for(Element l: header)
 	      {
 	    	  System.out.println("요일 : "+l.select("strong").text());
+	    	  days[i]=l.select("strong").text();
+	    	  i++;
 	      }
+	      i=0;
 	      for(Element l : body)
 	      {
+	    	  
 	    	  Elements li = l.select("li");
 	    	  for(Element j : li ) {
 	    		  System.out.println("detail : " + j.select("a[href]").attr("abs:href"));  //detail
@@ -129,18 +132,22 @@ public class CartoonController {
 	    		  System.out.println("detail: "+doc.select(".summary").text());
 	    		  
 	    		  dto=new CartoonDto();
+	    		  dto.setPainter(doc.select("p").select(".text-gray").select("span").text().replaceAll("글/그림 : ",""));
+	    		  dto.setDays(days[i]);
 	    		  dto.setDetail_uri(j.select("a[href]").attr("abs:href"));
 	    		  dto.setDescription(doc.select(".summary").text());
 	    		  dto.setImage_url(j.select(".img-fluid").attr("abs:src"));
-	    		  dto.setTitle("title: "+j.select(".title").text());
+	    		  dto.setTitle("title: "+j.select(".title").text().replaceAll("title:", ""));
 	    		  dto.setCategory(j.select(".cate").text());
 	    		  service.insert2(dto);
 	    		  System.out.println("img : "+j.select(".img-fluid").attr("abs:src")); //img 주소
 	    		  System.out.println("title: "+j.select(".title").text());
 	    		  System.out.println("장르: "+j.select(".cate").text());
 	    	  }
+	    	  i++;
 	    	  
 	      }
+	      i=0;
   	
    		
 	    		  System.out.println("");
