@@ -25,6 +25,10 @@
          WHERE num=#{num}
       </select>
       
+      <update id="updatecategory" parameterType="cartoondto">
+      	update cartoon set category=#{category} where num=#{num}
+      </update>
+      
 				
 
 </mapper>

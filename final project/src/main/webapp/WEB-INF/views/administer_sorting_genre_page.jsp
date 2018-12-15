@@ -18,7 +18,12 @@
       height:150px;
 
    }
-
+   
+	.relative{
+		position:relative;
+		width:100%;
+		height:100%;
+	}
    #image,#advertisement{
       position:absolute;
       display:inline-block;
@@ -26,10 +31,6 @@
       width:100%;
       height:100%;
 
-   }
-   image{
-   	width:100%;
-   	height:100%;
    }
    #image{
       position:relative;
@@ -200,64 +201,77 @@
    <div class="body">
       <div class="row">
       <div class="col-xs-4">
-         <br/>
-         <br/>
-         <br/>
-         <button class="btn btn-default">연재</button>
-            <button class="btn btn-default">미연재</button>
+        
       </div>
       <div class="col-xs-4"></div>
       <div class="col-xs-4">
          <br/>
          <br/>
          <div style="float:right;">
-            <div class="checkbox1"    >
-              <label>
-                <input type="checkbox" value="">
-                네이버
-              </label>
-              <label>
-                <input type="checkbox" value="">
-                다음
-              </label>
-              <label>
-                <input type="checkbox" value="">
-                레진코믹스
-              </label>
+            
+            
+            
+            
+            
+            <div name="genre">
+	              
+	              <label>
+	                <input name="category" type="radio" value="일상" checked="checked">
+	               일상
+	              </label>
+	              
+	              <label>
+	                <input name="category" type="radio" value="개그">
+	                개그
+	              </label>
+	              
+	              <label>
+	                <input name="category" type="radio" value="판타지">
+	                판타지
+	              </label>
+	              
+	              <label>
+	                <input name="category" type="radio" value="액션">
+	                액션
+	              </label>
+	              <label>
+	                <input name="category" type="radio" value="드라마">
+	                드라마
+	              </label>
+	              <label>
+	                <input name="category" type="radio" value="순정">
+	                순정
+	              </label>
+	              <label>
+	               <input name="category" type="radio" value="감성">
+	                감성
+	              </label>
+	              <label>
+	                <input name="category" type="radio" value="스릴러">
+	                스릴러
+	              </label>
+	              <label>
+	                <input name="category" type="radio" value="시대극">
+	                시대극
+	              </label>
+	              <label>
+	                <input name="category" type="radio" value="스포츠">
+	                스포츠
+	              </label>
+	               <button id="btn" class="btn btn-primary" type="submit" >저장</button>
             </div>
    
-            <div class="checkbox2" >
-              <label>
-                <input type="checkbox" value="">
-                최신
-              </label>
-              <label>
-                <input type="checkbox" value="">
-                추천
-              </label>
-                 <label>
-                <input type="checkbox" value="">
-                장르
-              </label>
-              <label>
-                <input type="checkbox" value="">
-                성별
-              </label>
-            </div>
-         
-            <div class="checkbox3" >
-               <label>
-                <input type="checkbox" value="">
-                10대
-              </label>
-               <label>
-                <input type="checkbox" value="">
-                20대
-              </label>
-              <input type="checkbox" value="">
-                30대
-              </label>
-            </div>
+            
+            
+            
+            
+  
+            
+            
+            
+            
+            
+            
          </div><!--div묶은거-->
       </div>
    </div>
@@ -271,10 +285,11 @@
       <div class="col-xs-2">
       <div><h4>월요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'mon' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'mon' || tmp.days eq '월'  }">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -282,10 +297,11 @@
       <div class="col-xs-2">
          <div><h4>화요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'tue' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'tue' || tmp.days eq '화'}">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -293,10 +309,11 @@
       <div class="col-xs-2">
                  <div><h4>수요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'wed' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'wed' || tmp.days eq '수' }">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -304,10 +321,11 @@
       <div class="col-xs-2">
         <div><h4>목요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'thu' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'thu' || tmp.days eq '목'}">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -315,10 +333,11 @@
       <div class="col-xs-2">
          <div><h4>금요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'fri' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'fri' || tmp.days eq '금' }">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -326,10 +345,11 @@
       <div class="col-xs-2">
         <div><h4>토요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'sat' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'sat' || tmp.days eq '토' }">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -337,10 +357,11 @@
       <div class="col-xs-2">
         <div><h4>일요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'sun' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'sun' || tmp.days eq '일' }">
+            <div><a class="relative" href="detail.do?num=${tmp.num}"><img class="relative" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
+            <input type="checkbox" name="cartoon" value="${tmp.num}"/>
             </c:if>
       </c:forEach>
       </div>
@@ -354,14 +375,44 @@
   </div><!--body 끝-->
    </div> <!--container-->
       
- 
-
-   
-   
+    
    
 <!-- jquery 로딩하기-->
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script>
+	
+	$("#btn").on('click',function(){
+		var cartoon = [];
+		var category=$('input[name="category"]:checked').val();
+		$('input[name="cartoon"]:checked').each(function(){
+			if(this.checked==true)
+				cartoon.push(this.value);		
+			//alert(arr);
+		});
+		$.ajax({
+			method:'POST',
+			url:'sort.do',
+			traditional:true,
+			data : {
+				'cartoon':cartoon,
+				'category':category
+			},
+			success : function(){
+					
+			}
+			
+		});
+		alert("별 오류 안났으면 성공!");
+	});
+	$('[name="category"]').val();
+	
+
+
+
+</script>
+
+
 </body>
 </html>

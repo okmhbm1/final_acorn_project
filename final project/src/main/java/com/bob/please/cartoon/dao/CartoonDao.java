@@ -11,15 +11,9 @@ public interface CartoonDao {
 	public List<CartoonDto> selectlist(CartoonDto dto);
 	public CartoonDto selectdetail(int num);
 
-
-
-
-
-
-
-
-
-
-public void insert(CartoonDto dto);
-public void insert2(CartoonDto dto);
+	
+	public void updatecategory(CartoonDto dto);
+	
+	public void insert(CartoonDto dto);
+	public void insert2(CartoonDto dto);
 }

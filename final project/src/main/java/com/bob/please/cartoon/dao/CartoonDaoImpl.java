@@ -36,7 +36,6 @@ public class CartoonDaoImpl implements CartoonDao {
 	   }
 
 	
-	
 
 	
 	
@@ -49,5 +48,12 @@ public class CartoonDaoImpl implements CartoonDao {
 	@Override
 	public void insert2(CartoonDto dto) {
 		session.insert("cartoon.naver_insert2",dto);
+	}
+
+
+	@Override
+	public void updatecategory(CartoonDto dto) {
+		session.update("cartoon.updatecategory",dto);
+		
 	}
 }

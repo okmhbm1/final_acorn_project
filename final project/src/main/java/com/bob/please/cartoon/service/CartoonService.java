@@ -14,6 +14,7 @@ public interface CartoonService {
 	   public void selectdetail(ModelAndView mView, int num);
 	
 	
+	   public void updatecategory(CartoonDto dto);
 	
 	
 	

@@ -161,10 +161,21 @@ public class CartoonController {
 
 	}
 
-	@RequestMapping("/insertform.do")
-	   public String insertform(CartoonDto dto) {
-	      service.selectall(dto);
-	      return "insertform";
+	@RequestMapping("/sort.do")
+	   public ModelAndView sort(@RequestParam String [] cartoon, @RequestParam String category,ModelAndView mView) {
+	      CartoonDto dto=null;
+		  for(int i=0; i< cartoon.length;i++)
+	      {	
+			dto=new CartoonDto();
+			dto.setNum(Integer.parseInt(cartoon[i]));
+			dto.setCategory(category);
+			System.out.println(dto.getNum());
+			System.out.println(dto.getCategory());
+			service.updatecategory(dto);
+			System.out.println("여기실행?");
+	      }
+		  mView.addObject("result","success");
+	      return mView;
 	   }
 	
 	@RequestMapping("/list.do")
@@ -180,6 +191,15 @@ public class CartoonController {
 	      return mView;
 	      
 	   }
+	 
+	 @RequestMapping("/administer_sorting_genre_page")
+	 public ModelAndView administer_sorting_genre_page(HttpServletRequest request,ModelAndView mView) {
+		service.selectlist(request); 
+		 mView.setViewName("administer_sorting_genre_page");
+		 return mView;
+		 
+		 
+	 }
 
 	
 	

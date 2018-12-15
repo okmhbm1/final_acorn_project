@@ -56,7 +56,11 @@ public class CartoonServiceImpl implements CartoonService{
 	
 	
 	
-	
+	@Override
+	public void updatecategory(CartoonDto dto) {
+		
+		dao.updatecategory(dto);
+	}
 	
 	
 	
