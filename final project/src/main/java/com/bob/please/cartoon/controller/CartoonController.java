@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.service.CartoonService;
 
@@ -162,7 +164,8 @@ public class CartoonController {
 	}
 
 	@RequestMapping("/sort.do")
-	   public ModelAndView sort(@RequestParam String [] cartoon, @RequestParam String category,ModelAndView mView) {
+	@ResponseBody
+	   public String sort(@RequestParam String [] cartoon, @RequestParam String category,ModelAndView mView) {
 	      CartoonDto dto=null;
 		  for(int i=0; i< cartoon.length;i++)
 	      {	
@@ -174,8 +177,8 @@ public class CartoonController {
 			service.updatecategory(dto);
 			System.out.println("여기실행?");
 	      }
-		  mView.addObject("result","success");
-	      return mView;
+
+	      return "SUCCESS";
 	   }
 	
 	@RequestMapping("/list.do")
@@ -185,8 +188,14 @@ public class CartoonController {
 	   }
 	
 	 @RequestMapping("/detail")
-	   public ModelAndView detail(ModelAndView mView, @RequestParam int num) {
-	      service.selectdetail(mView,num);
+	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
+	      
+		  request.getSession().setAttribute("id", "bob");
+		   
+		  service.selectdetail(mView,num);
+		  service.selectcartoonpointlist(request);
+		  
+		  mView.addObject("num", num);
 	      mView.setViewName("detail");
 	      return mView;
 	      
@@ -199,6 +208,20 @@ public class CartoonController {
 		 return mView;
 		 
 		 
+	 }
+	 @RequestMapping("/savepoint.do")
+	 @ResponseBody
+	 public String savepoint(@RequestParam int point,@RequestParam int cartoon_num,
+			 @RequestParam String userid, @RequestParam String comment) {
+		 CartoonCommentDto dto=new CartoonCommentDto();
+		 dto.setPoint(point);
+		 dto.setCartoon_num(cartoon_num);
+		 dto.setUserid(userid);
+		 dto.setComment(comment);
+		 service.insertcartoonpoint(dto);
+		 System.out.println("호출되냐고");
+		 return "success";
+		
 	 }
 
 	

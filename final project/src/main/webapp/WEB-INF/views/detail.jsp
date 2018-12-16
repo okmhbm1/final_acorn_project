@@ -123,7 +123,10 @@
    .navbar{
     padding-left:190px;
    }
-
+	.form-control{
+		width:60%;
+		display:inline-block;
+	}
 /* borderless table */
 .table.table-borderless td, .table.table-borderless th {
     border: 0 !important;
@@ -145,6 +148,8 @@
 .display-none{
 
 }
+.star{
+}
 
     @media (max-width: 750px){
        .display-none{
@@ -153,6 +158,13 @@
       }
      
     }
+
+
+
+
+
+
+ 
 </style>
 <body>
    
@@ -213,9 +225,30 @@
       <br/>
          <hr style="border:1.19px solid black">
     <div class="row" style="text-align: center">
-         <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
+         <div class="star" class="col-xs-5" style="color:red;">
+	         <span  id="star1">☆</span>
+	         <span  id="star2">☆</span>
+	         <span  id="star3">☆</span>
+	         <span  id="star4">☆</span>
+	         <span  id="star5">☆</span>
+	         <span  id="star6">☆</span>
+	         <span  id="star7">☆</span>
+	         <span  id="star8">☆</span>
+	         <span  id="star9">☆</span>
+	         <span id="star10">☆</span>
+	         
+	         
+	         
+	         <form>
+				<input type="hidden" id="num" name="num" value="${num }"/>
+	         	<input type="hidden" id="userid" name="userid" value="${id }"/>
+	         	<input type="hidden" id="point" name="point"/>
+	          	<input type="text" class="form-control" id="comment" placeholder="평가를 써주세요."/>
+	          	 <button id="submitbtn" class="btn btn-primary "type="submit">전송</button>
+	          </form>
+         </div>
+			
 
-         <div class="col-xs-7"><input class="form-control" placeholder="평가를 써주세요."/></div>
          <br/>
          <hr>
          
@@ -235,15 +268,31 @@
 
 
 
-      <div class="row" style="text-align: center">
-         <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
+      
 
-         <div class="col-xs-7">그저 그럼 6ㄴ점</div>
+             <c:if test="${tmp.days eq 'mon' }">
+            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div style="display:none">${tmp.days }</div>
+            </c:if>
+      
+       <c:if test="${list ne null }">		      
+	      <c:forEach items="${list }" var="tmp">      
+			      <div class="row" style="text-align: center">
+			         <div class="col-xs-5 printpoint" >${tmp.point }</div>
+			
+			         <div class="col-xs-7">${tmp.comment } 아이디:<span>${tmp.userid }</span></div>
+			
+			      </div><!--row2 끝-->
+			
+			      <br/>
+			      <hr>
+	      </c:forEach>
+	   </c:if>
 
-      </div><!--row2 끝-->
 
-      <br/>
-      <hr>
+
+
       <div class="row" style="text-align: center">
          <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
 
@@ -328,8 +377,315 @@
    
    
 <!-- jquery 로딩하기-->
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script>
+
+		
+
+		$("#submitbtn").on('click',function(){
+			var point = $("#point").val(star_value).val();
+			var cartoon_num=$("#num").val();
+			var userid=$("#userid").val();
+			var comment=$("#comment").val();
+			
+				alert("point:"+point+"cartoon_num"+cartoon_num+"userid:"+userid+"comment:"+comment);
+				
+					$.ajax({
+						method:'POST',
+						url:'savepoint.do',
+						traditional:true,
+						data : {
+							'point':point,
+							'cartoon_num':cartoon_num,
+							'userid':userid,
+							'comment':comment
+						},
+						success : function(success){
+							 alert(success);
+								location.reload();
+						}
+						
+					});
+			
+			});
+
+		
+	var is_select=false;
+	var star_value=0;
+	$("#star1").mouseover(function(){
+		var i=1;
+		if(is_select==false)
+			for(var j=1;j<=i;j++)
+				$("#star"+j).text("★");
+	});
+	$("#star2").mouseover(function(){
+		var i=2;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star3").mouseover(function(){
+		var i=3;
+		if(is_select==false)
+			for(var j=1;j<=i;j++)
+				$("#star"+j).text("★");
+	});
+	$("#star4").mouseover(function(){
+		var i=4;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star5").mouseover(function(){
+		var i=5;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star6").mouseover(function(){
+		var i=6;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star7").mouseover(function(){
+		var i=7;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star8").mouseover(function(){
+		var i=8;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star9").mouseover(function(){
+		var i=9;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$("#star10").mouseover(function(){
+		var i=10;
+		if(is_select==false)
+		for(var j=1;j<=i;j++)
+			$("#star"+j).text("★");
+	});
+	$(".star").mouseout(function(){
+		
+		if(is_select ==false){
+		$("#star1").text("☆");
+		$("#star2").text("☆");
+		$("#star3").text("☆");
+		$("#star4").text("☆");
+		$("#star5").text("☆");
+		$("#star6").text("☆");
+		$("#star7").text("☆");
+		$("#star8").text("☆");
+		$("#star9").text("☆");
+		$("#star10").text("☆");
+		}
+	});
+
+	
+		$("#star1").on('click',function(){
+			star_value=1;
+			is_select=true;
+			$("#star1").text("★");
+			if(is_select){
+				$("#star2").text("☆");
+				$("#star3").text("☆");
+				$("#star4").text("☆");
+				$("#star5").text("☆");
+				$("#star6").text("☆");
+				$("#star7").text("☆");
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+			}
+		});
+		$("#star2").on('click',function(){
+			star_value=2;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			if(is_select){
+				$("#star3").text("☆");
+				$("#star4").text("☆");
+				$("#star5").text("☆");
+				$("#star6").text("☆");
+				$("#star7").text("☆");
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+			}
+	});
+		$("#star3").on('click',function(){
+			star_value=3;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			if(is_select){
+				$("#star4").text("☆");
+				$("#star5").text("☆");
+				$("#star6").text("☆");
+				$("#star7").text("☆");
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+				
+			}
+	});
+		$("#star4").on('click',function(){
+			star_value=4;
+			is_select=true;
+			
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			if(is_select){
+				$("#star5").text("☆");
+				$("#star6").text("☆");
+				$("#star7").text("☆");
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+			}
+	});
+		$("#star5").on('click',function(){
+			star_value=5;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			$("#star5").text("★");
+			if(is_select){
+				$("#star6").text("☆");
+				$("#star7").text("☆");
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+			}
+	});
+		$("#star6").on('click',function(){
+			star_value=6;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			$("#star5").text("★");
+			$("#star6").text("★");
+			if(is_select){
+				$("#star7").text("☆");
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+			}
+	});
+		$("#star7").on('click',function(){
+			star_value=7;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			$("#star5").text("★");
+			$("#star6").text("★");
+			$("#star7").text("★");
+			if(is_select){
+				$("#star8").text("☆");
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+
+			}
+	});
+		$("#star8").on('click',function(){
+			star_value=8;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			$("#star5").text("★");
+			$("#star6").text("★");
+			$("#star7").text("★");
+			$("#star8").text("★");
+			if(is_select){
+				$("#star9").text("☆");
+				$("#star10").text("☆");
+			}
+	});
+		$("#star9").on('click',function(){
+			star_value=9;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			$("#star5").text("★");
+			$("#star6").text("★");
+			$("#star8").text("★");
+			$("#star9").text("★");
+			if(is_select){
+				$("#star10").text("☆");
+			}
+	});
+		
+		$("#star10").on('click',function(){
+			star_value=10;
+			is_select=true;
+			$("#star1").text("★");
+			$("#star2").text("★");
+			$("#star3").text("★");
+			$("#star4").text("★");
+			$("#star5").text("★");
+			$("#star6").text("★");
+			$("#star8").text("★");
+			$("#star9").text("★");
+			$("#star10").text("★");
+	});
+		
+		
+		
+		
+		
+			
+			
+			$(".printpoint").each(function(){
+				
+				if($(this).text()=="1")
+					$(this).text("★");
+				if($(this).text()=="2")
+					$(this).text("★★");
+				if($(this).text()=="3")
+					$(this).text("★★★");
+				if($(this).text()=="4")
+					$(this).text("★★★★");
+				if($(this).text()=="5")
+					$(this).text("★★★★★");
+				if($(this).text()=="6")
+					$(this).text("★★★★★★");
+				if($(this).text()=="7")
+					$(this).text("★★★★★★★");
+				if($(this).text()=="8")
+					$(this).text("★★★★★★★★");
+				if($(this).text()=="9")
+					$(this).text("★★★★★★★★★");
+				if($(this).text()=="10")
+					$(this).text("★★★★★★★★★★");
+			
+			});	
+			
+			
+			
+		
+</script>
 </body>
 </html>

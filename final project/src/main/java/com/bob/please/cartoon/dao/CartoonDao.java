@@ -2,6 +2,7 @@ package com.bob.please.cartoon.dao;
 
 import java.util.List;
 
+import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 
 public interface CartoonDao {
@@ -14,6 +15,11 @@ public interface CartoonDao {
 	
 	public void updatecategory(CartoonDto dto);
 	
+	
+	public void insertcartoonpoint(CartoonCommentDto dto);
+	
 	public void insert(CartoonDto dto);
 	public void insert2(CartoonDto dto);
+	
+	public List<CartoonCommentDto> selectcartoonpointlist(CartoonCommentDto dto);
 }

@@ -25,11 +25,24 @@
          WHERE num=#{num}
       </select>
       
+      
+      
+      
+	  <!-- 관리자 페이지에서 카테고리 업데이트 -->
+    
       <update id="updatecategory" parameterType="cartoondto">
       	update cartoon set category=#{category} where num=#{num}
       </update>
-      
-				
+    
+      <!-- 여기부터는 cartooncomentdto -->      
+	  <insert id="insertpoint" parameterType="cartooncommentdto">
+	  	insert into cartoon_point(cartoon_num,userid,point,comment)
+	  	value(#{cartoon_num},#{userid},#{point},#{comment})
+	  
+	  </insert>
+	  
+	  <select id="selectcartoonpointlist" parameterType="cartooncommentdto" resultType="cartooncommentdto">
+	     select cartoon_num,userid,point,comment from cartoon_point</select>				
 
 </mapper>
 

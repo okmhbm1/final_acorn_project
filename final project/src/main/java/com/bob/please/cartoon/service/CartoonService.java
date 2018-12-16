@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 
 public interface CartoonService {
@@ -17,9 +18,9 @@ public interface CartoonService {
 	   public void updatecategory(CartoonDto dto);
 	
 	
+	public void insertcartoonpoint(CartoonCommentDto dto);
 	
-	
-	
+	public void selectcartoonpointlist(HttpServletRequest request);
 	
 	
 	void insert(CartoonDto dto);

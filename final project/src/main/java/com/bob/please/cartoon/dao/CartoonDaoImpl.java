@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 
 @Repository
@@ -51,9 +52,32 @@ public class CartoonDaoImpl implements CartoonDao {
 	}
 
 
+	
+	/* 이거는 관리자 입장에서 장르 업데이트하는것*/
 	@Override
 	public void updatecategory(CartoonDto dto) {
 		session.update("cartoon.updatecategory",dto);
+		
+	}
+	
+	
+	/**
+	 * 
+	 *  아래부터는 cartooncommentdto
+	 * 
+	 */
+
+
+	@Override
+	public void insertcartoonpoint(CartoonCommentDto dto) {
+		session.insert("cartoon.insertpoint",dto);
+		
+	}
+
+
+	@Override
+	public List<CartoonCommentDto> selectcartoonpointlist(CartoonCommentDto dto) {
+		return session.selectList("cartoon.selectcartoonpointlist", dto);
 		
 	}
 }

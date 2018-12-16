@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bob.please.cartoon.dao.CartoonDao;
+import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 
 @Service
@@ -80,6 +81,26 @@ public class CartoonServiceImpl implements CartoonService{
 	public void insert2(CartoonDto dto) {
 		dao.insert2(dto);
 		
+	}
+
+
+
+
+	@Override
+	public void insertcartoonpoint(CartoonCommentDto dto) {
+		// TODO Auto-generated method stub
+		dao.insertcartoonpoint(dto);
+	}
+
+
+
+
+	@Override
+	public void selectcartoonpointlist(HttpServletRequest request) {
+		CartoonCommentDto dto=new CartoonCommentDto();
+		dto.setCartoon_num(Integer.parseInt(request.getParameter("num")));
+		List<CartoonCommentDto> list = dao.selectcartoonpointlist(dto);
+		request.setAttribute("list", list);
 	}
 	
 	
