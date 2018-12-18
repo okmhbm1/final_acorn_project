@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 
 public interface CartoonDao {
@@ -36,6 +37,7 @@ public interface CartoonDao {
 
 	// 댓글 추천,비추천할 때 이미 추천,비추천했는지 확인
 	int is_selected(String userid);
+	int is_recommend_selected(CartoonLikeDto dto);
 	
 	// 추천했을 때 별점 댓글에 추천 수 증가
 	public void updategood(CartoonCommentDto dto);
@@ -43,4 +45,11 @@ public interface CartoonDao {
 	
 	// 추천,비추천 여부 선택
 	public void set_selected(onelike_or_dislikeDto dto);
+	
+	
+	//만화 추천수 등록하기
+	public void insert_recomm(CartoonLikeDto dto);
+	
+	public void update_likes(int cartoon_num);
+		
 }

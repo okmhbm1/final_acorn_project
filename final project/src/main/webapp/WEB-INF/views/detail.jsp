@@ -221,7 +221,7 @@
          <button class="btn btn-primary right"> 즐겨찾기</button>          
          <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_uri}' " style="margin-right:4px">보러가기</button><br><br>
 	     
-           <button style="margin-right:4px" class="right btn btn-primary" id="notrecomm">추천</button>	
+           <button style="margin-right:4px" class="right btn btn-primary" id="recomm">추천 : ${dto.likes }</button>	
          
       </div>
       <br/>
@@ -375,7 +375,28 @@
 		
 		
 		
-		
+			$("#recomm").on('click',function(){
+				var cartoon_num=$("#num").val();
+				var userid=$("#userid").val();
+				alert(userid);
+				$.ajax({
+					method:'POST',
+					url:'recommend.do',
+					traditional:true,
+					data : {
+						"cartoon_num":cartoon_num,
+						"userid":userid,
+					
+					},
+					success : function(success){
+						 alert(success);
+							location.reload();
+					}
+				
+				});
+				alert("끝");
+				
+			})
 
 			
 			$(".good").each(function(){

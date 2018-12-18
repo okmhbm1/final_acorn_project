@@ -47,6 +47,13 @@
 	  <select id="is_selected" parameterType="string" resultType="int">
 			select COALESCE(count(*),0) from onelike_or_dislike where userid=#{userid}	  
 	  </select>
+	  
+	  <!-- 특정 아이디로 추천을 했는지 확인 -->
+	  <select id="is_recommend_selected" parameterType="cartoonlikedto" resultType="int">
+	  	   select COALESCE(count(*),0) from cartoon_recomm where userid=#{userid} and cartoon_num=#{cartoon_num}
+	  </select>
+	  
+	  
 	  <update id="updategood" parameterType="cartooncommentdto">
 	  		update cartoon_point set good=good+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
 	  </update>
@@ -58,6 +65,17 @@
 	  <insert id="insertlike" parameterType="likeordislikedto">
 	  		insert into onelike_or_dislike(cartoon_num,userid,is_selected) value(#{cartoon_num},#{userid},#{is_selected})
 	  </insert>
+	  
+	  
+	  <select id="insert_recomm" parameterType="cartoonlikedto">
+	  		insert into cartoon_recomm(cartoon_num,userid,recomm) value(#{cartoon_num},#{userid},1)
+	  </select>
+	  
+	  <update id="update_likes" parameterType="int">
+	  		update cartoon set likes=likes+1 where num=#{cartoon_num} 
+	  </update>
+	  
+
 </mapper>
 
 

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bob.please.cartoon.dao.CartoonDao;
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 
 @Service
@@ -140,6 +141,36 @@ public class CartoonServiceImpl implements CartoonService{
 		dao.updatebad(dto);
 		
 	}
+
+
+
+
+	@Override
+	public int is_recommend_selected(CartoonLikeDto dto) {
+		
+		return dao.is_recommend_selected(dto);
+	}
+
+
+
+
+	@Override
+	public void insert_recomm(CartoonLikeDto dto) {
+		dao.insert_recomm(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void update_likes(int cartoon_num) {
+		dao.update_likes(cartoon_num);
+	}
+
+
+
+
 	
 	
 }

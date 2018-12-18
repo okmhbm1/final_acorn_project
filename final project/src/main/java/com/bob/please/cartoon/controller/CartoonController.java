@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 import com.bob.please.cartoon.service.CartoonService;
 
@@ -192,7 +193,7 @@ public class CartoonController {
 	 @RequestMapping("/detail.do")
 	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
 	      
-		  request.getSession().setAttribute("id", "fuckyou");
+		  request.getSession().setAttribute("id", "asdfasdffads11");
 		   
 		  service.selectdetail(mView,num);
 		  service.selectcartoonpointlist(request);
@@ -234,11 +235,11 @@ public class CartoonController {
 	 public String good(@RequestParam int cartoon_num, @RequestParam String userid,String uploaderid) {
 
 		 int is_selected= service.is_selected(userid);
-		 /*
+		 
 		 if(is_selected==1) {
 			 System.out.println("이미 평가함");
 			 return "fail";
-		 }*/
+		 }
 		 CartoonCommentDto dto=new CartoonCommentDto();
 		 dto.setUserid(uploaderid);
 		 dto.setCartoon_num(cartoon_num);
@@ -247,20 +248,19 @@ public class CartoonController {
 		 service.set_selected(dto2);
 
 
-//		 service.insertcartoonpoint(dto);
-//		 System.out.println("호출되냐고");
+
 		 return "success";
 		
 	 }
-	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응, 아직 구현 못함
+	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응
 	 @RequestMapping("/notgood.do")
 	 @ResponseBody
 	 public String notgood(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String uploaderid) {
 		 int is_selected= service.is_selected(userid);
-		 /*if(is_selected==1) {
+		 if(is_selected==1) {
 			 System.out.println("이미 평가함");
 			 return "fail";
-		 }*/
+		 }
 		 CartoonCommentDto dto=new CartoonCommentDto();
 		 dto.setUserid(uploaderid);
 		 dto.setCartoon_num(cartoon_num);
@@ -270,15 +270,39 @@ public class CartoonController {
 		 System.out.println("데이터베이스 업데이트함");
 		 
 		 
-//		 dto.setPoint(point);
-//		 dto.setCartoon_num(cartoon_num);
-//		 dto.setUserid(userid);
-//		 dto.setComment(comment);
-
-		 System.out.println("호출되냐고");
 		 return "success";
 		
 	 }
 	
+	 //만화 추천수 증가
+	 @RequestMapping("/recommend.do")
+	 @ResponseBody
+	 public String recommend(@RequestParam int cartoon_num, @RequestParam String userid) {
+		 
+		 CartoonLikeDto dto=new CartoonLikeDto();
+		 dto.setUserid(userid);
+		 dto.setCartoon_num(cartoon_num);
+		 int is_selected= service.is_recommend_selected(dto);
+		 System.out.println(is_selected);
+		 if(is_selected !=0) {
+			 System.out.println("이미 평가함");
+			 System.out.println("fail");
+			 return "fail";
+		 }
+		 //cartoon의 likes를 증가시키고
+		 //insert_recomm는 그냥 등록만 하면 된다.
+
+		 service.update_likes(cartoon_num);
+		 System.out.println("likes update완료");
+;
+		 service.insert_recomm(dto);
+		 System.out.println("recomm insert완료");
+		 
+		 System.out.println("데이터베이스 업데이트함");
+		 
+		 
+		 return "success";
+		
+	 }
 	
 }
