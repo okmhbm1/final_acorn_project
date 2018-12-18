@@ -44,4 +44,10 @@ public class BoardReviewDaoImpl implements BoardReviewDao{
 		session.update("boardreview.addViewCount", num);
 	}
 
+	@Override
+	public void delete(int num) {
+		session.delete("boardreview.delete", num);
+		
+	}
+
 }

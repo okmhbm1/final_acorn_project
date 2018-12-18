@@ -1,11 +1,13 @@
 package com.bob.please.board.review.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bob.please.board.review.dto.BoardReviewDto;
@@ -43,6 +45,11 @@ public class BoardReviewController {
 	public ModelAndView detail(HttpServletRequest request) {
 		service.getDetail(request);
 		return new ModelAndView("board_review/detail");
+	}
+	@RequestMapping("/board_review/delete")
+	public ModelAndView Delete(@RequestParam int num, HttpServletRequest request) {
+		service.deleteContent(num);
+		return new ModelAndView("redirect:/board_review/list.do");
 	}
 }
 

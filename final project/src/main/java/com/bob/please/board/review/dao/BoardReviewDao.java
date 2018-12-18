@@ -5,9 +5,6 @@ import java.util.List;
 import com.bob.please.board.review.dto.BoardReviewDto;
 
 
-
-
-
 public interface BoardReviewDao {
 
 	public List<BoardReviewDto> getList(BoardReviewDto dto);
@@ -15,4 +12,5 @@ public interface BoardReviewDao {
 	public int getCount(BoardReviewDto dto);
 	public BoardReviewDto getData(BoardReviewDto dto);
 	public void addViewCount(int num);
+	public void delete(int num);
 }

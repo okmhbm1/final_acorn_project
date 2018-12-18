@@ -2,24 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardreview">
 	<select id="getData2" parameterType="boardreviewDto" resultType="boardreviewDto">
-		SELECT result1.*
-		FROM (SELECT num, writer, title, content, viewCount, regdate,
-				LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum,
-				LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum
-			  FROM board_review
-	        <where>
-				<if test="writer != null">
-					OR writer LIKE '%'||#{writer}||'%'
-				</if>
-				<if test="title != null">
-					OR title LIKE '%'||#{title}||'%'
-				</if>
-				<if test="content != null">
-					OR content LIKE '%'||#{content}||'%'
-				</if>
-			</where>
-			  ORDER BY num DESC) result1
-		WHERE num=#{num}
+	SELECT a.*	
+	FROM(SELECT num,<![CDATA[
+		(SELECT br2.num FROM board_review br2 WHERE br2.num < board_review.num ORDER BY br2.num
+		DESC LIMIT 1) prevNum,
+		(SELECT MIN(br2.num)FROM board_review br2 WHERE br2.num > board_review.num ORDER BY br2.num
+		DESC) nextNum,]]> writer, title, content, viewCount, regdate 
+			FROM board_review	
+				<where>
+					<if test="writer != null">
+						OR writer LIKE CONCAT('%',#{writer},'%')
+					</if>
+					<if test="title != null">
+						OR title LIKE CONCAT('%',#{title},'%')
+					</if>
+						<if test="content != null">
+						OR content LIKE CONCAT('%',#{content},'%')
+					</if>
+				</where>			
+	    ) a  
+	 WHERE num=#{num}
+	      
+			 
+		
 	</select>	
 	<select id="getList" parameterType="boardreviewDto" resultType="boardreviewDto">
 		
@@ -29,13 +34,13 @@
 			        FROM board_review
 			        <where>
 						<if test="writer != null">
-							OR writer LIKE '%'||#{writer}||'%'
+							OR writer LIKE CONCAT('%',#{writer},'%')
 						</if>
 						<if test="title != null">
-							OR title LIKE '%'||#{title}||'%'
+							OR title LIKE CONCAT('%',#{title},'%')
 						</if>
 						<if test="content != null">
-							OR content LIKE '%'||#{content}||'%'
+							OR content LIKE CONCAT('%',#{content},'%')
 						</if>
 					</where>
 			        ORDER BY num DESC) result1,(SELECT @ROWNUM:=0)TMP)AS final
@@ -63,11 +68,18 @@
 			</if>
 		</where>
 	</select>
+	
 	<update id="addViewCount" parameterType="int">
 		UPDATE board_review
 		SET viewCount=viewCount+1
 		WHERE num=#{num}
 	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_review
+		WHERE num=#{num}
+	</delete>
+	
 </mapper>
 
 

@@ -1,16 +1,20 @@
 package com.bob.please.board.review.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bob.please.board.review.dao.BoardReviewDao;
 import com.bob.please.board.review.dto.BoardReviewDto;
+
 
 
 @Service
@@ -157,5 +161,12 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 		//request 에 댓글 목록을 담는다.
 		//request.setAttribute("commentList", commentList);		
 	}
+
+	@Override
+	public void deleteContent(int num) {
+		BoardReviewDao.delete(num);
+	
+	}
+
 		
 }
