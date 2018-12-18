@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bob.please.board.review.dao.BoardReviewDao;
 import com.bob.please.board.review.dto.BoardReviewDto;
+
 
 
 
@@ -166,6 +168,15 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 	public void deleteContent(int num) {
 		BoardReviewDao.delete(num);
 	
+	}
+
+	@Override
+	public void getUpdateData(ModelAndView mView, int num) {
+		//글 수정 폼에 필요한 데이터를 얻어온다.
+				BoardReviewDto dto=BoardReviewDao.getData(num);
+				//ModelAndView 객체에 dto를 담아준다. 
+				mView.addObject("dto", dto);
+		
 	}
 
 		

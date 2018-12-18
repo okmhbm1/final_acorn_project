@@ -13,4 +13,5 @@ public interface BoardReviewDao {
 	public BoardReviewDto getData(BoardReviewDto dto);
 	public void addViewCount(int num);
 	public void delete(int num);
+	public BoardReviewDto getData(int num);
 }

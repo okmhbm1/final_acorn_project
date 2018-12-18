@@ -50,4 +50,10 @@ public class BoardReviewDaoImpl implements BoardReviewDao{
 		
 	}
 
+	@Override
+	public BoardReviewDto getData(int num) {
+	
+		return session.selectOne("boardreview.getData", num);
+	}
+
 }

@@ -51,5 +51,13 @@ public class BoardReviewController {
 		service.deleteContent(num);
 		return new ModelAndView("redirect:/board_review/list.do");
 	}
+	@RequestMapping("/board_review/updateform")
+	public ModelAndView UpdateForm(ModelAndView mView, @RequestParam int num, 
+			HttpServletRequest request) {
+		service.getUpdateData(mView, num);
+		mView.setViewName("board_review/updateform");
+		return mView;
+	}
+	
 }
 

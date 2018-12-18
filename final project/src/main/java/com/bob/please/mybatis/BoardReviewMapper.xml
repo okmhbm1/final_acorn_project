@@ -20,11 +20,9 @@
 						OR content LIKE CONCAT('%',#{content},'%')
 					</if>
 				</where>			
-	    ) a  
+	    ) AS a  
 	 WHERE num=#{num}
-	      
-			 
-		
+	      		
 	</select>	
 	<select id="getList" parameterType="boardreviewDto" resultType="boardreviewDto">
 		
@@ -80,6 +78,17 @@
 		WHERE num=#{num}
 	</delete>
 	
+	<select id="getData" parameterType="int" resultType="boardreviewDto">
+		SELECT a.*	
+		FROM(SELECT num,<![CDATA[
+				(SELECT br2.num FROM board_review br2 WHERE br2.num < board_review.num ORDER BY br2.num
+				DESC LIMIT 1) prevNum,
+				(SELECT MIN(br2.num)FROM board_review br2 WHERE br2.num > board_review.num ORDER BY br2.num
+				DESC) nextNum,]]> writer, title, content, viewCount, regdate 
+			FROM board_review	
+		    ) AS a  
+		 WHERE num=#{num}
+	</select>
 </mapper>
 
 
