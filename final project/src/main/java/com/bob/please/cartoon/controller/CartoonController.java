@@ -41,7 +41,39 @@ public class CartoonController {
 		return "home";
 	}
 
-	@RequestMapping("/crawling.do")
+	
+	@RequestMapping("/cartoon/list.do")
+	   public String selectlist(HttpServletRequest request) {
+	      service.selectlist(request);
+	      return "cartoon/list";
+	   }
+	
+	 @RequestMapping("/cartoon/detail.do")
+	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
+	      
+		  request.getSession().setAttribute("id", "asdfasdffads11");
+		   
+		  service.selectdetail(mView,num);
+		  service.selectcartoonpointlist(request);
+		  
+		  mView.addObject("num", num);
+	      mView.setViewName("cartoon/detail");
+	      return mView;
+	      
+	   }
+	 
+	
+	 @RequestMapping("/administer/administer_sorting_genre_page")
+	 public ModelAndView administer_sorting_genre_page(HttpServletRequest request,ModelAndView mView) {
+		service.selectlist(request); 
+		 mView.setViewName("administer/administer_sorting_genre_page");
+		 return mView;
+		 
+		 
+	 }
+	 
+	
+	@RequestMapping("/administer/crawling.do")
 	public ModelAndView crawling(ModelAndView mView) {
 	  
 		 
@@ -94,7 +126,7 @@ public class CartoonController {
 
 	
 	
-	@RequestMapping("/crawling2.do")
+	@RequestMapping("/administer/crawling2.do")
 	public ModelAndView crawling2(ModelAndView mView) {
 	  
 		 
@@ -164,9 +196,59 @@ public class CartoonController {
 			   
 
 	}
+	
+	@RequestMapping("/administer/administer_page.do")
+	public ModelAndView administer_page(ModelAndView mView) {
+		
+		mView.setViewName("administer/administer_page");
+		return mView;
+	}
 
+	
+	@RequestMapping("/administer/checkcategory.do")
+	public ModelAndView checkcategory(ModelAndView mView)
+	{
+		Document doc = null;
+		CartoonDto dto=null;
+		String category=null;
+	
+		try {
+		doc=Jsoup.connect("https://comic.naver.com/webtoon/genre.nhn").get();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		Elements elements = doc.select(".spot").select("li");
+		for(Element genre : elements) {
+			category = genre.select("a").text();
+			//System.out.println("category:"+category);
+			String new_url=genre.select("a[href]").attr("abs:href");
+			try {
+				doc=Jsoup.connect(new_url).get();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			Elements list=doc.select(".img_list").select("li");
+			for(Element element: list) {
+				String title=element.select("dt").select("a").text();
+				dto=new CartoonDto();
+				dto.setCategory(category);
+				dto.setTitle(title);
+				service.updatecategory(dto);
+				System.out.println("category : "+category+", title:"+title);
+			}
+			
+			System.out.println("");
+			System.out.println("");
+		}
+		
+		mView.setViewName("home");
+		return mView;
+	}
+	
 	//관리자 화면에서 만화 분류 ajax 요청 응답
-	@RequestMapping("/sort.do")
+	@RequestMapping("/administer/sort.do")
 	@ResponseBody
 	   public String sort(@RequestParam String [] cartoon, @RequestParam String category,ModelAndView mView) {
 	      CartoonDto dto=null;
@@ -184,37 +266,13 @@ public class CartoonController {
 	      return "SUCCESS";
 	   }
 	
-	@RequestMapping("/list.do")
-	   public String selectlist(HttpServletRequest request) {
-	      service.selectlist(request);
-	      return "list";
-	   }
+
 	
-	 @RequestMapping("/detail.do")
-	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
-	      
-		  request.getSession().setAttribute("id", "asdfasdffads11");
-		   
-		  service.selectdetail(mView,num);
-		  service.selectcartoonpointlist(request);
-		  
-		  mView.addObject("num", num);
-	      mView.setViewName("detail");
-	      return mView;
-	      
-	   }
-	 
-	 @RequestMapping("/administer_sorting_genre_page")
-	 public ModelAndView administer_sorting_genre_page(HttpServletRequest request,ModelAndView mView) {
-		service.selectlist(request); 
-		 mView.setViewName("administer_sorting_genre_page");
-		 return mView;
-		 
-		 
-	 }
+
+
 	 
 	 // detail 화면에서 댓글 저장
-	 @RequestMapping("/savepoint.do")
+	 @RequestMapping("/cartoon/savepoint.do")
 	 @ResponseBody
 	 public String savepoint(@RequestParam int point,@RequestParam int cartoon_num,
 			 @RequestParam String userid, @RequestParam String comment) {
@@ -230,7 +288,7 @@ public class CartoonController {
 	 }
 	 
 	 // 댓글에 추천했을 때 추천수 증가 ajax 요청 반응
-	 @RequestMapping("/good.do")
+	 @RequestMapping("/cartoon/good.do")
 	 @ResponseBody
 	 public String good(@RequestParam int cartoon_num, @RequestParam String userid,String uploaderid) {
 
@@ -253,7 +311,7 @@ public class CartoonController {
 		
 	 }
 	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응
-	 @RequestMapping("/notgood.do")
+	 @RequestMapping("/cartoon/notgood.do")
 	 @ResponseBody
 	 public String notgood(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String uploaderid) {
 		 int is_selected= service.is_selected(userid);
@@ -275,7 +333,7 @@ public class CartoonController {
 	 }
 	
 	 //만화 추천수 증가
-	 @RequestMapping("/recommend.do")
+	 @RequestMapping("/cartoon/recommend.do")
 	 @ResponseBody
 	 public String recommend(@RequestParam int cartoon_num, @RequestParam String userid) {
 		 

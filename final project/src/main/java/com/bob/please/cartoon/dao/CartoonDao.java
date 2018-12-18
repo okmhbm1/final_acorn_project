@@ -50,6 +50,11 @@ public interface CartoonDao {
 	//만화 추천수 등록하기
 	public void insert_recomm(CartoonLikeDto dto);
 	
+	//만화 like 업데이트
 	public void update_likes(int cartoon_num);
+	
+	//cartoon hit 업데이트
+	public int updatehit(int num);
+	
 		
 }

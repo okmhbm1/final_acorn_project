@@ -186,7 +186,7 @@
    <div class="nav-container">
 	   <div class="navbar navbar-inverse">
 	      <a  href="#" class="navbar-brand">업데이트 </a>
-	      <a href="#" class="navbar-brand">웹툰</a>
+	      <a href="cartoon/list.do" class="navbar-brand">웹툰</a>
 	      <a  href="#" class="navbar-brand">게시판</a>
 	      <a  href="#" class="navbar-brand">리뷰</a>
 	   </div>
@@ -452,11 +452,9 @@
  
 
   
-<a href="detail.do">detail</a>
-<a href="list.do">list</a>
-<a href="crawling.do">crawling</a>
-<a href="crawling2.do">crawling2</a>
-<a href="administer_sorting_genre_page.do">administer</a>
+<a href="cartoon/detail.do">detail</a>
+<a href="checkcategory.do">checkcategory</a>
+<a href="administer/administer_page.do">administer_page</a>
 <!-- jquery 로딩하기-->
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->

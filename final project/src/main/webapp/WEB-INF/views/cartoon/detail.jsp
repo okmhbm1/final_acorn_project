@@ -212,6 +212,7 @@
       <h3>${dto.title }</h3>
       <hr></hr>
       <div class="row ">
+      	 조회수 : ${hit }
          <div class="col-xs-6"><img class="image-full" src="${dto.image_url}"/></div>
          <br>
          <div class="col-xs-6">
@@ -272,11 +273,6 @@
 
       
 
-             <c:if test="${tmp.days eq 'mon' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-            <div style="display:none">${tmp.days }</div>
-            </c:if>
       
        <c:if test="${list ne null }">		      
 	      <c:forEach items="${list }" var="tmp" varStatus="theCount">
@@ -284,7 +280,9 @@
 			      <div class="row" style="text-align: center">
 			         <div class="col-xs-5 printpoint" >${tmp.point }</div>
 			
-			         <div div="commend_div" class="col-xs-7">${tmp.comment } 아이디:<span class="commentid">${tmp.userid }</span><br>
+			         <div div="commend_div" class="col-xs-7">${tmp.comment } 
+			         <br>
+			       	아이디:<span class="commentid">${tmp.userid }</span><br>
 			         <button class="good" style="background-color:white;border:0px green;">공감</button><span></span>${tmp.good }<button class="notgood" style="background-color:white;border:0px green solid">비공감</button><span>${tmp.notgood }</span></div>
 					 <c:set var="i" value="${theCount.count}"/>
 			      </div><!--row2 끝-->
@@ -374,7 +372,7 @@
 <script>
 		
 		
-		
+			alert($("#num").val());
 			$("#recomm").on('click',function(){
 				var cartoon_num=$("#num").val();
 				var userid=$("#userid").val();

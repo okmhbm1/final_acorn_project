@@ -51,6 +51,9 @@ public class CartoonServiceImpl implements CartoonService{
 	   @Override
 	   public void selectdetail(ModelAndView mView, int num) {
 	      CartoonDto dto =dao.selectdetail(num);
+	      int hit=dao.updatehit(num);
+	      
+	      mView.addObject("hit",hit);
 	      mView.addObject("dto",dto);
 	      
 

@@ -8,9 +8,11 @@ public class CartoonDto {
 	      String title;
 	      String description; 
 	      String painter;
-	      String category; 
+	      String category;
+	      
 	      int point; 
 	      int likes;
+	      int hit;
 	      String detail_uri;
 	      String image_url;
 	      String portal; 
@@ -20,8 +22,16 @@ public class CartoonDto {
 	         
 	      }
 
-	   public CartoonDto(int num, String days, String title, String description, String painter, String category,
-	         int point, int likes, String detail_uri, String image_url, String portal, String regdate) {
+	   public int getHit() {
+			return hit;
+		}
+
+		public void setHit(int hit) {
+			this.hit = hit;
+		}
+
+	public CartoonDto(int num, String days, String title, String description, String painter, String category,
+	         int point, int likes, int hit, String detail_uri, String image_url, String portal, String regdate) {
 	      super();
 	      this.num = num;
 	      this.days = days;
@@ -35,6 +45,7 @@ public class CartoonDto {
 	      this.image_url = image_url;
 	      this.portal = portal;
 	      this.regdate = regdate;
+	      this.hit=hit;
 	   }
 
 	   public int getNum() {

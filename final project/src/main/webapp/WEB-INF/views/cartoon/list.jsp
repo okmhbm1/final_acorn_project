@@ -156,7 +156,9 @@
       }
      
     }
-
+.match_parent{
+	max-width:100%
+}
 </style>
 <body>
    
@@ -213,39 +215,56 @@
          <br/>
          <div style="float:right;">
             <div class="checkbox1"    >
+            
+            
               <label>
-                <input type="checkbox" value="">
+                <input type="checkbox" name="naver" value="naver">
                 네이버
               </label>
+            
+            
               <label>
-                <input type="checkbox" value="">
+                <input type="checkbox" name="daum" value="daum">
                 다음
               </label>
+            
+            
+            
               <label>
-                <input type="checkbox" value="">
+                <input type="checkbox" name="lezhin" value="lezhin">
                 레진코믹스
               </label>
             </div>
    
             <div class="checkbox2" >
+              
               <label>
-                <input type="checkbox" value="">
-                최신
+                <input type="radio" name="filter2" value="day">
+               요일별
               </label>
+              
+              
               <label>
-                <input type="checkbox" value="">
+                <input type="radio" name="filter2" value="recommend">
                 추천
               </label>
-                 <label>
-                <input type="checkbox" value="">
+              
+              
+              <label>
+                <input type="radio" name="filter2" value="category">
                 장르
               </label>
+              
+              
               <label>
-                <input type="checkbox" value="">
+                <input type="radio" name="filter2" value="gender">
                 성별
               </label>
+            
+            
             </div>
-         
+
+<!--           
             <div class="checkbox3" >
                <label>
                 <input type="checkbox" value="">
@@ -259,6 +278,9 @@
                 30대
               </label>
             </div>
+            
+           		 보류  -->
+           		 
          </div><!--div묶은거-->
       </div>
    </div>
@@ -273,7 +295,7 @@
       <div><h4>월요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'mon' or tmp.days eq '월'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -284,7 +306,7 @@
          <div><h4>화요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'tue' or tmp.days eq '화' }">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -295,7 +317,7 @@
                  <div><h4>수요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'wed' or tmp.days eq '수' }">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -306,7 +328,7 @@
         <div><h4>목요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'thu' or tmp.days eq '목' }">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -317,7 +339,7 @@
          <div><h4>금요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'fri' or tmp.days eq '금'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -328,7 +350,7 @@
         <div><h4>토요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'sat' or tmp.days eq '토'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -339,7 +361,7 @@
         <div><h4>일요일</h4></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'sun' or tmp.days eq '일'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>

@@ -30,7 +30,9 @@ public class CartoonDaoImpl implements CartoonDao {
 
 	   @Override
 	   public List<CartoonDto> selectlist(CartoonDto dto) {
-	      return session.selectList("cartoon.selectlist",dto);
+	      
+
+		   return session.selectList("cartoon.selectlist",dto);
 	   }
 
 	   @Override
@@ -132,6 +134,16 @@ public class CartoonDaoImpl implements CartoonDao {
 	public void update_likes(int cartoon_num) {
 		session.update("cartoon.update_likes",cartoon_num);
 	}
+
+
+	@Override
+	public int updatehit(int num) {
+		session.update("cartoon.update_hit",num);
+		
+		return session.selectOne("cartoon.select_hit",num);
+	}
+
+
 
 
 	
