@@ -42,8 +42,22 @@
 	  </insert>
 	  
 	  <select id="selectcartoonpointlist" parameterType="cartooncommentdto" resultType="cartooncommentdto">
-	     select cartoon_num,userid,point,comment from cartoon_point</select>				
+	     select cartoon_num,userid,point,good,notgood,comment from cartoon_point where cartoon_num=#{cartoon_num}</select>				
 
+	  <select id="is_selected" parameterType="string" resultType="int">
+			select COALESCE(count(*),0) from onelike_or_dislike where userid=#{userid}	  
+	  </select>
+	  <update id="updategood" parameterType="cartooncommentdto">
+	  		update cartoon_point set good=good+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
+	  </update>
+	  
+	  <update id="updatebad" parameterType="cartooncommentdto">
+	  		update cartoon_point set notgood=notgood+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
+	  </update>
+	  
+	  <insert id="insertlike" parameterType="likeordislikedto">
+	  		insert into onelike_or_dislike(cartoon_num,userid,is_selected) value(#{cartoon_num},#{userid},#{is_selected})
+	  </insert>
 </mapper>
 
 

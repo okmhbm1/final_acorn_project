@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 import com.bob.please.cartoon.service.CartoonService;
 
 import java.io.IOException;
@@ -139,7 +140,7 @@ public class CartoonController {
 	    		  dto.setDetail_uri(j.select("a[href]").attr("abs:href"));
 	    		  dto.setDescription(doc.select(".summary").text());
 	    		  dto.setImage_url(j.select(".img-fluid").attr("abs:src"));
-	    		  dto.setTitle("title: "+j.select(".title").text().replaceAll("title:", ""));
+	    		  dto.setTitle(j.select(".title").text().replaceAll("title:", ""));
 	    		  dto.setCategory(j.select(".cate").text());
 	    		  service.insert2(dto);
 	    		  System.out.println("img : "+j.select(".img-fluid").attr("abs:src")); //img 주소
@@ -163,6 +164,7 @@ public class CartoonController {
 
 	}
 
+	//관리자 화면에서 만화 분류 ajax 요청 응답
 	@RequestMapping("/sort.do")
 	@ResponseBody
 	   public String sort(@RequestParam String [] cartoon, @RequestParam String category,ModelAndView mView) {
@@ -187,10 +189,10 @@ public class CartoonController {
 	      return "list";
 	   }
 	
-	 @RequestMapping("/detail")
+	 @RequestMapping("/detail.do")
 	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
 	      
-		  request.getSession().setAttribute("id", "bob");
+		  request.getSession().setAttribute("id", "fuckyou");
 		   
 		  service.selectdetail(mView,num);
 		  service.selectcartoonpointlist(request);
@@ -209,6 +211,8 @@ public class CartoonController {
 		 
 		 
 	 }
+	 
+	 // detail 화면에서 댓글 저장
 	 @RequestMapping("/savepoint.do")
 	 @ResponseBody
 	 public String savepoint(@RequestParam int point,@RequestParam int cartoon_num,
@@ -223,7 +227,58 @@ public class CartoonController {
 		 return "success";
 		
 	 }
+	 
+	 // 댓글에 추천했을 때 추천수 증가 ajax 요청 반응
+	 @RequestMapping("/good.do")
+	 @ResponseBody
+	 public String good(@RequestParam int cartoon_num, @RequestParam String userid,String uploaderid) {
 
+		 int is_selected= service.is_selected(userid);
+		 /*
+		 if(is_selected==1) {
+			 System.out.println("이미 평가함");
+			 return "fail";
+		 }*/
+		 CartoonCommentDto dto=new CartoonCommentDto();
+		 dto.setUserid(uploaderid);
+		 dto.setCartoon_num(cartoon_num);
+		 service.updategood(dto);
+		 onelike_or_dislikeDto dto2 = new onelike_or_dislikeDto(cartoon_num,userid,1);
+		 service.set_selected(dto2);
+
+
+//		 service.insertcartoonpoint(dto);
+//		 System.out.println("호출되냐고");
+		 return "success";
+		
+	 }
+	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응, 아직 구현 못함
+	 @RequestMapping("/notgood.do")
+	 @ResponseBody
+	 public String notgood(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String uploaderid) {
+		 int is_selected= service.is_selected(userid);
+		 /*if(is_selected==1) {
+			 System.out.println("이미 평가함");
+			 return "fail";
+		 }*/
+		 CartoonCommentDto dto=new CartoonCommentDto();
+		 dto.setUserid(uploaderid);
+		 dto.setCartoon_num(cartoon_num);
+		 service.updatebad(dto);
+		 onelike_or_dislikeDto dto2 = new onelike_or_dislikeDto(cartoon_num,userid,1);
+		 service.set_selected(dto2);
+		 System.out.println("데이터베이스 업데이트함");
+		 
+		 
+//		 dto.setPoint(point);
+//		 dto.setCartoon_num(cartoon_num);
+//		 dto.setUserid(userid);
+//		 dto.setComment(comment);
+
+		 System.out.println("호출되냐고");
+		 return "success";
+		
+	 }
 	
 	
 }

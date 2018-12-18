@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 
 @Repository
 public class CartoonDaoImpl implements CartoonDao {
@@ -79,5 +80,33 @@ public class CartoonDaoImpl implements CartoonDao {
 	public List<CartoonCommentDto> selectcartoonpointlist(CartoonCommentDto dto) {
 		return session.selectList("cartoon.selectcartoonpointlist", dto);
 		
+	}
+
+
+	@Override
+	public int is_selected(String userid) {
+		
+		return session.selectOne("cartoon.is_selected",userid);
+	}
+
+
+	@Override
+	public void updategood(CartoonCommentDto dto) {
+		
+		session.update("cartoon.updategood",dto);
+	}
+
+
+	@Override
+	public void set_selected(onelike_or_dislikeDto dto) {
+		session.insert("cartoon.insertlike",dto);
+		
+	}
+
+
+	@Override
+	public void updatebad(CartoonCommentDto dto) {
+		// TODO Auto-generated method stub
+		session.update("cartoon.updatebad",dto);
 	}
 }

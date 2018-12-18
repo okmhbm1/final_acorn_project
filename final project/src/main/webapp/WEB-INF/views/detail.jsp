@@ -159,8 +159,8 @@
      
     }
 
-
-
+.commentid{
+}
 
 
 
@@ -213,13 +213,15 @@
       <hr></hr>
       <div class="row ">
          <div class="col-xs-6"><img class="image-full" src="${dto.image_url}"/></div>
+         <br>
          <div class="col-xs-6">
          <p>작가 : ${dto.painter }</p>
          <p>줄거리 : ${dto.description}</p>
          </div> <!--첫번째 row-->
          <button class="btn btn-primary right"> 즐겨찾기</button>          
-         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_uri}' " style="margin-right:4px">보러가기</button>
-
+         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_uri}' " style="margin-right:4px">보러가기</button><br><br>
+	     
+           <button style="margin-right:4px" class="right btn btn-primary" id="notrecomm">추천</button>	
          
       </div>
       <br/>
@@ -277,37 +279,26 @@
             </c:if>
       
        <c:if test="${list ne null }">		      
-	      <c:forEach items="${list }" var="tmp">      
+	      <c:forEach items="${list }" var="tmp" varStatus="theCount">
+	            
 			      <div class="row" style="text-align: center">
 			         <div class="col-xs-5 printpoint" >${tmp.point }</div>
 			
-			         <div class="col-xs-7">${tmp.comment } 아이디:<span>${tmp.userid }</span></div>
-			
+			         <div div="commend_div" class="col-xs-7">${tmp.comment } 아이디:<span class="commentid">${tmp.userid }</span><br>
+			         <button class="good" style="background-color:white;border:0px green;">공감</button><span></span>${tmp.good }<button class="notgood" style="background-color:white;border:0px green solid">비공감</button><span>${tmp.notgood }</span></div>
+					 <c:set var="i" value="${theCount.count}"/>
 			      </div><!--row2 끝-->
 			
 			      <br/>
 			      <hr>
 	      </c:forEach>
 	   </c:if>
+	  
+		
 
 
 
 
-      <div class="row" style="text-align: center">
-         <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
-
-         <div class="col-xs-7">재미있었네요 10점</div>
-
-      </div><!--row3 끝-->
-
-      <br/>
-      <hr>
-      <div class="row" style="text-align: center">
-         <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
-
-         <div class="col-xs-7">별로, 0점</div>
-
-      </div><!--row4 끝-->
 
 
     <br/>
@@ -381,8 +372,83 @@
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script>
-
 		
+		
+		
+		
+
+			
+			$(".good").each(function(){
+				
+				$(this).on('click',function(){
+
+						var cartoon_num=$("#num").val();
+						var userid=$("#userid").val();
+						var uploaderid=	$(this).parent().find(".commentid").text();
+	
+						alert(uploaderid);
+						
+						alert($(this).text());
+						alert(cartoon_num);
+						alert(userid);
+						$.ajax({
+							method:'POST',
+							url:'good.do',
+							traditional:true,
+							data : {
+								"cartoon_num":cartoon_num,
+								"userid":userid,
+								"uploaderid":uploaderid
+							
+							},
+							success : function(success){
+								 alert(success);
+									location.reload();
+							}
+						
+						});					
+										
+				});
+				
+			});
+			
+			
+
+				$(".notgood").each(function(){
+				
+				$(this).on('click',function(){
+
+						var cartoon_num=$("#num").val();
+						var userid=$("#userid").val();
+						var uploaderid=	$(this).parent().find(".commentid").text();
+	
+						alert(uploaderid);
+						
+						alert($(this).text());
+						alert(cartoon_num);
+						alert(userid);
+						$.ajax({
+							method:'POST',
+							url:'notgood.do',
+							traditional:true,
+							data : {
+								"cartoon_num":cartoon_num,
+								"userid":userid,
+								"uploaderid":uploaderid
+							
+							},
+							success : function(success){
+								 alert(success);
+									location.reload();
+							}
+						
+						});					
+										
+				});
+				
+			});
+
+
 
 		$("#submitbtn").on('click',function(){
 			var point = $("#point").val(star_value).val();
@@ -391,6 +457,7 @@
 			var comment=$("#comment").val();
 			
 				alert("point:"+point+"cartoon_num"+cartoon_num+"userid:"+userid+"comment:"+comment);
+								
 				
 					$.ajax({
 						method:'POST',

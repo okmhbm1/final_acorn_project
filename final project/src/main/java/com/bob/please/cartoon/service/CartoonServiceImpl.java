@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bob.please.cartoon.dao.CartoonDao;
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 
 @Service
 public class CartoonServiceImpl implements CartoonService{
@@ -101,6 +102,43 @@ public class CartoonServiceImpl implements CartoonService{
 		dto.setCartoon_num(Integer.parseInt(request.getParameter("num")));
 		List<CartoonCommentDto> list = dao.selectcartoonpointlist(dto);
 		request.setAttribute("list", list);
+	}
+
+
+
+
+	@Override
+	public int is_selected(String userid) {
+		
+		return dao.is_selected(userid);
+	}
+
+
+
+
+	@Override
+	public void updategood(CartoonCommentDto dto) {
+	
+		dao.updategood(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void set_selected(onelike_or_dislikeDto dto) {
+		dao.set_selected(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void updatebad(CartoonCommentDto dto) {
+		dao.updatebad(dto);
+		
 	}
 	
 	

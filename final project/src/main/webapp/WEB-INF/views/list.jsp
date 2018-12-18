@@ -156,6 +156,7 @@
       }
      
     }
+
 </style>
 <body>
    
@@ -271,8 +272,8 @@
       <div class="col-xs-2">
       <div><h4>월요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'mon' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'mon' or tmp.days eq '월'}">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -282,8 +283,8 @@
       <div class="col-xs-2">
          <div><h4>화요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'tue' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'tue' or tmp.days eq '화' }">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -293,8 +294,8 @@
       <div class="col-xs-2">
                  <div><h4>수요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'wed' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'wed' or tmp.days eq '수' }">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -304,8 +305,8 @@
       <div class="col-xs-2">
         <div><h4>목요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'thu' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'thu' or tmp.days eq '목' }">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -315,8 +316,8 @@
       <div class="col-xs-2">
          <div><h4>금요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'fri' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'fri' or tmp.days eq '금'}">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -326,8 +327,8 @@
       <div class="col-xs-2">
         <div><h4>토요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'sat' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'sat' or tmp.days eq '토'}">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -337,8 +338,8 @@
       <div class="col-xs-2">
         <div><h4>일요일</h4></div>
        <c:forEach items="${list }" var="tmp">
-             <c:if test="${tmp.days eq 'sun' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
+             <c:if test="${tmp.days eq 'sun' or tmp.days eq '일'}">
+            <div><a href="detail.do?num=${tmp.num}"><img class="img-responsive" src="${tmp.image_url}"/></a></div>
             <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
