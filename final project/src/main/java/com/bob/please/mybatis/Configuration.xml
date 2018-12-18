@@ -3,15 +3,18 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<typeAliases>
 		<typeAlias type="com.bob.please.board.review.dto.BoardReviewDto" alias="boardreviewDto"/>
+		 <typeAlias type="com.bob.please.cartoon.dto.CartoonDto" alias="cartoondto"/>
+   		<typeAlias type="com.bob.please.cartoon.dto.CartoonCommentDto" alias="cartooncommentdto"/>   
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="com/bob/please/mybatis/BoardReviewMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/CartoonMapper.xml"/>
 	</mappers>	
 </configuration>
-
 
 
 

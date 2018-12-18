@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartoon">
+		
+		
+		<insert id="naver_insert" parameterType="cartoondto">
+			insert into cartoon(days,title,description,painter,point,likes,hit,detail_uri,image_url,portal,regdate) 
+					value(#{days},#{title},#{description},#{painter},0,0,0,#{detail_uri},#{image_url},'naver',now())
+		</insert>
+		
+		<insert id="naver_insert2" parameterType="cartoondto">
+			insert into cartoon(days,title,description,painter,category,point,likes,hit,detail_uri,image_url,portal,regdate) 
+					value(#{days},#{title},#{description},#{painter},#{category},0,0,0,#{detail_uri},#{image_url},'daum',now())
+		</insert>
+		
+		
+		<select id="selectlist" parameterType="cartoondto" resultType="cartoondto">
+         select num,days,title,point,likes,image_url,portal,regdate
+         FROM cartoon
+      </select>
+      
+      <select id="selectdetail" parameterType="int" resultType="cartoondto">
+         select num,title,description,painter,point,likes,detail_uri,image_url,regdate
+         FROM cartoon
+         WHERE num=#{num}
+      </select>
+      
+      
+      
+      
+	  <!-- 관리자 페이지에서 카테고리 업데이트 -->
+    
+      <update id="updatecategory" parameterType="cartoondto">
+      	update cartoon set category=#{category} where num=#{num}
+      </update>
+    
+      <!-- 여기부터는 cartooncomentdto -->      
+	  <insert id="insertpoint" parameterType="cartooncommentdto">
+	  	insert into cartoon_point(cartoon_num,userid,point,comment)
+	  	value(#{cartoon_num},#{userid},#{point},#{comment})
+	  
+	  </insert>
+	  
+	  <select id="selectcartoonpointlist" parameterType="cartooncommentdto" resultType="cartooncommentdto">
+	     select cartoon_num,userid,point,comment from cartoon_point</select>				
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

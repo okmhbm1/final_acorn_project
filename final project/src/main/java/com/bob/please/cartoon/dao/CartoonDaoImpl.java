@@ -1,0 +1,83 @@
+package com.bob.please.cartoon.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.bob.please.cartoon.dto.CartoonCommentDto;
+import com.bob.please.cartoon.dto.CartoonDto;
+
+@Repository
+public class CartoonDaoImpl implements CartoonDao {
+
+	@Autowired
+	SqlSession session;
+	
+	
+	
+	
+	
+	
+	@Override
+	   public void selectall(CartoonDto dto) {
+	      session.selectList("cartoon.selectall", dto);
+	   }
+
+
+	   @Override
+	   public List<CartoonDto> selectlist(CartoonDto dto) {
+	      return session.selectList("cartoon.selectlist",dto);
+	   }
+
+	   @Override
+	   public CartoonDto selectdetail(int num) {
+	      return session.selectOne("cartoon.selectdetail",num);
+	   }
+
+	
+
+	
+	
+
+	@Override
+	public void insert(CartoonDto dto) {
+		session.insert("cartoon.naver_insert",dto);
+	}
+	
+	@Override
+	public void insert2(CartoonDto dto) {
+		session.insert("cartoon.naver_insert2",dto);
+	}
+
+
+	
+	/* 이거는 관리자 입장에서 장르 업데이트하는것*/
+	@Override
+	public void updatecategory(CartoonDto dto) {
+		session.update("cartoon.updatecategory",dto);
+		
+	}
+	
+	
+	/**
+	 * 
+	 *  아래부터는 cartooncommentdto
+	 * 
+	 */
+
+
+	@Override
+	public void insertcartoonpoint(CartoonCommentDto dto) {
+		session.insert("cartoon.insertpoint",dto);
+		
+	}
+
+
+	@Override
+	public List<CartoonCommentDto> selectcartoonpointlist(CartoonCommentDto dto) {
+		return session.selectList("cartoon.selectcartoonpointlist", dto);
+		
+	}
+}
