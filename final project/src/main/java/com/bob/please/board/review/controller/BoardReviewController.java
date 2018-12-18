@@ -14,6 +14,7 @@ import com.bob.please.board.review.dto.BoardReviewDto;
 import com.bob.please.board.review.service.BoardReviewService;
 
 
+
 @Controller
 public class BoardReviewController {
 	@Autowired
@@ -57,6 +58,13 @@ public class BoardReviewController {
 		service.getUpdateData(mView, num);
 		mView.setViewName("board_review/updateform");
 		return mView;
+	}
+	@RequestMapping("/board_review/update")
+	public ModelAndView Update(@ModelAttribute BoardReviewDto dto,HttpServletRequest request) {
+		//서비스를 이용해서 글을 수정반영하고
+		service.updateContent(dto);
+		//dto 에 담긴 글 번호를 이용해서 글자세히 보기로 리다일렉트 이동시킨다.
+		return new ModelAndView("redirect:/board_review/detail.do?num="+dto.getNum());
 	}
 	
 }

@@ -56,4 +56,11 @@ public class BoardReviewDaoImpl implements BoardReviewDao{
 		return session.selectOne("boardreview.getData", num);
 	}
 
+	@Override
+	public void update(BoardReviewDto dto) {
+		
+		session.update("boardreview.update", dto);
+	
+	}
+
 }

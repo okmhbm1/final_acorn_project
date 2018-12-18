@@ -179,5 +179,11 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 		
 	}
 
+	@Override
+	public void updateContent(BoardReviewDto dto) {
+		BoardReviewDao.update(dto);
+		
+	}
+
 		
 }
