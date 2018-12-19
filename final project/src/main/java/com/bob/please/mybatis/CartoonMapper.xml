@@ -15,7 +15,7 @@
 		
 		
 		<select id="selectlist" parameterType="cartoondto" resultType="cartoondto">
-         select num,days,title,point,likes,image_url,portal,regdate
+         select num,days,title,point,likes,image_url,portal,regdate,category
          FROM cartoon
       </select>
       

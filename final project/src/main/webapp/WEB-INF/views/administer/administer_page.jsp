@@ -210,24 +210,52 @@
                                     <br>
 
                                     <div class="col-xs-4">
-                                    <img src="${pageContext.request.contextPath}/resources/images/topni.jpg" style="position:relative;width:100%;height:150px">
-                                            <div><a href="crawling.do">네이버 크롤링</a></div>
+                                    <a href="crawling.do">
+		                                    <img src="${pageContext.request.contextPath}/resources/images/topni.jpg" style="position:relative;width:100%;height:150px">
+		                            
+		                            
+		                                           <div>네이버 크롤링</div>
+		                            </a>
+		                            </div>
+		                            
+                                    <div class="col-xs-4">
+                                    <a href="crawling2.do">
+			                                    <img src="${pageContext.request.contextPath}/resources/images/topni2.jpg" style="position:relative;width:100%;height:150px">    
+			                         
+			                                     <div>레진 크롤링</div>
+			                        </a>  
                                     </div>
+                                    
                                     <div class="col-xs-4">
-                                    <img src="${pageContext.request.contextPath}/resources/images/topni2.jpg" style="position:relative;width:100%;height:150px">    
-                                            <div><a href="crawling2.do">레진 크롤링</a></div>
+                                    <a href="administer_sorting_genre_page.do">
+			                                      <img src="${pageContext.request.contextPath}/resources/images/shintop.jpg" style="position:relative;width:100%;height:150px">
+			                                            <div>다운받은 만화 장르 설정</div>
+                                    </a>
                                     </div>
+                                    
                                     <div class="col-xs-4">
-                                      <img src="${pageContext.request.contextPath}/resources/images/shintop.jpg" style="position:relative;width:100%;height:150px">
-                                            <div><a href="administer_sorting_genre_page.do">다운받은 만화 장르 설정</a></div>
+                                    <a href="#">
+				                                    <img src="${pageContext.request.contextPath}/resources/images/board.jpg" style="position:relative;width:100%;height:150px">
+				                                    <div >게시판 관리</div>
+				                    </a>
+                                    
+                                    </div>				                    
+                                    <div class="col-xs-4">
+                                    <a href="checkcategory.do">
+				                                    <img src="${pageContext.request.contextPath}/resources/images/search.jpg" style="position:relative;width:100%;height:150px">
+				                                    <div style="">네이버 카테고리 클로링</div>
+				                    </a>
+                                    
+                                  
+                                    
                                     </div>
+                                    
+        
                                     <div class="col-xs-4">
-                                    <img src="${pageContext.request.contextPath}/resources/images/search.jpg" style="position:relative;width:100%;left:118%;height:150px">
-                                    <div style="position:relative;left:118%;"><a href="checkcategory.do">네이버 카테고리 클로링</a></div>
-                                    </div>        
-                                    <div class="col-xs-4">
-                                      <img src="${pageContext.request.contextPath}/resources/images/member.jpg" style="position:relative;width:100%;left:118%;height:150px">
-                                    <div style="position:relative;left:118%;">회원정보 관리</div>
+                                    <a href="#">
+                                      <img src="${pageContext.request.contextPath}/resources/images/member.jpg" style="position:relative;height:150px">
+                                    <div style="position:relative;">회원정보 관리</div>
+                                    </a>
                                     </div>        
                                     
                             </div>

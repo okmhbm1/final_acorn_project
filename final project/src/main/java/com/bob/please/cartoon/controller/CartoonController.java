@@ -156,6 +156,9 @@ public class CartoonController {
 	    	  
 	    	  Elements li = l.select("li");
 	    	  for(Element j : li ) {
+	    		  
+	    		  dto=new CartoonDto();
+	    		  dto.setImage_url(j.select("img[src]").attr("abs:src"));
 	    		  System.out.println("detail : " + j.select("a[href]").attr("abs:href"));  //detail
 	    		  try {
 	    		  doc=Jsoup.connect(j.select("a[href]").attr("abs:href")).get();
@@ -167,12 +170,12 @@ public class CartoonController {
 	    		  
 	    		  System.out.println("detail: "+doc.select(".summary").text());
 	    		  
-	    		  dto=new CartoonDto();
+	    		  
 	    		  dto.setPainter(doc.select("p").select(".text-gray").select("span").text().replaceAll("글/그림 : ",""));
 	    		  dto.setDays(days[i]);
 	    		  dto.setDetail_uri(j.select("a[href]").attr("abs:href"));
 	    		  dto.setDescription(doc.select(".summary").text());
-	    		  dto.setImage_url(j.select(".img-fluid").attr("abs:src"));
+	    		  //dto.setImage_url(j.select(".img-fluid").attr("abs:src"));
 	    		  dto.setTitle(j.select(".title").text().replaceAll("title:", ""));
 	    		  dto.setCategory(j.select(".cate").text());
 	    		  service.insert2(dto);
@@ -204,7 +207,15 @@ public class CartoonController {
 		return mView;
 	}
 
+	//리스트 정렬
+	@RequestMapping("/cartoon/list_sort_by_category.do")
+	public String list_sort_by_category(HttpServletRequest request) {
+		  
+		service.selectlist(request);
+		return "cartoon/list_sort_by_category";
+	}
 	
+	//네이버 만화 장르별 분류하는 크롤링 
 	@RequestMapping("/administer/checkcategory.do")
 	public ModelAndView checkcategory(ModelAndView mView)
 	{
