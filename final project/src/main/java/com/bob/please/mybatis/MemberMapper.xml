@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="insert" parameterType="memberdto">
+		INSERT INTO member 
+		(userid, pwd, email, name, gender, age, regdate)
+		VALUES(#{userid}, #{pwd}, #{email}, #{name}, #{gender}, #{age}, NOW())
+	</insert>
+	<select id="getId" parameterType="memberdto" resultType="string">
+		SELECT userid
+		FROM member 
+		WHERE userid=#{userid} AND pwd=#{pwd}
+	</select>
+	<select id="isExist" parameterType="string" resultType="string">
+		SELECT userid
+		FROM member 
+		WHERE userid=#{userid}
+	</select>
+	<select id="getData" parameterType="string" resultType="memberdto">
+		SELECT userid, email, regdate, name, gender, age
+		FROM member 
+		WHERE userid=#{userid}
+	</select>
+	<update id="update" parameterType="memberdto">
+		UPDATE member 
+		SET email=#{email}
+		WHERE userid=#{userid}
+	</update>
+	<delete id="delete" parameterType="string">
+		DELETE FROM member 
+		WHERE userid=#{userid}
+	</delete>
+	<select id="getPwd" parameterType="string" resultType="string">
+		SELECT pwd
+		FROM member 
+		WHERE userid=#{userid}
+	</select>
+	<update id="updatePwd" parameterType="memberdto">
+		UPDATE member 
+		SET pwd=#{pwd}
+		WHERE userid=#{userid}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

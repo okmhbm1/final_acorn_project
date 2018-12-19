@@ -8,9 +8,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    	<typeAlias type="com.bob.please.cartoon.dto.CartoonCommentDto" alias="cartooncommentdto"/>   
    	<typeAlias type="com.bob.please.cartoon.dto.onelike_or_dislikeDto" alias="likeordislikedto"/>
    	<typeAlias type="com.bob.please.cartoon.dto.CartoonLikeDto" alias="cartoonlikedto"/>  
+	<typeAlias type="com.bob.please.member.dto.MemberDto" alias="memberdto"/>     
    </typeAliases>
    
    <mappers>
             <mapper resource="com/bob/please/mybatis/CartoonMapper.xml"/>
+            <mapper resource="com/bob/please/mybatis/MemberMapper.xml"/>
    </mappers>   
 </configuration>

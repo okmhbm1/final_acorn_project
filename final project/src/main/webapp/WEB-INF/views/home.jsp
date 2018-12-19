@@ -231,7 +231,7 @@
           <label>
             <input type="checkbox"> 기억하기 
           </label>
-          <a href="#">회원가입</a> <a href="#">정보찾기</a>
+          <a href="member/signup_form.do">회원가입</a> <a href="#">정보찾기</a>
         </div>
       </form>
 
