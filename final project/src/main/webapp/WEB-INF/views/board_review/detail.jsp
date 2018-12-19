@@ -228,15 +228,15 @@
 	}
 	
 	//폼에 submit 이벤트가 일어 났을때 실행할 함수 등록 
-	$(".comments form").on("submit", function(){
+/* 	$(".comments form").on("submit", function(){
 		//로그인 여부
-		var isLogin=${not empty id};
+		 var isLogin=${not empty id};
 		if(isLogin==false){
 			alert("로그인 페이지로 이동 합니다.");
-			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/cafe/detail.do?num=${dto.num}";
-			return false;//폼 전송 막기 
+			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/cafe/detail.do?num=${dto.num}"; 
+			return true;//폼 전송 막기 
 		}
-	});
+	});  */
 
 	//답글 달기 링크를 클릭했을때 실행할 함수 등록
 	$(".comment .reply_link").click(function(){

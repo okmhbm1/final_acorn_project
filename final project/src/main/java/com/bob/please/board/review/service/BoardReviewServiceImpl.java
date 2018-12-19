@@ -1,20 +1,21 @@
 package com.bob.please.board.review.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bob.please.board.review.dao.BoardReviewCommentDao;
 import com.bob.please.board.review.dao.BoardReviewDao;
+import com.bob.please.board.review.dto.BoardReviewCommentDto;
 import com.bob.please.board.review.dto.BoardReviewDto;
+
+
 
 
 
@@ -24,6 +25,8 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 	
 	@Autowired
 	private BoardReviewDao BoardReviewDao;
+	@Autowired
+	private  BoardReviewCommentDao BoardReviewCommentDao;
 	//한 페이지에 나타낼 row 의 갯수 
 	static final int PAGE_ROW_COUNT=5;
 		//하단 디스플레이 페이지 갯수 
@@ -185,5 +188,51 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 		
 	}
 
+	@Override
+	public void saveComment(HttpServletRequest request) {
+		//댓글 작성자
+			String writer=(String)request.getSession().getAttribute("id");
+			//댓글의 그룹번호
+			int ref_group=Integer.parseInt(request.getParameter("ref_group"));
+			//댓글의 대상자 아이디
+			String target_id=request.getParameter("target_id");
+			//댓글의 내용
+			String content=request.getParameter("content");
+			//댓글 내에서의 그룹번호 (null 이면 원글의 댓글이다)
+			String comment_group=request.getParameter("comment_group");
+			//저장할 댓글의 primary key 값을 미리 얻어낸다. 
+			int seq=BoardReviewCommentDao.getSequence();
+			//댓글 정보를 CafeCommentDto 객체에 담는다.
+			BoardReviewCommentDto dto=new BoardReviewCommentDto();
+			dto.setNum(seq);
+			dto.setWriter(writer);
+			dto.setTarget_id(target_id);
+			dto.setRef_group(ref_group);
+			dto.setContent(content);
+			if(comment_group == null) { //원글의 댓글인경우
+				//댓글의 글번호가 댓글 내에서의 그룹번호가 된다. 
+				dto.setComment_group(seq);
+			}else {//댓글의 댓글인 경우 
+				//전달된 comment_group 번호를 새로 추가될 댓글의 그룹번호로 부여한다.
+				dto.setComment_group(Integer.parseInt(comment_group));
+			}
+			//댓글 정보를 DB 에 저장한다.
+			BoardReviewCommentDao.insert(dto);
+		}
+
+	@Override
+	public void updateComment(BoardReviewCommentDto dto) {
+		BoardReviewCommentDao.update(dto);
+		
+	}
+
+	@Override
+	public void deleteComment(int num) {
+		BoardReviewCommentDao.delete(num);
+		
+	}
 		
 }
+
+		
+

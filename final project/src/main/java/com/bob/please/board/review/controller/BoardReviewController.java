@@ -1,15 +1,19 @@
 package com.bob.please.board.review.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bob.please.board.review.dto.BoardReviewCommentDto;
 import com.bob.please.board.review.dto.BoardReviewDto;
 import com.bob.please.board.review.service.BoardReviewService;
 
@@ -66,6 +70,34 @@ public class BoardReviewController {
 		//dto 에 담긴 글 번호를 이용해서 글자세히 보기로 리다일렉트 이동시킨다.
 		return new ModelAndView("redirect:/board_review/detail.do?num="+dto.getNum());
 	}
+	//댓글 추가 요청처리
+	@RequestMapping("/board_review/comment_insert")
+	public ModelAndView CommentInsert(@RequestParam int ref_group, HttpServletRequest request) {
+		//서비스를 이용해서 새 댓글을 저장하고 
+		service.saveComment(request);
+		//ref_group 은 원글의 글번호 이다. (댓글의 그룹번호)
+		return new ModelAndView("redirect:/board_review/detail.do?num="+ref_group);
+	}
+	@RequestMapping("/board_review/comment_update")
+	@ResponseBody
+	public Map<String, Object> CommentUpdate(@ModelAttribute BoardReviewCommentDto dto,
+			HttpServletRequest request){
+		//서비스를 통해서 댓글을 업데이트 하는 작업을 하고
+		service.updateComment(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		return map;
+	}
+	@RequestMapping("/board_review/comment_delete")
+	@ResponseBody
+	public Map<String, Object> CommentDelete(@RequestParam int num, HttpServletRequest request) {
+		// num 은 삭제할 댓글의 글번호 이다.
+		service.deleteComment(num);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		return map;
+	}
 	
+		
 }
 

@@ -1,11 +1,12 @@
 package com.bob.please.board.review.service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bob.please.board.review.dto.BoardReviewCommentDto;
 import com.bob.please.board.review.dto.BoardReviewDto;
+
 
 
 public interface BoardReviewService {
@@ -16,4 +17,7 @@ public interface BoardReviewService {
 	public void getUpdateData(ModelAndView mView, int num);
 	public void updateContent(BoardReviewDto dto);
 	
+	public void saveComment(HttpServletRequest request);
+	public void updateComment(BoardReviewCommentDto dto);
+	public void deleteComment(int num);
 }

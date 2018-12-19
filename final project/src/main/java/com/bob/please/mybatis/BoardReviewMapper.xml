@@ -52,17 +52,17 @@
 	</insert>
 	<select id="getCount" resultType="int" parameterType="boardreviewDto">
 		
-		SELECT COALESCE(MAX(@ROWNUM:=@ROWNUM), 0) 
+		SELECT count(*)
 		FROM board_review
 		<where>
 			<if test="writer != null">
-				OR writer LIKE '%'||#{writer}||'%'
+				OR writer LIKE CONCAT('%',#{writer},'%')
 			</if>
 			<if test="title != null">
-				OR title LIKE '%'||#{title}||'%'
+				OR title LIKE CONCAT('%',#{title},'%')
 			</if>
 			<if test="content != null">
-				OR content LIKE '%'||#{content}||'%'
+				OR content LIKE CONCAT('%',#{content},'%')
 			</if>
 		</where>
 	</select>
