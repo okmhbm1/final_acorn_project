@@ -11,7 +11,7 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       
       <insert id="naver_insert2" parameterType="cartoondto">
 INSERT INTO cartoon (days,title,description,painter,point,likes,hit,detail_url,image_url,category,portal,regdate) 
-VALUES (#{days},#{title},#{description},#{painter},0,0,0,#{detail_url},#{category},#{image_url},'zzam',now()) 
+VALUES (#{days},#{title},#{description},#{painter},0,0,0,#{detail_url},#{image_url},#{category},'zzam',now()) 
 ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},painter=#{painter},point=0,likes=0,hit=0,detail_url=#{detail_url},category=#{category},image_url=#{image_url},portal='zzam',regdate=now()
       </insert>
       

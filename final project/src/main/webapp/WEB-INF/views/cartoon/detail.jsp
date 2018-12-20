@@ -372,11 +372,29 @@
 <script>
 		
 		
-		$("")
+		$(".link").on('click',function(){
+		
 		var cartoon_num=$("#num").val();
 		var userid=$("#userid").val();
 		var detail_url="${dto.detail_url}"
+			$.ajax({
+				method:'POST',
+				url:'link.do',
+				traditional:true,
+				data : {
+					"cartoon_num":cartoon_num,
+					"userid":userid,
+					"detail_url":detail_url
+				
+				},
+				success : function(success){
+					 alert(success);
+						location.reload();
+				}
+			
+			});
 		
+		});
 			alert($("#num").val());
 			$("#recomm").on('click',function(){
 				var cartoon_num=$("#num").val();
