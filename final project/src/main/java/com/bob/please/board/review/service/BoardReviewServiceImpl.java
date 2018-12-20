@@ -162,9 +162,9 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 		//request 에 글정보를 담고
 		request.setAttribute("dto", resultDto);
 		//댓글 목록을 얻어온다. (자세히 보기할 글번호가 댓글의 ref_group 번호)
-		//List<CafeCommentDto> commentList=BoardReviewDao.getList(num);
+		List<BoardReviewCommentDto> commentList=BoardReviewCommentDao.getList(num);
 		//request 에 댓글 목록을 담는다.
-		//request.setAttribute("commentList", commentList);		
+		request.setAttribute("commentList", commentList);		
 	}
 
 	@Override
