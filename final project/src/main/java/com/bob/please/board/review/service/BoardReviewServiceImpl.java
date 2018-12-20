@@ -28,9 +28,9 @@ public class BoardReviewServiceImpl implements BoardReviewService{
 	@Autowired
 	private  BoardReviewCommentDao BoardReviewCommentDao;
 	//한 페이지에 나타낼 row 의 갯수 
-	static final int PAGE_ROW_COUNT=5;
+	static final int PAGE_ROW_COUNT=10;
 		//하단 디스플레이 페이지 갯수 
-	static final int PAGE_DISPLAY_COUNT=3;
+	static final int PAGE_DISPLAY_COUNT=10;
 	
 	@Override
 	public void getList(HttpServletRequest request) {
