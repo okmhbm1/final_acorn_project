@@ -10,8 +10,8 @@
 </head>
 <body>
 <div class="container">
-	<a href="insertform.do">새글 작성</a>
-	<h3>자유게시판</h3>
+	<a href="${pageContext.request.contextPath }/home.do">Home</a>
+	<h3>리뷰게시판</h3> 
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -34,6 +34,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	<a href="insertform.do"><h4>게시글 작성</h4></a> 
 	<div class="page-display">
 		<ul class="pagination">
 		<c:choose>

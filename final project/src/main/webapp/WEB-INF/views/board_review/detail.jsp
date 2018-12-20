@@ -63,16 +63,16 @@
 </head>
 <body>
 <div class="container">
-	<a href="list.do">글 목록보기</a>
+	<a href="list.do"><button class="btn btn-info">글 목록보기</button></a>
 	<c:if test="${not empty keyword }">
 		<p> <strong>${keyword }</strong> 검색어로 검색된 결과 입니다.</p>
 	</c:if>
-	<h3>글 상세 보기</h3>
+	<h3>상세 보기</h3>
 	<c:if test="${dto.prevNum ne 0 }">
-		<a href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
+	<%-- 	<a href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}"><button class="btn btn-primary btn-xs">이전글</button></a> --%>
 	</c:if>
 	<c:if test="${dto.nextNum ne 0 }">
-		<a href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
+	<%-- 	<a href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}"><button class="btn btn-danger btn-xs">다음글</button></a> --%>
 	</c:if>
 	<table class="table table-bordered table-condensed">
 		<tr>
@@ -112,7 +112,7 @@
 							<dt>
 								<img src="${pageContext.request.contextPath}/resources/images/user.png"/>
 								<span>${tmp.writer }</span>
-								<c:if test="${tmp.num ne tmp.comment_group }">
+								<c:if test="${tmp.num ne tmp.comment_group }" >
 									to <strong>${tmp.target_id }</strong>
 								</c:if>
 								<span>${tmp.regdate }</span>
