@@ -33,6 +33,7 @@
 			.success(function(responseData){
 				//responseData 는 {canUse:true} or {canUse:false}
 				$scope.canUseId=responseData.canUse;
+				alert($scope.canUseId);
 			});
 		};
 	});
@@ -61,6 +62,7 @@
 	<h3>회원 가입 폼 입니다.</h3>
 	<!-- novalidate 는 웹브라우저의 기본 validate 를 막는다 -->
 	<form action="signup.do" method="post" name="f" id="signupForm" novalidate>
+
 		<div class="form-group has-feedback"
 			ng-class="{'has-success': canUseId ,'has-error': !canUseId && f.id.$dirty}">
 			<label class="control-label" for="userid">아이디</label>
@@ -71,6 +73,7 @@
 			<p ng-show="f.id.$error.required && f.id.$dirty" class="help-block">반드시 입력해야 합니다.</p>
 			<p ng-show="!canUseId && f.id.$dirty" class="help-block">이미 등록된 아이디 입니다.</p>
 		</div>
+		
 		<div class="form-group has-feedback"
 			ng-class="{'has-success':f.pwd.$valid,'has-error':f.pwd.$invalid && f.pwd.$dirty}">
 			<label class="control-label" for="pwd">비밀번호</label>
@@ -94,10 +97,12 @@
 			<p ng-show="f.email.$invalid && f.email.$dirty" class="help-block">이메일 형식에 맞게 입력하세요.</p>
 		</div>
 		
-		<div class="form-group">
+		<div class="form-group has-feedback"
+		ng-class="{'has-success':f.name.$valid,'has-error':f.name.$invalid && f.name.$dirty}">
 		<label class="control-label" for="name">이름</label>
-		<input type="text" id="name" name="name"/>
+		<input ng-model="name" ng-required="true" class="form-control" type="text" name="name" id="name" />
 		</div>
+		
 		
 		<div class="checkbox" >
                <label>

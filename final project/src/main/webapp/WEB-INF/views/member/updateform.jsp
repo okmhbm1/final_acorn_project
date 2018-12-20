@@ -10,11 +10,11 @@
 <body>
 <h3>회원정보 수정 페이지 입니다</h3>
 <form action="update.do" method="post" id="updateForm">
-	<input type="hidden" name="id" value="${dto.id }"/>
-	<label for="id">아이디</label>
-	<input type="text" id="id" value="${dto.id }" 
+	<input type="hidden" name="userid" value="${dto.userid }"/>
+	<label for="userid">아이디</label>
+	<input type="text" id="userid" value="${dto.userid }" 
 		disabled="disabled"/><br/>
-	<label for="email">이메일 주소</label>
+	<label for="email">이메일</label>
 	<input type="text" name="email" id="email" 
 		value="${dto.email }"/><br/>
 	<button type="submit">수정 확인</button>

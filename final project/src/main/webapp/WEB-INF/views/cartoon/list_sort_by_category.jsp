@@ -28,8 +28,8 @@
 
    }
    image{
-   	width:100%;
-   	height:100%;
+      width:100%;
+      height:100%;
    }
    #image{
       position:relative;
@@ -157,12 +157,12 @@
      
     }
 .match_parent{
-	max-width:100%
+   max-width:100%
 }
 
 .genre{
-	font-size:25px;
-	color:blue;
+   font-size:25px;
+   color:blue;
 }
 </style>
 <body>
@@ -244,7 +244,7 @@
             <div class="checkbox2" >
               
               <label>
-                <input type="radio" name="filter2" value="days" >
+                <input type="radio" id="days" name="filter2" value="days" >
                요일별
               </label>
               
@@ -284,8 +284,8 @@
               </label>
             </div>
             
-           		 보류  -->
-           		 
+                  보류  -->
+                  
          </div><!--div묶은거-->
       </div>
    </div>
@@ -299,135 +299,135 @@
 
       <div class="row">      
       <div class="genre">에피소드 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '에피소드' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '에피소드' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->   
-		
-	      <div class="row">      
+      
+         <div class="row">      
       <div class="genre">스토리 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '스토리' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '스토리' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div ><!--row-->
             <div class="row">      
       <div class="genre">일상 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '일상' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '일상' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">개그 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '개그' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '개그' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
        <div class="row">      
       <div class="genre">판타지 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '판타지' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '판타지' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">액션 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '액션' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '액션' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">드라마 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '드라마' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '드라마' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">순정 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '순정' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '순정' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">감성 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '감성' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '감성' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">스릴러 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '스릴러' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '스릴러' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
             <div class="row">      
       <div class="genre">시대극 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '시대극' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '시대극' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
       <div class="row">      
       <div class="genre">스포츠 </div>
-      <c:forEach items="${list }" var="tmp">
-      		<c:if test="${tmp.category eq '스포츠' }">
-      			<div class="col-xs-2">
-      				<a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
-      				<div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-      			</div>
-      		</c:if>      
+      <c:forEach items="${list1 }" var="tmp">
+            <c:if test="${tmp.category eq '스포츠' }">
+               <div class="col-xs-2">
+                  <a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a>
+                  <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               </div>
+            </c:if>      
       </c:forEach>
       </div><!--row-->
 
@@ -446,17 +446,15 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function () {
-    $('input[name="filter2"]').on('click',function () {
-      // getter
-      var radioVal = $('input[name="filter2"]:checked').val();
-      if(radioVal=='days'){
-    	  //alert("카테고리로 정렬");
-    	location.href("list.do");  
-      }
-      alert(radioVal);
-    });
+    
+         $("#category").on('click',function(){
+            
+            location.href="list.do";
+         });
+
+       
 
   });
 </script>
 </body>
-</html>
+</html> view에 cartoon에 카테고리.jsp

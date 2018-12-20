@@ -36,9 +36,9 @@ public class CartoonDaoImpl implements CartoonDao {
 	   }
 
 	   @Override
-	   public CartoonDto selectdetail(int num) {
-	      return session.selectOne("cartoon.selectdetail",num);
-	   }
+	      public CartoonDto selectdetail(int num) {
+	         return session.selectOne("cartoon.selectdetail",num);
+	      } 
 
 	
 
@@ -144,7 +144,12 @@ public class CartoonDaoImpl implements CartoonDao {
 	}
 
 
+	@Override
+	public List<CartoonDto> selectcategory(CartoonDto dto) {
+
+		      return session.selectList("cartoon.selectcategory",dto);
+				
+	}
 
 
-	
 }

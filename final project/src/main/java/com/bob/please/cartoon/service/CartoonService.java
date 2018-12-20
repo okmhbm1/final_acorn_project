@@ -39,4 +39,6 @@ public interface CartoonService {
 	public void insert_recomm(CartoonLikeDto dto);
 	
 	public void update_likes(int cartoon_num);
+	
+	public void selectcategory(HttpServletRequest request);
 }

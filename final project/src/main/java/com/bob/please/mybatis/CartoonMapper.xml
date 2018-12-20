@@ -1,92 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cartoon">
-		
-		
-		<insert id="naver_insert" parameterType="cartoondto">
-			insert into cartoon(days,title,description,painter,point,likes,hit,detail_uri,image_url,portal,regdate) 
-					value(#{days},#{title},#{description},#{painter},0,0,0,#{detail_uri},#{image_url},'naver',now())
-		</insert>
-		
-		<insert id="naver_insert2" parameterType="cartoondto">
-			insert into cartoon(days,title,description,painter,category,point,likes,hit,detail_uri,image_url,portal,regdate) 
-					value(#{days},#{title},#{description},#{painter},#{category},0,0,0,#{detail_uri},#{image_url},'lezhin',now())
-		</insert>
-		
-		
-		<select id="selectlist" parameterType="cartoondto" resultType="cartoondto">
+      
+      
+      <insert id="naver_insert" parameterType="cartoondto">
+INSERT INTO cartoon (days,title,description,painter,point,likes,hit,detail_url,image_url,portal,regdate) 
+VALUES (#{days},#{title},#{description},#{painter},0,0,0,#{detail_url},#{image_url},'naver',now()) 
+ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},painter=#{painter},point=0,likes=0,hit=0,detail_url=#{detail_url},image_url=#{image_url},portal='naver',regdate=now()
+      </insert>
+      
+      <insert id="naver_insert2" parameterType="cartoondto">
+INSERT INTO cartoon (days,title,description,painter,point,likes,hit,detail_url,image_url,category,portal,regdate) 
+VALUES (#{days},#{title},#{description},#{painter},0,0,0,#{detail_url},#{category},#{image_url},'zzam',now()) 
+ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},painter=#{painter},point=0,likes=0,hit=0,detail_url=#{detail_url},category=#{category},image_url=#{image_url},portal='zzam',regdate=now()
+      </insert>
+      
+   <!-- 전체 리스트 보기 -->
+      <select id="selectlist" parameterType="cartoondto" resultType="cartoondto">
          select num,days,title,point,likes,image_url,portal,regdate,category
          FROM cartoon
       </select>
       
+    <!-- 장르별 분류 보기 -->
+      <select id="selectcategory" parameterType="cartoondto" resultType="cartoondto">
+      select num, title, image_url,category 
+      from cartoon group by title
+      </select>
      
       
       
       <select id="selectdetail" parameterType="int" resultType="cartoondto">
-         select num,title,description,painter,point,likes,hit,detail_uri,image_url,regdate
+         select num,title,description,painter,point,likes,hit,detail_url,image_url,regdate
          FROM cartoon
          WHERE num=#{num}
       </select>
       
       
       <update id="update_hit" parameterType="int">
-      	update cartoon set hit=hit+1 where num=#{num}
+         update cartoon set hit=hit+1 where num=#{num}
       </update>
       
       <select id="select_hit" parameterType="int" resultType="int">
-      	select hit from cartoon where num=#{num}
+         select hit from cartoon where num=#{num}
       </select>
       
-	  <!-- 관리자 페이지에서 카테고리 업데이트 -->
+     <!-- 관리자 페이지에서 카테고리 업데이트 -->
     
       <update id="updatecategory" parameterType="cartoondto">
-      	update cartoon set category=#{category} where title=#{title}
+         update cartoon set category=#{category} where title=#{title}
       </update>
     
       <!-- 여기부터는 cartooncomentdto -->      
-	  <insert id="insertpoint" parameterType="cartooncommentdto">
-	  	insert into cartoon_point(cartoon_num,userid,point,comment)
-	  	value(#{cartoon_num},#{userid},#{point},#{comment})
-	  
-	  </insert>
-	  
-	  <select id="selectcartoonpointlist" parameterType="cartooncommentdto" resultType="cartooncommentdto">
-	     select cartoon_num,userid,point,good,notgood,comment from cartoon_point where cartoon_num=#{cartoon_num}</select>				
+     <insert id="insertpoint" parameterType="cartooncommentdto">
+        insert into cartoon_point(cartoon_num,userid,point,comment)
+        value(#{cartoon_num},#{userid},#{point},#{comment})
+     
+     </insert>
+     
+     <select id="selectcartoonpointlist" parameterType="cartooncommentdto" resultType="cartooncommentdto">
+        select cartoon_num,userid,point,good,notgood,comment from cartoon_point where cartoon_num=#{cartoon_num}</select>            
 
-	  <select id="is_selected" parameterType="string" resultType="int">
-			select COALESCE(count(*),0) from onelike_or_dislike where userid=#{userid}	  
-	  </select>
-	  
-	  <!-- 특정 아이디로 추천을 했는지 확인 -->
-	  <select id="is_recommend_selected" parameterType="cartoonlikedto" resultType="int">
-	  	   select COALESCE(count(*),0) from cartoon_recomm where userid=#{userid} and cartoon_num=#{cartoon_num}
-	  </select>
-	  
-	  
-	  <update id="updategood" parameterType="cartooncommentdto">
-	  		update cartoon_point set good=good+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
-	  </update>
-	  
-	  <update id="updatebad" parameterType="cartooncommentdto">
-	  		update cartoon_point set notgood=notgood+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
-	  </update>
-	  
-	  <insert id="insertlike" parameterType="likeordislikedto">
-	  		insert into onelike_or_dislike(cartoon_num,userid,is_selected) value(#{cartoon_num},#{userid},#{is_selected})
-	  </insert>
-	  
-	  
-	  <select id="insert_recomm" parameterType="cartoonlikedto">
-	  		insert into cartoon_recomm(cartoon_num,userid,recomm) value(#{cartoon_num},#{userid},1)
-	  </select>
-	  
-	  <update id="update_likes" parameterType="int">
-	  		update cartoon set likes=likes+1 where num=#{cartoon_num} 
-	  </update>
-	  
+     <select id="is_selected" parameterType="string" resultType="int">
+         select COALESCE(count(*),0) from onelike_or_dislike where userid=#{userid}     
+     </select>
+     
+     <!-- 특정 아이디로 추천을 했는지 확인 -->
+     <select id="is_recommend_selected" parameterType="cartoonlikedto" resultType="int">
+           select COALESCE(count(*),0) from cartoon_recomm where userid=#{userid} and cartoon_num=#{cartoon_num}
+     </select>
+     
+     
+     <update id="updategood" parameterType="cartooncommentdto">
+           update cartoon_point set good=good+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
+     </update>
+     
+     <update id="updatebad" parameterType="cartooncommentdto">
+           update cartoon_point set notgood=notgood+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
+     </update>
+     
+     <insert id="insertlike" parameterType="likeordislikedto">
+           insert into onelike_or_dislike(cartoon_num,userid,is_selected) value(#{cartoon_num},#{userid},#{is_selected})
+     </insert>
+     
+     
+     <select id="insert_recomm" parameterType="cartoonlikedto">
+           insert into cartoon_recomm(cartoon_num,userid,recomm) value(#{cartoon_num},#{userid},1)
+     </select>
+     
+     <update id="update_likes" parameterType="int">
+           update cartoon set likes=likes+1 where num=#{cartoon_num} 
+     </update>
+     
 
 </mapper>
-
 
 
 

@@ -56,5 +56,5 @@ public interface CartoonDao {
 	//cartoon hit 업데이트
 	public int updatehit(int num);
 	
-		
+	public List<CartoonDto> selectcategory(CartoonDto dto);
 }

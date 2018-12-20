@@ -220,7 +220,7 @@
          <p>줄거리 : ${dto.description}</p>
          </div> <!--첫번째 row-->
          <button class="btn btn-primary right"> 즐겨찾기</button>          
-         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_uri}' " style="margin-right:4px">보러가기</button><br><br>
+         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_url}' " style="margin-right:4px">보러가기</button><br><br>
 	     
            <button style="margin-right:4px" class="right btn btn-primary" id="recomm">추천 : ${dto.likes }</button>	
          

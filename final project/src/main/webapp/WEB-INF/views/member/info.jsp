@@ -10,7 +10,9 @@
 <body>
 <h3>개인정보 페이지 입니다.</h3>
 <h3>개인 정보 입니다.</h3>
-<table>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+
+<table class="table">
 	<thead>
 		<tr>
 			<th>항목</th>
@@ -20,7 +22,15 @@
 	<tbody>
 		<tr>
 			<th>아이디</th>
-			<td>${dto.id }</td>
+			<td>${dto.userid }</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td>${dto.name }</td>
+		</tr>
+		<tr>
+			<th>성별</th>
+			<td>${dto.gender }</td>
 		</tr>
 		<tr>
 			<th>이메일</th>
@@ -32,13 +42,14 @@
 		</tr>
 	</tbody>
 </table>
+
 <a href="updateform.do">회원정보 수정</a>
 <a href="javascript:deleteConfirm()">회원 탈퇴</a>
 <script>
 	function deleteConfirm(){
-		var isDelete=confirm("${id} 회원님 탈퇴 하시겠습니까?");
+		var isDelete=confirm("${userid} 회원님 탈퇴 하시겠습니까?");
 		if(isDelete){
-			location.href="${pageContext.request.contextPath}/users/delete.do";
+			location.href="${pageContext.request.contextPath}/member/delete.do";
 		}
 	}
 </script>

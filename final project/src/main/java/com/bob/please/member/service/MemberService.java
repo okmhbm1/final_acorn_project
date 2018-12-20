@@ -11,18 +11,18 @@ import com.bob.please.member.dto.MemberDto;
 
 
 public interface MemberService {
-	//È¸¿ø Á¤º¸¸¦ Ãß°¡ÇÏ´Â ºñÁî´Ï½º ·ÎÁ÷À» ¼öÇàÇÏ´Â ¸Þ¼Òµå ÇüÅÂ Á¤ÀÇÇÏ±â
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public void addUser(ModelAndView mView, MemberDto dto);
-	//·Î±×ÀÎ Ã³¸®¸¦ ÇÏ´Â ¸Þ¼Òµå
+	//ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 	public void validUser(HttpSession session, ModelAndView mView, MemberDto dto);
-	//¾ÆÀÌµð »ç¿ë°¡´É ¿©ºÎ¸¦ Map ¿¡ ´ã¾Æ¼­ ¸®ÅÏÇÏ´Â ·ÎÁ÷ Ã³¸®
+	//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ Map ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	public Map<String, Object> canUseId(String inputId);
-	//°³ÀÎÁ¤º¸¸¦ º¸¿©ÁÖ±â À§ÇÑ ºñÁî´Ï½º ·ÎÁ÷ Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	public void showInfo(HttpSession session, ModelAndView mView);
-	//°³ÀÎÁ¤º¸ ¼öÁ¤¹Ý¿µÇÏ´Â ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 	public void updateUser(MemberDto dto);
-	//°³ÀÎÁ¤º¸ »èÁ¦ÇÏ´Â ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 	public void deleteUser(HttpSession session);
-	//ºñ¹Ð¹øÈ£ ¼öÁ¤¹Ý¿µÇÏ´Â ¸Þ¼Òµå
+	//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 	public void updatePwd(HttpServletRequest request);
 }

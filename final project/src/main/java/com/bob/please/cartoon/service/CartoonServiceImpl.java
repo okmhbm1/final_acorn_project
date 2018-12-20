@@ -135,6 +135,20 @@ public class CartoonServiceImpl implements CartoonService{
 		dao.set_selected(dto);
 		
 	}
+	
+	  @Override
+	   public void selectcategory(HttpServletRequest request) {
+	         CartoonDto dto = new CartoonDto();
+	         String days = request.getParameter("days");
+	         String title = request.getParameter("title");
+	         String image_url = request.getParameter("image_url");
+	         dto.setImage_url(image_url);
+	         dto.setDays(days);
+	         dto.setTitle(title);
+	         List<CartoonDto> list1=dao.selectcategory(dto);
+	         request.setAttribute("list1", list1);
+	      
+	   } 
 
 
 
