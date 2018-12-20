@@ -28,8 +28,8 @@
 
    }
    image{
-   	width:100%;
-   	height:100%;
+      width:100%;
+      height:100%;
    }
    #image{
       position:relative;
@@ -157,8 +157,14 @@
      
     }
 .match_parent{
-	max-width:100%
+   width:100%
 }
+
+.up_flag_badge {position:absolute;top:12px;display:inline-block;width:16px;height:16px;line-height:15px;background:#f54a3d;color:#fff;font-weight:bold;font-size:13px;margin-left: 65px;}
+
+.weekly_up_badge{position:relative;text-align:center;display:block;top:-14px;right:0px;height:25px;line-height:25px;background:#f54a3d;color:#fff;font-weight:bold;font-size:16px;}
+
+.texttext{position:relative;text-align:center;display:block;top:-15px;font-weight:bold;font-size:15px;}
 </style>
 <body>
    
@@ -222,17 +228,12 @@
                 네이버
               </label>
             
-            
-              <label>
-                <input type="checkbox" name="daum" value="daum">
-                다음
-              </label>
-            
+         
             
             
               <label>
                 <input type="checkbox" name="lezhin" value="lezhin">
-                레진코믹스
+                투믹스
               </label>
             </div>
    
@@ -279,8 +280,8 @@
               </label>
             </div>
             
-           		 보류  -->
-           		 
+                  보류  -->
+                  
          </div><!--div묶은거-->
       </div>
    </div>
@@ -292,77 +293,82 @@
 
       <div class="row">
       <div class="col-xs-2">
-      <div><h4>월요일</h4></div>
+      <div><h4>월요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'mon' or tmp.days eq '월'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div>
+            <a href="detail.do?num=${tmp.num}">
+            <img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a>
+            </div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
       </div>
 
+
       <div class="col-xs-2">
-         <div><h4>화요일</h4></div>
+         <div><h4>화요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'tue' or tmp.days eq '화' }">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
       </div>
 
+
       <div class="col-xs-2">
-                 <div><h4>수요일</h4></div>
+                 <div><h4>수요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'wed' or tmp.days eq '수' }">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
       </div>
 
       <div class="col-xs-2">
-        <div><h4>목요일</h4></div>
+        <div><h4 name="thu">목요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'thu' or tmp.days eq '목' }">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+             <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
       </div>
 
       <div class="col-xs-2">
-         <div><h4>금요일</h4></div>
+         <div><h4>금요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'fri' or tmp.days eq '금'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+             <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
       </div>
 
       <div class="col-xs-2">
-        <div><h4>토요일</h4></div>
+        <div><h4>토요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'sat' or tmp.days eq '토'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
       </div>
 
       <div class="col-xs-2">
-        <div><h4>일요일</h4></div>
+        <div><h4>일요일</h4><span class="up_flag_badge">N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'sun' or tmp.days eq '일'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
       </c:forEach>
@@ -386,19 +392,42 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+
+<script>
+function getTodayLabel() {
+    var week = new Array('일', '월', '화', '수', '목', '금', '토');
+    var today = new Date().getDay();
+    var todayLabel = week[today];
+}
+var DATE = new Date();
+var Year = DATE.getFullYear();
+var Month = DATE.getMonth() + 1;
+var Day = DATE.getDate();
+var Today = Year + "-" + Month + "-" + Day;
+var Holidays = {
+"일" : "http://pagead2.googlesyndication.com/simgad/12146247908501250763",
+"월" : "http://pagead2.googlesyndication.com/simgad/13177216673612256820",
+"2014-8-16" : "http://pagead2.googlesyndication.com/simgad/3815350622856322910"
+}
+if(Holidays[Today]) {
+document.getElementById("test").src = Holidays[Today];
+}
+</script>
+
 <script>
 $(document).ready(function () {
     $('input[name="filter2"]').on('click',function () {
       // getter
       var radioVal = $('input[name="filter2"]:checked').val();
       if(radioVal=='category'){
-    	  //alert("카테고리로 정렬");
-    	location.href("list_sort_by_category.do");  
+         //alert("카테고리로 정렬");
+       location.href("list_sort_by_category.do");  
       }
       alert(radioVal);
     });
 
   });
+  
 </script>
 </body>
 </html>

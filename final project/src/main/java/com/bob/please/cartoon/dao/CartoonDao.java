@@ -6,6 +6,7 @@ import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
+import com.bob.please.member.dto.member_linkDto;
 
 public interface CartoonDao {
 
@@ -57,4 +58,12 @@ public interface CartoonDao {
 	public int updatehit(int num);
 	
 	public List<CartoonDto> selectcategory(CartoonDto dto);
+	
+	public int is_linked(member_linkDto dto);
+	
+	//즐겨찾기 저장
+	public void insert_member_linkDto(member_linkDto dto);
+	
+	//즐겨찾기 목록 가져오기
+	public List<member_linkDto> select_member_link_all(member_linkDto dto);
 }

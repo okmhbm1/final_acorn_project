@@ -238,6 +238,7 @@
    </c:when>
    <c:otherwise>
       <div><h4><a href="member/info.do">${userid }</a>님</h4><a href="member/info.do">내정보</a></div>
+      <a href="cartoon/link_detail.do">즐겨찾기 목록</a><br>
          <a href="member/logout.do">로그아웃</a>
          
    </c:otherwise>

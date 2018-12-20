@@ -10,6 +10,7 @@ import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
+import com.bob.please.member.dto.member_linkDto;
 
 @Repository
 public class CartoonDaoImpl implements CartoonDao {
@@ -150,6 +151,28 @@ public class CartoonDaoImpl implements CartoonDao {
 		      return session.selectList("cartoon.selectcategory",dto);
 				
 	}
+
+
+	@Override
+	public int is_linked(member_linkDto dto) {
+		
+		return session.selectOne("cartoon.is_linked",dto);
+	}
+
+
+	@Override
+	public void insert_member_linkDto(member_linkDto dto) {
+	
+		session.insert("cartoon.insert_member_link",dto);
+	}
+
+
+	@Override
+	public List<member_linkDto> select_member_link_all(member_linkDto dto) {
+		return session.selectList("cartoon.select_member_link_all", dto);	}
+
+
+	
 
 
 }

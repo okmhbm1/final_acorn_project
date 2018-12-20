@@ -1,5 +1,7 @@
 package com.bob.please.cartoon.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -8,13 +10,14 @@ import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
+import com.bob.please.member.dto.member_linkDto;
 
 public interface CartoonService {
 	
 	  public void selectall(CartoonDto dto);
 	 
 	   public void selectlist(HttpServletRequest request);
-	   public void selectdetail(ModelAndView mView, int num);
+	   public CartoonDto selectdetail(ModelAndView mView, int num);
 	
 	
 	   public void updatecategory(CartoonDto dto);
@@ -41,4 +44,11 @@ public interface CartoonService {
 	public void update_likes(int cartoon_num);
 	
 	public void selectcategory(HttpServletRequest request);
+	
+	//회원이 어떤 만화를 링크했는지
+	int is_linked(member_linkDto dto);
+
+	public void insert_member_linkDto(member_linkDto dto);
+	
+	public List<member_linkDto> select_member_link_all(member_linkDto dto);
 }

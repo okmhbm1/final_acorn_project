@@ -69,6 +69,19 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
            select COALESCE(count(*),0) from cartoon_recomm where userid=#{userid} and cartoon_num=#{cartoon_num}
      </select>
      
+     <!-- 특정 만화가 특정 회원에게 링크되었는가 -->
+     <select id="is_linked" parameterType="memberlinkdto" resultType="int">
+           select COALESCE(count(*),0) from member_link where userid=#{userid} and cartoon_num=#{cartoon_num}
+     </select>
+     
+     <!-- 즐겨찾기 데이터 입력-->
+     <insert id="insert_member_link" parameterType="memberlinkdto">
+     		insert into member_link (cartoon_num,userid,detail_url) value(#{cartoon_num},#{userid},#{detail_url})
+     </insert>
+     
+     <select id="select_member_link_all" parameterType="memberlinkdto" resultType="memberlinkdto">
+     		select num,cartoon_num,userid,detail_url from member_link where userid=#{userid}
+     </select>
      
      <update id="updategood" parameterType="cartooncommentdto">
            update cartoon_point set good=good+1 where cartoon_num=#{cartoon_num} and userid=#{userid}

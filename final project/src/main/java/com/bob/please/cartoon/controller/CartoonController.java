@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
+import com.bob.please.member.dto.member_linkDto;
+import com.bob.please.member.service.MemberService;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 import com.bob.please.cartoon.service.CartoonService;
 
@@ -34,6 +36,8 @@ public class CartoonController {
 	
 	@Autowired
 	CartoonService service;
+	@Autowired
+	MemberService service2;
 	
 	@RequestMapping("/home.do")
 	public String home(ModelAndView mView) {
@@ -51,7 +55,7 @@ public class CartoonController {
 	 @RequestMapping("/cartoon/detail.do")
 	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
 	      
-		  request.getSession().setAttribute("id", "asdfasdffads11");
+		  //request.getSession().setAttribute("id", "bobsapp");
 		   
 		  service.selectdetail(mView,num);
 		  service.selectcartoonpointlist(request);
@@ -61,7 +65,35 @@ public class CartoonController {
 	      return mView;
 	      
 	   }
-	 
+	 @RequestMapping("/cartoon/link_detail.do")
+		public ModelAndView link_detail(HttpServletRequest request,ModelAndView mView) {
+		 List<member_linkDto> list=null;
+		 List<CartoonDto> list2 = new ArrayList<CartoonDto>();
+		 int num=0;
+		  service2.showInfo(request.getSession(), mView); 
+		  
+		  
+		  member_linkDto dto = new member_linkDto();
+		  String userid=(String)request.getSession().getAttribute("userid");
+		  dto.setUserid(userid);
+		  list = service.select_member_link_all(dto); 
+		  if(list ==null)
+			  System.out.println("");
+		  for(int i=0;i<list.size();i++) {
+			  System.out.println(list.get(i).getDetail_url());
+			  System.out.println(list.get(i).getUserid());
+			  list2.add(service.selectdetail(mView,list.get(i).getCartoon_num()));
+		  }
+		  request.setAttribute("list", list);
+		  request.setAttribute("list2",list2);
+
+		  
+		  
+		  mView.setViewName("cartoon/link_detail");
+		  System.out.println("다 실행됨??");
+		  System.out.println(list);
+		  return mView;
+		}
 	
 	 @RequestMapping("/administer/administer_sorting_genre_page")
 	 public ModelAndView administer_sorting_genre_page(HttpServletRequest request,ModelAndView mView) {
@@ -252,6 +284,9 @@ public class CartoonController {
 		return mView;
 	}
 	
+	
+	
+	
 	//관리자 화면에서 만화 분류 ajax 요청 응답
 	@RequestMapping("/administer/sort.do")
 	@ResponseBody
@@ -336,7 +371,31 @@ public class CartoonController {
 		 return "success";
 		
 	 }
-	
+
+	 
+	 //댓글에 비추천했을 때 비추천수 증가 ajax 요청 반응
+	 @RequestMapping("/cartoon/link.do")
+	 @ResponseBody
+	 public String link(@RequestParam int cartoon_num, @RequestParam String userid,@RequestParam String detail_url) {
+		 member_linkDto dto = new member_linkDto();
+		 dto.setCartoon_num(cartoon_num);
+		 dto.setUserid(userid);
+		 dto.setDetail_url(detail_url);
+		 int is_selected= service.is_linked(dto);
+		 if(is_selected > 0) {
+			 System.out.println("이미 평가함");
+			 return "fail";
+		 }
+
+		 service.insert_member_linkDto(dto);
+		 System.out.println("데이터베이스 업데이트함");
+		 
+		 
+		 return "success";
+		
+	 }
+	 
+	 
 	 //만화 추천수 증가
 	 @RequestMapping("/cartoon/recommend.do")
 	 @ResponseBody
@@ -368,4 +427,5 @@ public class CartoonController {
 		
 	 }
 	
+	 
 }

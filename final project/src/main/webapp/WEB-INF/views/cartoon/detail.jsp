@@ -244,7 +244,7 @@
 	         
 	         <form>
 				<input type="hidden" id="num" name="num" value="${num }"/>
-	         	<input type="hidden" id="userid" name="userid" value="${id }"/>
+	         	<input type="hidden" id="userid" name="userid" value="${userid }"/>
 	         	<input type="hidden" id="point" name="point"/>
 	          	<input type="text" class="form-control" id="comment" placeholder="평가를 써주세요."/>
 	          	 <button id="submitbtn" class="btn btn-primary "type="submit">전송</button>
@@ -376,7 +376,7 @@
 		
 		var cartoon_num=$("#num").val();
 		var userid=$("#userid").val();
-		var detail_url="${dto.detail_url}"
+		var detail_url=location.href
 			$.ajax({
 				method:'POST',
 				url:'link.do',
@@ -388,7 +388,8 @@
 				
 				},
 				success : function(success){
-					 alert(success);
+					 alert("즐겨찾기 게시판으로 가시겠습니까?");
+					 	alert($(location).attr('path'))
 						location.reload();
 				}
 			

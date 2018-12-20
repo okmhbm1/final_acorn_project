@@ -13,6 +13,7 @@ import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
+import com.bob.please.member.dto.member_linkDto;
 
 @Service
 public class CartoonServiceImpl implements CartoonService{
@@ -49,14 +50,13 @@ public class CartoonServiceImpl implements CartoonService{
 
 
 	   @Override
-	   public void selectdetail(ModelAndView mView, int num) {
+	   public CartoonDto selectdetail(ModelAndView mView, int num) {
 	      CartoonDto dto =dao.selectdetail(num);
 	      int hit=dao.updatehit(num);
 	      
 	      mView.addObject("hit",hit);
 	      mView.addObject("dto",dto);
-	      
-
+	      return dto;
 	   }
 	
 	
@@ -183,6 +183,31 @@ public class CartoonServiceImpl implements CartoonService{
 	@Override
 	public void update_likes(int cartoon_num) {
 		dao.update_likes(cartoon_num);
+	}
+
+
+
+
+	//한 회원이 특정 만화를 링크했는가
+	@Override
+	public int is_linked(member_linkDto dto) {
+		return dao.is_linked(dto);
+	}
+
+
+
+
+	@Override
+	public void insert_member_linkDto(member_linkDto dto) {
+		dao.insert_member_linkDto(dto);		
+	}
+
+
+
+
+	@Override
+	public List<member_linkDto> select_member_link_all(member_linkDto dto) {
+		return dao.select_member_link_all(dto);
 	}
 
 
