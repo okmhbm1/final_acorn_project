@@ -219,7 +219,7 @@
          <p>작가 : ${dto.painter }</p>
          <p>줄거리 : ${dto.description}</p>
          </div> <!--첫번째 row-->
-         <button class="btn btn-primary right"> 즐겨찾기</button>          
+         <button class="btn btn-primary right link"> 즐겨찾기</button>          
          <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_url}' " style="margin-right:4px">보러가기</button><br><br>
 	     
            <button style="margin-right:4px" class="right btn btn-primary" id="recomm">추천 : ${dto.likes }</button>	
@@ -371,6 +371,11 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script>
 		
+		
+		$("")
+		var cartoon_num=$("#num").val();
+		var userid=$("#userid").val();
+		var detail_url="${dto.detail_url}"
 		
 			alert($("#num").val());
 			$("#recomm").on('click',function(){
