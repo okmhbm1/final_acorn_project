@@ -244,20 +244,18 @@
                요일별
               </label>
               
+             
+              <label>
+                <input type="radio" name="filter2" value="category">
+                장르
+              </label>
+             
               
               <label>
                 <input type="radio" name="filter2" value="recommend">
                 추천
               </label>
-              
-              
-              <label>
-                <input type="radio" name="filter2" value="category">
-                장르
-              </label>
-              
-              
-              <label>
+    	<label>
                 <input type="radio" name="filter2" value="gender">
                 성별
               </label>
