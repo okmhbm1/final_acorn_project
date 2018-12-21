@@ -5,25 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/board_anonymous/insertform.jsp</title>
+<title>/views/board_anonymous/updateform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 </head>
 <body>
 <div class="container">
-	<p><strong>${id }</strong>님 로그인중...</p>
-	<h3>새 글 작성</h3>
-	<form action="insert.do" method="post">
+	<p><strong>${dto.writer }</strong>님이 작성한글</p>
+	<h3>글 정보 수정</h3>
+	<form action="update.do" method="post">
+		<input type="hidden" name="num" value="${dto.num }" />
 		<label for="title">제목</label>
-		<input type="text" name="title" id="title"/>
+		<input type="text" name="title" id="title" value="${dto.title }"/>
 		<br/>
 		<label for="content">내용</label>
-		<textarea name="content" id="content" style="width:100%;height:400px;"></textarea>
+		<textarea name="content" id="content" style="width:100%;height:400px;display:none;">${dto.content }</textarea>
 		<div>
-			
-			<input type="button" onclick="submitContents(this);" value="등록" />
-			
-		</div>	
+		
+			<input type="button" onclick="submitContents(this);" value="수정" />
+		
 	</form>
 </div>
 <script>
@@ -80,11 +80,6 @@
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
 

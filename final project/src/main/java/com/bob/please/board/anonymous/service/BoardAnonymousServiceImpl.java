@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.bob.please.board.anonymous.dao.BoardAnonymousCommentDao;
 import com.bob.please.board.anonymous.dao.BoardAnonymousDao;
+import com.bob.please.board.anonymous.dto.BoardAnonymousCommentDto;
 import com.bob.please.board.anonymous.dto.BoardAnonymousDto;
-
-
 
 
 @Service
@@ -21,7 +22,7 @@ public class BoardAnonymousServiceImpl implements BoardAnonymousService{
 	@Autowired
 	private BoardAnonymousDao BoardAnonymousDao;
 	@Autowired
-	//private  BoardAnonymousCommentDao BoardAnonymousCommentDao;
+	private  BoardAnonymousCommentDao BoardAnonymousCommentDao;
 	//한 페이지에 나타낼 row 의 갯수 
 	static final int PAGE_ROW_COUNT=10;
 		//하단 디스플레이 페이지 갯수 
@@ -109,6 +110,121 @@ public class BoardAnonymousServiceImpl implements BoardAnonymousService{
 	public void saveContent(BoardAnonymousDto dto) {
 		BoardAnonymousDao.insert(dto);
 		
+	}
+
+	@Override
+	public void getDetail(HttpServletRequest request) {
+		//글번호
+		int num=Integer.parseInt(request.getParameter("num"));
+		//검색과 관련된 파라미터를 읽어와 본다.
+		String keyword=request.getParameter("keyword");
+		String condition=request.getParameter("condition");
+		//검색과 관련된 정보를 Dto 객체에 선택적으로 담는다.
+		BoardAnonymousDto dto=new BoardAnonymousDto();
+		if(keyword != null) {//검색 키워드가 전달된 경우
+			if(condition.equals("titlecontent")) {//제목+내용 검색
+				dto.setTitle(keyword);
+				dto.setContent(keyword);
+			}else if(condition.equals("title")) {//제목 검색
+				dto.setTitle(keyword);
+			}else if(condition.equals("writer")) {//작성자 검색
+				dto.setWriter(keyword);
+			}
+			//request 에 검색 조건과 키워드 담기
+			request.setAttribute("condition", condition);
+			/*
+			 *  검색 키워드에는 한글이 포함될 가능성이 있기 때문에
+			 *  링크에 그대로 출력가능하도록 하기 위해 미리 인코딩을 해서
+			 *  request 에 담아준다.
+			 */
+			String encodedKeyword=null;
+			try {
+				encodedKeyword=URLEncoder.encode(keyword, "utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			//인코딩된 키워드와 인코딩 안된 키워드를 모두 담는다.
+			request.setAttribute("encodedKeyword", encodedKeyword);
+			request.setAttribute("keyword", keyword);
+		}		
+		//Dto 에 글번호도 담기
+		dto.setNum(num);
+		
+		//글정보 얻어오기
+		//Dto 객체를 getData() 의 인자로 전달해서 글정보를 얻어온다. 
+		BoardAnonymousDto resultDto=BoardAnonymousDao.getData(dto);
+		//글 조회수 올리기
+		BoardAnonymousDao.addViewCount(num);
+		//request 에 글정보를 담고
+		request.setAttribute("dto", resultDto);
+		//댓글 목록을 얻어온다. (자세히 보기할 글번호가 댓글의 ref_group 번호)
+		List<BoardAnonymousCommentDto> commentList=BoardAnonymousCommentDao.getList(num);
+		//request 에 댓글 목록을 담는다.
+		request.setAttribute("commentList", commentList);		
+	}
+
+	@Override
+	public void deleteContent(int num) {
+		BoardAnonymousDao.delete(num);
+		
+	}
+
+	@Override
+	public void getUpdateData(ModelAndView mView, int num) {
+		//글 수정 폼에 필요한 데이터를 얻어온다.
+		BoardAnonymousDto dto=BoardAnonymousDao.getData(num);
+		//ModelAndView 객체에 dto를 담아준다. 
+		mView.addObject("dto", dto);
+
+	}
+
+	@Override
+	public void updateContent(BoardAnonymousDto dto) {
+		BoardAnonymousDao.update(dto);
+		
+	}
+
+	@Override
+	public void saveComment(HttpServletRequest request) {
+		//댓글 작성자
+		String writer=(String)request.getSession().getAttribute("id");
+		//댓글의 그룹번호
+		int ref_group=Integer.parseInt(request.getParameter("ref_group"));
+		//댓글의 대상자 아이디
+		String target_id=request.getParameter("target_id");
+		//댓글의 내용
+		String content=request.getParameter("content");
+		//댓글 내에서의 그룹번호 (null 이면 원글의 댓글이다)
+		String comment_group=request.getParameter("comment_group");
+		//저장할 댓글의 primary key 값을 미리 얻어낸다. 
+		int seq=BoardAnonymousCommentDao.getSequence();
+		//댓글 정보를 CafeCommentDto 객체에 담는다.
+		BoardAnonymousCommentDto dto=new BoardAnonymousCommentDto();
+		dto.setNum(seq);
+		dto.setWriter(writer);
+		dto.setTarget_id(target_id);
+		dto.setRef_group(ref_group);
+		dto.setContent(content);
+		if(comment_group == null) { //원글의 댓글인경우
+			//댓글의 글번호가 댓글 내에서의 그룹번호가 된다. 
+			dto.setComment_group(seq);
+		}else {//댓글의 댓글인 경우 
+			//전달된 comment_group 번호를 새로 추가될 댓글의 그룹번호로 부여한다.
+			dto.setComment_group(Integer.parseInt(comment_group));
+		}
+		//댓글 정보를 DB 에 저장한다.
+		BoardAnonymousCommentDao.insert(dto);
+	}
+	
+
+	@Override
+	public void updateComment(BoardAnonymousCommentDto dto) {
+		BoardAnonymousCommentDao.update(dto);
+	}
+
+	@Override
+	public void deleteComment(int num) {
+		BoardAnonymousCommentDao.delete(num);
 	}
 
 }

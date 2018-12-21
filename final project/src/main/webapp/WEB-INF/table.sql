@@ -33,5 +33,16 @@ regdate DATETIME,
 PRIMARY KEY(num)
 );
 
+CREATE TABLE mysql. board_anonymous_comment (	
+num INT NOT NULL AUTO_INCREMENT,
+writer VARCHAR(30),
+content TEXT,
+target_id VARCHAR(30),
+ref_group VARCHAR(30),
+comment_group INT,
+deleted  CHAR(5) DEFAULT 'no',    
+regdate DATETIME,
+PRIMARY KEY(num)
+);
 
 

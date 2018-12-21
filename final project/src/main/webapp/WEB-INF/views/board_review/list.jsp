@@ -11,7 +11,7 @@
 <body>
 <div class="container">
 	<a href="${pageContext.request.contextPath }/home.do">Home</a>
-	<h3>리뷰게시판</h3> 
+	<h3>리뷰 게시판</h3> 
 	<table class="table table-bordered">
 		<thead>
 			<tr>

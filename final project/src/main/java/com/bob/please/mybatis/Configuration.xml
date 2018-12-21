@@ -9,7 +9,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.bob.please.cartoon.dto.CartoonDto" alias="cartoondto"/>
    		<typeAlias type="com.bob.please.cartoon.dto.CartoonCommentDto" alias="cartooncommentdto"/>
    		<typeAlias type="com.bob.please.board.review.dto.BoardReviewCommentDto" alias="boardreviewcomment"/> 
-   		<typeAlias type="com.bob.please.board.anonymous.dto.BoardAnonymousDto" alias="boardanonymousDto"/> 
+   		<typeAlias type="com.bob.please.board.anonymous.dto.BoardAnonymousDto" alias="boardanonymousdto"/> 
+   		<typeAlias type="com.bob.please.board.anonymous.dto.BoardAnonymousCommentDto" alias="boardanonymouscommentdto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -17,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/bob/please/mybatis/CartoonMapper.xml"/>
 		<mapper resource="com/bob/please/mybatis/BoardReviewCommentMapper.xml"/>
 		<mapper resource="com/bob/please/mybatis/BoardAnonymousMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/BoardAnonymousCommentMapper.xml"/>
 		
 	</mappers>	
 </configuration>

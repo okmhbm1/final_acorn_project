@@ -32,6 +32,34 @@ public class BoardAnonymousDaoImpl implements BoardAnonymousDao{
 		return session.selectList("boardanonymous.getList", dto);
 	}
 
+	@Override
+	public void addViewCount(int num) {
+		session.update("boardanonymous.addViewCount", num);
+	}
+
+	@Override
+	public BoardAnonymousDto getData(BoardAnonymousDto dto) {
+		return session.selectOne("boardanonymous.getData2", dto);
+	}
+
+	@Override
+	public void delete(int num) {
+		session.delete("boardanonymous.delete", num);
+		
+	}
+
+	@Override
+	public BoardAnonymousDto getData(int num) {
+		
+		return session.selectOne("boardanonymous.getData", num);
+	}
+
+	@Override
+	public void update(BoardAnonymousDto dto) {
+		
+		session.update("boardanonymous.update", dto);
+	}
+
 }
 
 	
