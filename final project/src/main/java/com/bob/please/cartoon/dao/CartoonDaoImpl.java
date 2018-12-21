@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.CartoonLikeDto;
+import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
+import com.bob.please.member.dto.member_linkDto;
 
 @Repository
 public class CartoonDaoImpl implements CartoonDao {
@@ -28,13 +31,15 @@ public class CartoonDaoImpl implements CartoonDao {
 
 	   @Override
 	   public List<CartoonDto> selectlist(CartoonDto dto) {
-	      return session.selectList("cartoon.selectlist",dto);
+	      
+
+		   return session.selectList("cartoon.selectlist",dto);
 	   }
 
 	   @Override
-	   public CartoonDto selectdetail(int num) {
-	      return session.selectOne("cartoon.selectdetail",num);
-	   }
+	      public CartoonDto selectdetail(int num) {
+	         return session.selectOne("cartoon.selectdetail",num);
+	      } 
 
 	
 
@@ -80,4 +85,94 @@ public class CartoonDaoImpl implements CartoonDao {
 		return session.selectList("cartoon.selectcartoonpointlist", dto);
 		
 	}
+
+
+
+
+
+	@Override
+	public void updategood(CartoonCommentDto dto) {
+		
+		session.update("cartoon.updategood",dto);
+	}
+
+
+	@Override
+	public void set_selected(onelike_or_dislikeDto dto) {
+		session.insert("cartoon.insertlike",dto);
+		
+	}
+
+
+	@Override
+	public void updatebad(CartoonCommentDto dto) {
+		// TODO Auto-generated method stub
+		session.update("cartoon.updatebad",dto);
+	}
+
+
+	@Override
+	public int is_selected(String userid) {
+		
+		return session.selectOne("cartoon.is_selected",userid);
+	}
+	
+	@Override
+	public int is_recommend_selected(CartoonLikeDto dto) {
+		
+		return session.selectOne("cartoon.is_recommend_selected", dto);
+	}
+
+
+	@Override
+	public void insert_recomm(CartoonLikeDto dto) {
+		session.insert("cartoon.insert_recomm",dto);
+		
+	}
+
+
+	@Override
+	public void update_likes(int cartoon_num) {
+		session.update("cartoon.update_likes",cartoon_num);
+	}
+
+
+	@Override
+	public int updatehit(int num) {
+		session.update("cartoon.update_hit",num);
+		
+		return session.selectOne("cartoon.select_hit",num);
+	}
+
+
+	@Override
+	public List<CartoonDto> selectcategory(CartoonDto dto) {
+
+		      return session.selectList("cartoon.selectcategory",dto);
+				
+	}
+
+
+	@Override
+	public int is_linked(member_linkDto dto) {
+		
+		return session.selectOne("cartoon.is_linked",dto);
+	}
+
+
+	@Override
+	public void insert_member_linkDto(member_linkDto dto) {
+	
+		session.insert("cartoon.insert_member_link",dto);
+	}
+
+
+	@Override
+	public List<member_linkDto> select_member_link_all(member_linkDto dto) {
+		return session.selectList("cartoon.select_member_link_all", dto);	}
+
+
+	
+
+
 }

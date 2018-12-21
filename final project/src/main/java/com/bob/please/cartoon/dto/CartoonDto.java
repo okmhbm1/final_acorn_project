@@ -8,10 +8,12 @@ public class CartoonDto {
 	      String title;
 	      String description; 
 	      String painter;
-	      String category; 
+	      String category;
+	      
 	      int point; 
 	      int likes;
-	      String detail_uri;
+	      int hit;
+	      String detail_url;
 	      String image_url;
 	      String portal; 
 	      String regdate;
@@ -20,118 +22,131 @@ public class CartoonDto {
 	         
 	      }
 
-	   public CartoonDto(int num, String days, String title, String description, String painter, String category,
-	         int point, int likes, String detail_uri, String image_url, String portal, String regdate) {
-	      super();
-	      this.num = num;
-	      this.days = days;
-	      this.title = title;
-	      this.description = description;
-	      this.painter = painter;
-	      this.category = category;
-	      this.point = point;
-	      this.likes = likes;
-	      this.detail_uri = detail_uri;
-	      this.image_url = image_url;
-	      this.portal = portal;
-	      this.regdate = regdate;
-	   }
+	      
+	      	
+		public CartoonDto(int num, String days, String title, String description, String painter, String category,
+				int point, int likes, int hit, String detail_url, String image_url, String portal, String regdate) {
+			super();
+			this.num = num;
+			this.days = days;
+			this.title = title;
+			this.description = description;
+			this.painter = painter;
+			this.category = category;
+			this.point = point;
+			this.likes = likes;
+			this.hit = hit;
+			this.detail_url = detail_url;
+			this.image_url = image_url;
+			this.portal = portal;
+			this.regdate = regdate;
+		}
 
-	   public int getNum() {
-	      return num;
-	   }
 
-	   public void setNum(int num) {
-	      this.num = num;
-	   }
 
-	   public String getDays() {
-	      return days;
-	   }
+		public int getNum() {
+			return num;
+		}
 
-	   public void setDays(String days) {
-	      this.days = days;
-	   }
+		public void setNum(int num) {
+			this.num = num;
+		}
 
-	   public String getTitle() {
-	      return title;
-	   }
+		public String getDays() {
+			return days;
+		}
 
-	   public void setTitle(String title) {
-	      this.title = title;
-	   }
+		public void setDays(String days) {
+			this.days = days;
+		}
 
-	   public String getDescription() {
-	      return description;
-	   }
+		public String getTitle() {
+			return title;
+		}
 
-	   public void setDescription(String description) {
-	      this.description = description;
-	   }
+		public void setTitle(String title) {
+			this.title = title;
+		}
 
-	   public String getPainter() {
-	      return painter;
-	   }
+		public String getDescription() {
+			return description;
+		}
 
-	   public void setPainter(String painter) {
-	      this.painter = painter;
-	   }
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-	   public String getCategory() {
-	      return category;
-	   }
+		public String getPainter() {
+			return painter;
+		}
 
-	   public void setCategory(String category) {
-	      this.category = category;
-	   }
+		public void setPainter(String painter) {
+			this.painter = painter;
+		}
 
-	   public int getPoint() {
-	      return point;
-	   }
+		public String getCategory() {
+			return category;
+		}
 
-	   public void setPoint(int point) {
-	      this.point = point;
-	   }
+		public void setCategory(String category) {
+			this.category = category;
+		}
 
-	   public int getLikes() {
-	      return likes;
-	   }
+		public int getPoint() {
+			return point;
+		}
 
-	   public void setLikes(int likes) {
-	      this.likes = likes;
-	   }
+		public void setPoint(int point) {
+			this.point = point;
+		}
 
-	   public String getDetail_uri() {
-	      return detail_uri;
-	   }
+		public int getLikes() {
+			return likes;
+		}
 
-	   public void setDetail_uri(String detail_uri) {
-	      this.detail_uri = detail_uri;
-	   }
+		public void setLikes(int likes) {
+			this.likes = likes;
+		}
 
-	   public String getImage_url() {
-	      return image_url;
-	   }
+		public int getHit() {
+			return hit;
+		}
 
-	   public void setImage_url(String image_url) {
-	      this.image_url = image_url;
-	   }
+		public void setHit(int hit) {
+			this.hit = hit;
+		}
 
-	   public String getPortal() {
-	      return portal;
-	   }
+		public String getDetail_url() {
+			return detail_url;
+		}
 
-	   public void setPortal(String portal) {
-	      this.portal = portal;
-	   }
+		public void setDetail_url(String detail_url) {
+			this.detail_url = detail_url;
+		}
 
-	   public String getRegdate() {
-	      return regdate;
-	   }
+		public String getImage_url() {
+			return image_url;
+		}
 
-	   public void setRegdate(String regdate) {
-	      this.regdate = regdate;
-	   }
-	   
+		public void setImage_url(String image_url) {
+			this.image_url = image_url;
+		}
 
+		public String getPortal() {
+			return portal;
+		}
+
+		public void setPortal(String portal) {
+			this.portal = portal;
+		}
+
+		public String getRegdate() {
+			return regdate;
+		}
+
+		public void setRegdate(String regdate) {
+			this.regdate = regdate;
+		}
+
+	  
 }

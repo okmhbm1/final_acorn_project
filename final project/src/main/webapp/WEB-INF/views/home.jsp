@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,8 +185,7 @@
 
    <div class="nav-container">
 	   <div class="navbar navbar-inverse">
-	      <a  href="#" class="navbar-brand">업데이트 </a>
-	      <a href="#" class="navbar-brand">웹툰</a>
+	      <a href="cartoon/list.do" class="navbar-brand">웹툰</a>
 	      <a  href="board_anonymous/list.do" class="navbar-brand">게시판</a>
 	      <a  href="board_review/list.do" class="navbar-brand">리뷰</a>
 	   </div>
@@ -220,20 +219,29 @@
 
    <!-- 로그인 -->
    <div class="section right">
-      
-        <form class="form-signin" method="POST">
-      <label for="id" class="sr-only">Your ID</label>
-        <input type="text" id="uid" class="form-control" placeholder="Your ID" required autofocus><BR>
+    <c:choose>
+   <c:when test="${empty sessionScope.userid }">
+           <form class="form-signin" action="member/login.do?url=${param.url }" method="post">
+      <label for="userid" class="sr-only">Your ID</label>
+        <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디" required autofocus><BR>
         <label for="pwd" class="sr-only">Password</label>
-        <input type="password" id="pwd" class="form-control" placeholder="Password" required><br>
-        <button id="btn-Yes" class="btn btn-sm btn-primary btn-block" type="submit">로 그 인</button>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required><br>
+        <button id="btn-Yes" class="btn btn-sm btn-default btn-block" type="submit">로 그 인</button>
         <div class="checkbox">
           <label>
             <input type="checkbox"> 기억하기 
           </label>
-          <a href="#">회원가입</a> <a href="#">정보찾기</a>
+          <a href="member/signup_form.do">회원가입</a>
         </div>
       </form>
+   </c:when>
+   <c:otherwise>
+      <div><h4><a href="member/info.do">${userid }</a>님</h4><a href="member/info.do">내정보</a></div>
+      <a href="cartoon/link_detail.do">즐겨찾기 목록</a><br>
+         <a href="member/logout.do">로그아웃</a>
+         
+   </c:otherwise>
+   </c:choose>
 
 
      <!--주간/월간 순위-->
@@ -449,11 +457,9 @@
  
 
   
-<a href="detail.do">detail</a>
-<a href="list.do">list</a>
-<a href="crawling.do">crawling</a>
-<a href="crawling2.do">crawling2</a>
-<a href="administer_sorting_genre_page.do">administer</a>
+<a href="cartoon/detail.do">detail</a>
+<a href="checkcategory.do">checkcategory</a>
+<a href="administer/administer_page.do">administer_page</a>
 <!-- jquery 로딩하기-->
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->

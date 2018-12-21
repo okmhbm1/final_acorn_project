@@ -159,8 +159,8 @@
      
     }
 
-
-
+.commentid{
+}
 
 
 
@@ -212,14 +212,17 @@
       <h3>${dto.title }</h3>
       <hr></hr>
       <div class="row ">
+      	 조회수 : ${hit }
          <div class="col-xs-6"><img class="image-full" src="${dto.image_url}"/></div>
+         <br>
          <div class="col-xs-6">
          <p>작가 : ${dto.painter }</p>
          <p>줄거리 : ${dto.description}</p>
          </div> <!--첫번째 row-->
-         <button class="btn btn-primary right"> 즐겨찾기</button>          
-         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_uri}' " style="margin-right:4px">보러가기</button>
-
+         <button class="btn btn-primary right link"> 즐겨찾기</button>          
+         <button class="btn btn-primary right" onclick = "location.href = '${dto.detail_url}' " style="margin-right:4px">보러가기</button><br><br>
+	     
+           <button style="margin-right:4px" class="right btn btn-primary" id="recomm">추천 : ${dto.likes }</button>	
          
       </div>
       <br/>
@@ -241,7 +244,7 @@
 	         
 	         <form>
 				<input type="hidden" id="num" name="num" value="${num }"/>
-	         	<input type="hidden" id="userid" name="userid" value="${id }"/>
+	         	<input type="hidden" id="userid" name="userid" value="${userid }"/>
 	         	<input type="hidden" id="point" name="point"/>
 	          	<input type="text" class="form-control" id="comment" placeholder="평가를 써주세요."/>
 	          	 <button id="submitbtn" class="btn btn-primary "type="submit">전송</button>
@@ -270,44 +273,30 @@
 
       
 
-             <c:if test="${tmp.days eq 'mon' }">
-            <div><a href="detail.do?num=${tmp.num}"><img src="${tmp.image_url}"/></a></div>
-            <div><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
-            <div style="display:none">${tmp.days }</div>
-            </c:if>
       
        <c:if test="${list ne null }">		      
-	      <c:forEach items="${list }" var="tmp">      
+	      <c:forEach items="${list }" var="tmp" varStatus="theCount">
+	            
 			      <div class="row" style="text-align: center">
 			         <div class="col-xs-5 printpoint" >${tmp.point }</div>
 			
-			         <div class="col-xs-7">${tmp.comment } 아이디:<span>${tmp.userid }</span></div>
-			
+			         <div div="commend_div" class="col-xs-7">${tmp.comment } 
+			         <br>
+			       	아이디:<span class="commentid">${tmp.userid }</span><br>
+			         <button class="good" style="background-color:white;border:0px green;">공감</button><span></span>${tmp.good }<button class="notgood" style="background-color:white;border:0px green solid">비공감</button><span>${tmp.notgood }</span></div>
+					 <c:set var="i" value="${theCount.count}"/>
 			      </div><!--row2 끝-->
 			
 			      <br/>
 			      <hr>
 	      </c:forEach>
 	   </c:if>
+	  
+		
 
 
 
 
-      <div class="row" style="text-align: center">
-         <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
-
-         <div class="col-xs-7">재미있었네요 10점</div>
-
-      </div><!--row3 끝-->
-
-      <br/>
-      <hr>
-      <div class="row" style="text-align: center">
-         <div class="col-xs-5">☆☆☆☆☆☆☆☆☆☆</div>
-
-         <div class="col-xs-7">별로, 0점</div>
-
-      </div><!--row4 끝-->
 
 
     <br/>
@@ -381,8 +370,128 @@
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script>
-
 		
+		
+		$(".link").on('click',function(){
+		
+		var cartoon_num=$("#num").val();
+		var userid=$("#userid").val();
+		var detail_url=location.href
+			$.ajax({
+				method:'POST',
+				url:'link.do',
+				traditional:true,
+				data : {
+					"cartoon_num":cartoon_num,
+					"userid":userid,
+					"detail_url":detail_url
+				
+				},
+				success : function(success){
+					 alert("즐겨찾기 게시판으로 가시겠습니까?");
+					 	alert($(location).attr('path'))
+						location.reload();
+				}
+			
+			});
+		
+		});
+			alert($("#num").val());
+			$("#recomm").on('click',function(){
+				var cartoon_num=$("#num").val();
+				var userid=$("#userid").val();
+				alert(userid);
+				$.ajax({
+					method:'POST',
+					url:'recommend.do',
+					traditional:true,
+					data : {
+						"cartoon_num":cartoon_num,
+						"userid":userid,
+					
+					},
+					success : function(success){
+						 alert(success);
+							location.reload();
+					}
+				
+				});
+				alert("끝");
+				
+			})
+
+			
+			$(".good").each(function(){
+				
+				$(this).on('click',function(){
+
+						var cartoon_num=$("#num").val();
+						var userid=$("#userid").val();
+						var uploaderid=	$(this).parent().find(".commentid").text();
+	
+						alert(uploaderid);
+						
+						alert($(this).text());
+						alert(cartoon_num);
+						alert(userid);
+						$.ajax({
+							method:'POST',
+							url:'good.do',
+							traditional:true,
+							data : {
+								"cartoon_num":cartoon_num,
+								"userid":userid,
+								"uploaderid":uploaderid
+							
+							},
+							success : function(success){
+								 alert(success);
+									location.reload();
+							}
+						
+						});					
+										
+				});
+				
+			});
+			
+			
+
+				$(".notgood").each(function(){
+				
+				$(this).on('click',function(){
+
+						var cartoon_num=$("#num").val();
+						var userid=$("#userid").val();
+						var uploaderid=	$(this).parent().find(".commentid").text();
+	
+						alert(uploaderid);
+						
+						alert($(this).text());
+						alert(cartoon_num);
+						alert(userid);
+						$.ajax({
+							method:'POST',
+							url:'notgood.do',
+							traditional:true,
+							data : {
+								"cartoon_num":cartoon_num,
+								"userid":userid,
+								"uploaderid":uploaderid
+							
+							},
+							success : function(success){
+								 alert(success);
+									location.reload();
+							}
+						
+						});					
+										
+				});
+				
+			});
+
+
 
 		$("#submitbtn").on('click',function(){
 			var point = $("#point").val(star_value).val();
@@ -391,6 +500,7 @@
 			var comment=$("#comment").val();
 			
 				alert("point:"+point+"cartoon_num"+cartoon_num+"userid:"+userid+"comment:"+comment);
+								
 				
 					$.ajax({
 						method:'POST',

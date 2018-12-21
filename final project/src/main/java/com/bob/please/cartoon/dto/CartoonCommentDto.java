@@ -6,26 +6,11 @@ public class CartoonCommentDto {
 	int cartoon_num;
 	String userid;
 	int point;
+	int good;
+	int notgood;
 	String comment;
 	String gender;
 	int age;
-
-	public CartoonCommentDto(){}
-	public CartoonCommentDto(int cartoon_num, String userid, int point,String comment, String gender, int age) {
-		super();
-		this.cartoon_num = cartoon_num;
-		this.userid = userid;
-		this.point = point;
-		this.gender = gender;
-		this.age = age;
-		this.comment=comment;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
 	public int getCartoon_num() {
 		return cartoon_num;
 	}
@@ -44,6 +29,24 @@ public class CartoonCommentDto {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getNotgood() {
+		return notgood;
+	}
+	public void setNotgood(int notgood) {
+		this.notgood = notgood;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -56,8 +59,20 @@ public class CartoonCommentDto {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
-
+	public CartoonCommentDto(int cartoon_num, String userid, int point, int good, int notgood, String comment,
+			String gender, int age) {
+		super();
+		this.cartoon_num = cartoon_num;
+		this.userid = userid;
+		this.point = point;
+		this.good = good;
+		this.notgood = notgood;
+		this.comment = comment;
+		this.gender = gender;
+		this.age = age;
 	}
+
+	public CartoonCommentDto() {}
+	
+}
 

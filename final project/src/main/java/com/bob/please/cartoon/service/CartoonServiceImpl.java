@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bob.please.cartoon.dao.CartoonDao;
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
+import com.bob.please.cartoon.dto.CartoonLikeDto;
+import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
+import com.bob.please.member.dto.member_linkDto;
 
 @Service
 public class CartoonServiceImpl implements CartoonService{
@@ -47,11 +50,13 @@ public class CartoonServiceImpl implements CartoonService{
 
 
 	   @Override
-	   public void selectdetail(ModelAndView mView, int num) {
+	   public CartoonDto selectdetail(ModelAndView mView, int num) {
 	      CartoonDto dto =dao.selectdetail(num);
-	      mView.addObject("dto",dto);
+	      int hit=dao.updatehit(num);
 	      
-
+	      mView.addObject("hit",hit);
+	      mView.addObject("dto",dto);
+	      return dto;
 	   }
 	
 	
@@ -102,6 +107,112 @@ public class CartoonServiceImpl implements CartoonService{
 		List<CartoonCommentDto> list = dao.selectcartoonpointlist(dto);
 		request.setAttribute("list", list);
 	}
+
+
+
+
+	@Override
+	public int is_selected(String userid) {
+		
+		return dao.is_selected(userid);
+	}
+
+
+
+
+	@Override
+	public void updategood(CartoonCommentDto dto) {
+	
+		dao.updategood(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void set_selected(onelike_or_dislikeDto dto) {
+		dao.set_selected(dto);
+		
+	}
+	
+	  @Override
+	   public void selectcategory(HttpServletRequest request) {
+	         CartoonDto dto = new CartoonDto();
+	         String days = request.getParameter("days");
+	         String title = request.getParameter("title");
+	         String image_url = request.getParameter("image_url");
+	         dto.setImage_url(image_url);
+	         dto.setDays(days);
+	         dto.setTitle(title);
+	         List<CartoonDto> list1=dao.selectcategory(dto);
+	         request.setAttribute("list1", list1);
+	      
+	   } 
+
+
+
+
+	@Override
+	public void updatebad(CartoonCommentDto dto) {
+		dao.updatebad(dto);
+		
+	}
+
+
+
+
+	@Override
+	public int is_recommend_selected(CartoonLikeDto dto) {
+		
+		return dao.is_recommend_selected(dto);
+	}
+
+
+
+
+	@Override
+	public void insert_recomm(CartoonLikeDto dto) {
+		dao.insert_recomm(dto);
+		
+	}
+
+
+
+
+	@Override
+	public void update_likes(int cartoon_num) {
+		dao.update_likes(cartoon_num);
+	}
+
+
+
+
+	//한 회원이 특정 만화를 링크했는가
+	@Override
+	public int is_linked(member_linkDto dto) {
+		return dao.is_linked(dto);
+	}
+
+
+
+
+	@Override
+	public void insert_member_linkDto(member_linkDto dto) {
+		dao.insert_member_linkDto(dto);		
+	}
+
+
+
+
+	@Override
+	public List<member_linkDto> select_member_link_all(member_linkDto dto) {
+		return dao.select_member_link_all(dto);
+	}
+
+
+
+
 	
 	
 }
