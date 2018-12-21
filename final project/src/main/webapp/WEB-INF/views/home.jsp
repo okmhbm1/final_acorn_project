@@ -188,6 +188,8 @@
 	      <a href="cartoon/list.do" class="navbar-brand">웹툰</a>
 	      <a  href="board_anonymous/list.do" class="navbar-brand">게시판</a>
 	      <a  href="board_review/list.do" class="navbar-brand">리뷰</a>
+   	      <a  href="board_free/list.do" class="navbar-brand">자유</a>
+      	 <a  href="board_qna/list.do" class="navbar-brand">질문</a>
 	   </div>
    </div> <!--네비바 -->
 
