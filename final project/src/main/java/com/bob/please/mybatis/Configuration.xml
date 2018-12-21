@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.bob.please.cartoon.dto.CartoonDto" alias="cartoondto"/>
    		<typeAlias type="com.bob.please.cartoon.dto.CartoonCommentDto" alias="cartooncommentdto"/>
    		<typeAlias type="com.bob.please.board.review.dto.BoardReviewCommentDto" alias="boardreviewcomment"/> 
-   		  
+   		<typeAlias type="com.bob.please.board.anonymous.dto.BoardAnonymousDto" alias="boardanonymousDto"/> 
 	</typeAliases>
 	
 	<mappers>
