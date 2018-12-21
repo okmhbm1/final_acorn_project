@@ -9,11 +9,28 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    	<typeAlias type="com.bob.please.cartoon.dto.onelike_or_dislikeDto" alias="likeordislikedto"/>
    	<typeAlias type="com.bob.please.cartoon.dto.CartoonLikeDto" alias="cartoonlikedto"/>  
 	<typeAlias type="com.bob.please.member.dto.MemberDto" alias="memberdto"/>     
-	<typeAlias type="com.bob.please.member.dto.member_linkDto" alias="memberlinkdto"/>   
+	<typeAlias type="com.bob.please.member.dto.member_linkDto" alias="memberlinkdto"/>
+	<typeAlias type="com.bob.please.board.review.dto.BoardReviewDto" alias="boardreviewDto"/>
+	<typeAlias type="com.bob.please.board.review.dto.BoardReviewCommentDto" alias="boardreviewcomment"/>   
    </typeAliases>
    
-   <mappers>
-            <mapper resource="com/bob/please/mybatis/CartoonMapper.xml"/>
-            <mapper resource="com/bob/please/mybatis/MemberMapper.xml"/>
-   </mappers>   
+
+	<mappers>
+		         
+        <mapper resource="com/bob/please/mybatis/MemberMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/BoardReviewMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/CartoonMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/BoardReviewCommentMapper.xml"/>
+		<mapper resource="com/bob/please/mybatis/BoardAnonymousMapper.xml"/>
+		
+	</mappers>	
 </configuration>
+
+
+
+
+
+
+
+
+

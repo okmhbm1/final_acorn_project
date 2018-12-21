@@ -185,10 +185,9 @@
 
    <div class="nav-container">
 	   <div class="navbar navbar-inverse">
-	      <a  href="#" class="navbar-brand">업데이트 </a>
 	      <a href="cartoon/list.do" class="navbar-brand">웹툰</a>
-	      <a  href="#" class="navbar-brand">게시판</a>
-	      <a  href="#" class="navbar-brand">리뷰</a>
+	      <a  href="board_anonymous/list.do" class="navbar-brand">게시판</a>
+	      <a  href="board_review/list.do" class="navbar-brand">리뷰</a>
 	   </div>
    </div> <!--네비바 -->
 
@@ -455,9 +454,6 @@
   </table>	
 	</div> <!--질문 게시판 끝-->
 
-  </div><!--body 끝-->
-	</div> <!--container-->
-      
  
 
   
