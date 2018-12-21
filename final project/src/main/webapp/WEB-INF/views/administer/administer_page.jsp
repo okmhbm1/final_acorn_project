@@ -222,7 +222,7 @@
                                     <a href="crawling2.do">
 			                                    <img src="${pageContext.request.contextPath}/resources/images/topni2.jpg" style="position:relative;width:100%;height:150px">    
 			                         
-			                                     <div>레진 크롤링</div>
+			                                     <div>짬툰 크롤링</div>
 			                        </a>  
                                     </div>
                                     
