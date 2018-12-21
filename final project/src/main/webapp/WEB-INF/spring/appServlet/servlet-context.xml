@@ -39,11 +39,8 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-
-	
-	<!-- 어노테이션 기반으로 aop 적용하기 위한 설정 -->
-	
+		
+	<!-- 어노테이션 기반으로 aop 적용하기 위한 설정 -->	
 	
 	<!-- Multipart 폼 전송 처리를 위한 bean 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -54,19 +51,14 @@
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0"/>
 	</beans:bean>
-
-
-
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-
-	
-	
+	<resources mapping="/resources/**" location="/resources/" />	
 
 	<!-- 하위 패키지를 모두 컴포넌트 스캔하기 -->
 	<context:component-scan base-package="com.bob.please" />
@@ -79,4 +71,9 @@
 	<context:component-scan base-package="com.bob.please.member.dao" />
 	
 	<context:component-scan base-package="com.bob.please.member.service" />
+	
+	<context:component-scan base-package="com.bob.please.board.free.controller" />
+	<context:component-scan base-package="com.bob.please.board.free.service" />
+	<context:component-scan base-package="com.bob.please.board.free.dao" />
+	
 </beans:beans>

@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bob.please.board.review.dto.BoardReviewCommentDto;
-import com.bob.please.board.review.dto.BoardReviewDto;
-import com.bob.please.board.review.service.BoardReviewService;
+import com.bob.please.board.free.dto.BoardFreeCommentDto;
+import com.bob.please.board.free.dto.BoardFreeDto;
+import com.bob.please.board.free.service.BoardFreeService;
 
 @Controller
 public class BoardFreeController {
 	@Autowired
-	private BoardReviewService service;
+	private BoardFreeService service;
 	
 	@RequestMapping("/board_free/list")
 	public ModelAndView getList(HttpServletRequest request) {
@@ -35,7 +35,7 @@ public class BoardFreeController {
 		return new ModelAndView("board_free/insertform");
 	}
 	@RequestMapping("/board_free/insert")
-	public ModelAndView Insert(@ModelAttribute BoardReviewDto dto,HttpServletRequest request) {
+	public ModelAndView Insert(@ModelAttribute BoardFreeDto dto,HttpServletRequest request) {
 		
 		String id=(String)request.getSession().getAttribute("id");
 		dto.setWriter(id);
@@ -62,7 +62,7 @@ public class BoardFreeController {
 		return mView;
 	}
 	@RequestMapping("/board_free/update")
-	public ModelAndView Update(@ModelAttribute BoardReviewDto dto,HttpServletRequest request) {
+	public ModelAndView Update(@ModelAttribute BoardFreeDto dto,HttpServletRequest request) {
 		//서비스를 이용해서 글을 수정반영하고
 		service.updateContent(dto);
 		//dto 에 담긴 글 번호를 이용해서 글자세히 보기로 리다일렉트 이동시킨다.
@@ -78,7 +78,7 @@ public class BoardFreeController {
 	}
 	@RequestMapping("/board_free/comment_update")
 	@ResponseBody
-	public Map<String, Object> CommentUpdate(@ModelAttribute BoardReviewCommentDto dto,
+	public Map<String, Object> CommentUpdate(@ModelAttribute BoardFreeCommentDto dto,
 			HttpServletRequest request){
 		//서비스를 통해서 댓글을 업데이트 하는 작업을 하고
 		service.updateComment(dto);
