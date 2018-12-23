@@ -48,10 +48,37 @@ public class CartoonController {
 	
 	@RequestMapping("/cartoon/list.do")
 	   public String selectlist(HttpServletRequest request) {
+		  
 	      service.selectlist(request);
 	      return "cartoon/list";
 	   }
 	
+	
+	//리스트 정렬
+		@RequestMapping("/cartoon/list_sort_by_category.do")
+		   public String list_sort_by_category(HttpServletRequest request) {
+		        
+		      service.selectcategory(request);
+		      return "cartoon/list_sort_by_category";
+		  }
+		
+		// 추천 필터
+		@RequestMapping("/cartoon/list_sort_by_recommend.do")
+		   public String list_sort_by_recommend(HttpServletRequest request) {
+		        
+		      service.select_sort_by_recommend(request);
+		      return "cartoon/list_sort_by_recommend";
+		  }
+		
+		// 남녀별 추천 필터
+			@RequestMapping("/cartoon/list_sort_by_gender.do")
+			   public String list_sort_by_gender(HttpServletRequest request) {
+			        
+			      service.select_sort_by_gender(request);
+			      return "cartoon/list_sort_by_gender";
+			  }
+			
+			
 	 @RequestMapping("/cartoon/detail.do")
 	   public ModelAndView detail(ModelAndView mView, @RequestParam int num,HttpServletRequest request) {
 	      
@@ -233,13 +260,7 @@ public class CartoonController {
 		return mView;
 	}
 
-	//리스트 정렬
-	@RequestMapping("/cartoon/list_sort_by_category.do")
-	   public String list_sort_by_category(HttpServletRequest request) {
-	        
-	      service.selectcategory(request);
-	      return "cartoon/list_sort_by_category";
-	  }
+	
 	
 	//네이버 만화 장르별 분류하는 크롤링 
 	@RequestMapping("/administer/checkcategory.do")

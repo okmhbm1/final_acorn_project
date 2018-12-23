@@ -5,6 +5,7 @@ import java.util.List;
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
+import com.bob.please.cartoon.dto.SelectCartoonInfoDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 import com.bob.please.member.dto.member_linkDto;
 
@@ -15,6 +16,13 @@ public interface CartoonDao {
 	
 	// 만화 리스트 페이지
 	public List<CartoonDto> selectlist(CartoonDto dto);
+	
+	// 추천별 분류
+	public List<SelectCartoonInfoDto>select_sort_by_recommend(SelectCartoonInfoDto dto);
+		
+	//성별 추천 분류
+	public List<SelectCartoonInfoDto> select_sort_by_gender(SelectCartoonInfoDto dto);
+	
 	
 	// detail 페이지
 	public CartoonDto selectdetail(int num);
@@ -66,4 +74,6 @@ public interface CartoonDao {
 	
 	//즐겨찾기 목록 가져오기
 	public List<member_linkDto> select_member_link_all(member_linkDto dto);
+	
+	
 }

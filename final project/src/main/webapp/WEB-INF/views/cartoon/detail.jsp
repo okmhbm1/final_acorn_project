@@ -389,18 +389,18 @@
 				},
 				success : function(success){
 					 alert("즐겨찾기 게시판으로 가시겠습니까?");
-					 	alert($(location).attr('path'))
+					 	//alert($(location).attr('path'))
 						location.reload();
 				}
 			
 			});
 		
 		});
-			alert($("#num").val());
+			//alert($("#num").val());
 			$("#recomm").on('click',function(){
 				var cartoon_num=$("#num").val();
 				var userid=$("#userid").val();
-				alert(userid);
+				//alert(userid);
 				$.ajax({
 					method:'POST',
 					url:'recommend.do',
@@ -411,12 +411,12 @@
 					
 					},
 					success : function(success){
-						 alert(success);
+						 //alert(success);
 							location.reload();
 					}
 				
 				});
-				alert("끝");
+				//alert("끝");
 				
 			})
 
@@ -429,11 +429,11 @@
 						var userid=$("#userid").val();
 						var uploaderid=	$(this).parent().find(".commentid").text();
 	
-						alert(uploaderid);
+						//alert(uploaderid);
 						
-						alert($(this).text());
-						alert(cartoon_num);
-						alert(userid);
+						//alert($(this).text());
+						//alert(cartoon_num);
+						//alert(userid);
 						$.ajax({
 							method:'POST',
 							url:'good.do',
@@ -465,11 +465,11 @@
 						var userid=$("#userid").val();
 						var uploaderid=	$(this).parent().find(".commentid").text();
 	
-						alert(uploaderid);
+						//alert(uploaderid);
 						
-						alert($(this).text());
-						alert(cartoon_num);
-						alert(userid);
+						//alert($(this).text());
+						//alert(cartoon_num);
+						//alert(userid);
 						$.ajax({
 							method:'POST',
 							url:'notgood.do',
@@ -481,7 +481,7 @@
 							
 							},
 							success : function(success){
-								 alert(success);
+								 //alert(success);
 									location.reload();
 							}
 						
@@ -499,7 +499,7 @@
 			var userid=$("#userid").val();
 			var comment=$("#comment").val();
 			
-				alert("point:"+point+"cartoon_num"+cartoon_num+"userid:"+userid+"comment:"+comment);
+				//alert("point:"+point+"cartoon_num"+cartoon_num+"userid:"+userid+"comment:"+comment);
 								
 				
 					$.ajax({

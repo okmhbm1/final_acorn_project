@@ -82,9 +82,9 @@
 
    }
    .col-xs-2{
-
       display:block;
       width:142px;
+      border:1px solid #B7B5B5;
    }
    .left{
       float:left;
@@ -157,14 +157,55 @@
      
     }
 .match_parent{
-   width:100%
+   width:100%;
+  margin-top: 8px;
+  height:110px;
+  
+
 }
 
-.up_flag_badge {position:absolute;top:12px;display:inline-block;width:16px;height:16px;line-height:15px;background:#f54a3d;color:#fff;font-weight:bold;font-size:13px;margin-left: 65px;}
+.up_flag_badge0 , .up_flag_badge1  ,.up_flag_badge2  ,.up_flag_badge3  ,.up_flag_badge4  ,.up_flag_badge5  ,.up_flag_badge6 
+{
+position:absolute;
+top:12px;
+display:inline-block;
+width:16px;
+height:19px;
+line-height:15px;
+background:#f54a3d;
+color:#fff;
+font-weight:bold;
+font-size:13px;
+margin-left: 30px;
+display: none;
+}
 
-.weekly_up_badge{position:relative;text-align:center;display:block;top:-14px;right:0px;height:25px;line-height:25px;background:#f54a3d;color:#fff;font-weight:bold;font-size:16px;}
+.weekly_up_badge0, .weekly_up_badge1, .weekly_up_badge2, .weekly_up_badge3 ,.weekly_up_badge4, .weekly_up_badge5,.weekly_up_badge6
+{position:static;
+text-align:center;
+top:-30px;
+height:23px;
+line-height:25px;
+background:#f54a3d;
+color:#fff;
+font-weight:bold;
+font-size:16px;
+width:100%;
+display: none;
+}
 
-.texttext{position:relative;text-align:center;display:block;top:-15px;font-weight:bold;font-size:15px;}
+.texttext{position:relative;
+text-align:left;
+display:block;
+top:3px;
+font-weight:bold;
+font-size:14px;
+font-color:#060606;
+}
+
+#weekmain {text-align: center;
+border-bottom: 1px solid black;
+}
 </style>
 <body>
    
@@ -204,10 +245,10 @@
    </div> <!--네비바 -->
 
 
-   <!-- 바디 -->
+  <!-- 바디 -->
    <div class="container">
    <div class="body">
-      <div class="row">
+     <div class="row">
       <div class="col-xs-4">
          <br/>
          <br/>
@@ -215,7 +256,7 @@
          <button class="btn btn-default">연재</button>
             <button class="btn btn-default">미연재</button>
       </div>
-      <div class="col-xs-4"></div>
+      <div class="col-xs-3"></div>
       <div class="col-xs-4">
          <br/>
          <br/>
@@ -224,7 +265,7 @@
             
             
               <label>
-                <input type="checkbox" name="naver" value="naver">
+                <input type="checkbox" id="naver" name="site" value="${param.naver}" <c:if test="${param.naver  eq 'true'}" > checked </c:if> >
                 네이버
               </label>
             
@@ -232,34 +273,36 @@
             
             
               <label>
-                <input type="checkbox" name="lezhin" value="lezhin">
+                <input type="checkbox" id="toomics" name="site" value="${param.toomics}" <c:if test="${param.toomics eq 'true'}" > checked </c:if> >
                 투믹스
               </label>
+            
+           
             </div>
    
             <div class="checkbox2" >
               
               <label>
-                <input type="radio" name="filter2" value="days">
+                <input type="radio" name="filter2" value="days" checked>
                요일별
               </label>
               
              
               <label>
-                <input type="radio" name="filter2" value="category">
+                <input type="radio" name="filter2" id="category" value="category">
                 장르
               </label>
              
               
               <label>
-                <input type="radio" name="filter2" value="recommend">
+                <input type="radio" name="filter2" id="recommend" value="recommend">
                 추천
               </label>
-    	<label>
-                <input type="radio" name="filter2" value="gender">
+       <label>
+                <input type="radio" name="filter2" id="gender" value="gender">
                 성별
               </label>
-            
+
             
             </div>
 
@@ -289,14 +332,16 @@
 
 
 
+      
       <div class="row">
       <div class="col-xs-2">
-      <div><h4>월요일</h4><span class="up_flag_badge">N</span></div>
+
+   <div id="weekmain"><h4>월요일</h4><span class="up_flag_badge1" id="up_flag_badge1" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'mon' or tmp.days eq '월'}">
             <div>
             <a href="detail.do?num=${tmp.num}">
-            <img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a>
+            <img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge1">업데이트</span></a>
             </div>
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
@@ -306,10 +351,12 @@
 
 
       <div class="col-xs-2">
-         <div><h4>화요일</h4><span class="up_flag_badge">N</span></div>
+         <div id="weekmain"><h4>화요일</h4><span class="up_flag_badge2" id="up_flag_badge2" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'tue' or tmp.days eq '화' }">
-               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge2">업데이트</span></a></div>
+            
+            
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -318,10 +365,10 @@
 
 
       <div class="col-xs-2">
-                 <div><h4>수요일</h4><span class="up_flag_badge">N</span></div>
+         <div id="weekmain"><h4>수요일</h4><span class="up_flag_badge3" id="up_flag_badge3" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'wed' or tmp.days eq '수' }">
-               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge3" >업데이트</span></a></div>
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -329,10 +376,10 @@
       </div>
 
       <div class="col-xs-2">
-        <div><h4 name="thu">목요일</h4><span class="up_flag_badge">N</span></div>
+        <div id="weekmain"><h4 >목요일</h4><span class="up_flag_badge4" id="up_flag_badge4" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'thu' or tmp.days eq '목' }">
-             <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+             <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge4">업데이트</span></a></div>
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -340,10 +387,10 @@
       </div>
 
       <div class="col-xs-2">
-         <div><h4>금요일</h4><span class="up_flag_badge">N</span></div>
+         <div id="weekmain"><h4>금요일</h4><span class="up_flag_badge5" id="up_flag_badge5" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'fri' or tmp.days eq '금'}">
-             <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+             <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge5">업데이트</span></a></div>
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -351,10 +398,10 @@
       </div>
 
       <div class="col-xs-2">
-        <div><h4>토요일</h4><span class="up_flag_badge">N</span></div>
+        <div id="weekmain"><h4>토요일</h4><span class="up_flag_badge6" id="up_flag_badge6" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'sat' or tmp.days eq '토'}">
-               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+               <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge6" >업데이트</span></a></div>
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -362,10 +409,10 @@
       </div>
 
       <div class="col-xs-2">
-        <div><h4>일요일</h4><span class="up_flag_badge">N</span></div>
+        <div id="weekmain"><h4>일요일</h4><span class="up_flag_badge0" id="up_flag_badge0" >N</span></div>
        <c:forEach items="${list }" var="tmp">
              <c:if test="${tmp.days eq 'sun' or tmp.days eq '일'}">
-            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"><span class="weekly_up_badge">업데이트</span></img></a></div>
+            <div><a href="detail.do?num=${tmp.num}"><img class="match_parent" src="${tmp.image_url}"/><span class="weekly_up_badge0">업데이트</span></a></div>
             <div class="texttext"><a href="detail.do?num=${tmp.num}">${tmp.title}</a></div>
             <div style="display:none">${tmp.days }</div>
             </c:if>
@@ -390,42 +437,184 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <!-- bootstrap 로딩하기, jquery plugin, jquery 먼저 로딩해야 함-->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-
 <script>
-function getTodayLabel() {
-    var week = new Array('일', '월', '화', '수', '목', '금', '토');
-    var today = new Date().getDay();
-    var todayLabel = week[today];
-}
-var DATE = new Date();
-var Year = DATE.getFullYear();
-var Month = DATE.getMonth() + 1;
-var Day = DATE.getDate();
-var Today = Year + "-" + Month + "-" + Day;
-var Holidays = {
-"일" : "http://pagead2.googlesyndication.com/simgad/12146247908501250763",
-"월" : "http://pagead2.googlesyndication.com/simgad/13177216673612256820",
-"2014-8-16" : "http://pagead2.googlesyndication.com/simgad/3815350622856322910"
-}
-if(Holidays[Today]) {
-document.getElementById("test").src = Holidays[Today];
-}
+$(document).ready(function(){
+   var date= new Date();
+   var week = date.getDay();
+   
+   
+   if(week == 0){
+      $("#up_flag_badge0").show();
+      $(".weekly_up_badge0").each(function(){
+         $(".weekly_up_badge0").css("display","block");
+         });
+   }
+   if(week == 1){
+      $("#up_flag_badge1").show();
+      $(".weekly_up_badge1").each(function(){
+         $(".weekly_up_badge1").css("display","block");
+         });
+   }
+   if(week == 2){
+      $("#up_flag_badge2").show();
+      $(".weekly_up_badge2").each(function(){
+         $(".weekly_up_badge2").css("display","block");
+         });
+   }
+   if(week == 3){
+      $("#up_flag_badge3").show();
+      $(".weekly_up_badge3").each(function(){
+         $(".weekly_up_badge3").css("display","block");
+         });
+   }
+   if(week == 4){
+      $("#up_flag_badge4").show();
+      $(".weekly_up_badge4").each(function(){
+         $(".weekly_up_badge4").css("display","block");
+         });
+   }
+   if(week == 5){
+      $("#up_flag_badge5").show();
+      $(".weekly_up_badge5").each(function(){
+         $(".weekly_up_badge5").css("display","block");
+         });
+   }
+   if(week == 6){
+      $("#up_flag_badge6").show();
+      $(".weekly_up_badge6").each(function(){
+         $(".weekly_up_badge6").css("display","block");
+         });
+   }
+});
+
 </script>
 
 <script>
 $(document).ready(function () {
-    $('input[name="filter2"]').on('click',function () {
+
+	
+	
+	$('#category').on('click',function () {
       // getter
       var radioVal = $('input[name="filter2"]:checked').val();
       if(radioVal=='category'){
          //alert("카테고리로 정렬");
-       location.href("list_sort_by_category.do");  
+       location.href="list_sort_by_category.do";  
       }
       alert(radioVal);
     });
 
-  });
+	$('#recommend').on('click',function () {
+	      // getter
+	      var radioVal = $('input[name="filter2"]:checked').val();
+	      if(radioVal=='recommend'){
+	         //alert("카테고리로 정렬");
+	       location.href="list_sort_by_recommend.do";  
+	      }
+	      alert(radioVal);
+	    });
+
+	
+	$('#gender').on('click',function () {
+	      // getter
+	      var radioVal = $('input[name="filter2"]:checked').val();
+	      if(radioVal=='gender'){
+	         //alert("카테고리로 정렬");
+	       location.href="list_sort_by_gender.do";  
+	      }
+	      alert(radioVal);
+	    });
+
+    
+    
+    
+    
+});
   
 </script>
+<script>
+   var query="?";
+
+$(document).ready(function () {
+   
+    
+   
+   $("#category").on('click',function(){
+      location.href="list_sort_by_category.do";   
+   });
+
+   $("#naver").on("click",function(){
+
+      if($("input:checkbox[id='naver']").is(":checked")==true ){
+         
+         if(! query.includes("naver"))
+            query+="naver=true&";
+         
+         if($("input:checkbox[id='toomics']").is(":checked")==true)
+         {   
+            if(! query.includes("toomics"))
+               query+="toomics=true&";
+         
+         }         
+         alert("쿼리"+query);
+         
+         location.href="list.do"+query;
+      }
+      else
+      {   
+         if(query.includes("naver"))
+         {   query.replace("naver=true","");
+         
+         }
+         
+         if($("input:checkbox[id='toomics']").is(":checked")==true)
+         {   
+            if(! query.includes("toomics"))
+               query+="toomics=true&";
+         
+         }
+         
+         alert("false");
+         alert(query)
+         location.href="list.do"+query;         
+      }
+      
+   });
+   $("#toomics").on("click",function(){
+      if($("input:checkbox[id='toomics']").is(":checked")==true ){
+         if(! query.includes("toomics"))
+            query+="toomics=true&";
+         
+         if($("input:checkbox[id='naver']").is(":checked")==true)
+         {   
+            if(! query.includes("naver"))
+               query+="naver=true&";
+         
+         }
+         
+         alert("쿼리"+query);
+         location.href="list.do"+query;
+      }else
+      {   
+         
+         if($("input:checkbox[id='naver']").is(":checked")==true)
+         {   
+            if(! query.includes("naver"))
+               query+="naver=true&";
+         
+         }
+         if(query.includes("toomics"))
+            query.replace("toomics=true","");
+         alert('false');
+         location.href="list.do"+query;
+      }
+      
+   });
+   
+});
+
+  
+</script>
+
 </body>
 </html>

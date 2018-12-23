@@ -19,16 +19,83 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       <select id="selectlist" parameterType="cartoondto" resultType="cartoondto">
          select num,days,title,point,likes,image_url,portal,regdate,category
          FROM cartoon
+         
+         <where>
+               <if test="portal_filter == 1">
+                   portal = 'naver'
+               </if>
+               <if test="portal_filter == 2">
+                 portal = 'zzam'
+               </if>
+                  <if test="portal_filter ==3">
+                  portal = 'naver' or portal ='zzam'
+               </if>
+            </where>  
+            
       </select>
+      
+      
+      <!-- 성별 종합 추천+점수 순위별 필터 -->
+      
+      <select id="select_sort_by_recommend" parameterType="selectcartooninfodto" resultType="selectcartooninfodto">
+        select a.*, sum(b.point)/count(a.num)+a.likes grades, b.gender gender from cartoon as a join 
+ 		cartoon_point as b on a.num=b.cartoon_num group by num order by grades desc;
+ 		
+ 		<where>
+               <if test="portal_filter == 1">
+                   portal = 'naver'
+               </if>
+               <if test="portal_filter == 2">
+                 portal = 'zzam'
+               </if>
+                  <if test="portal_filter ==3">
+                  portal = 'naver' or portal ='zzam'
+               </if>
+            </where>
+            
+      </select>
+      
+      
+      <!-- 성별 추천+점수 순위별 필터 -->
+      
+      <select id="select_sort_by_gender" parameterType="selectcartooninfodto" resultType="selectcartooninfodto">
+      		select a.*, sum(b.point)/count(a.num)+a.likes grades, b.gender gender from 
+			cartoon as a join cartoon_point as b on a.num=b.cartoon_num group by b.gender,a.num
+			<where>
+               <if test="portal_filter == 1">
+                   portal = 'naver'
+               </if>
+               <if test="portal_filter == 2">
+                 portal = 'zzam'
+               </if>
+                  <if test="portal_filter ==3">
+                  portal = 'naver' or portal ='zzam'
+               </if>
+            </where>
+      </select>
+      
+      
       
     <!-- 장르별 분류 보기 -->
       <select id="selectcategory" parameterType="cartoondto" resultType="cartoondto">
-      select num, title, image_url,category 
+      select num,days,title,point,likes,image_url,portal,regdate,category 
       from cartoon group by title
+      
+      <where>
+               <if test="portal_filter == 1">
+                   portal = 'naver'
+               </if>
+               <if test="portal_filter == 2">
+                 portal = 'zzam'
+               </if>
+                  <if test="portal_filter ==3">
+                  portal = 'naver' or portal ='zzam'
+               </if>
+            </where>  
       </select>
      
       
-      
+      <!-- 만호 선택 후 detail -->
       <select id="selectdetail" parameterType="int" resultType="cartoondto">
          select num,title,description,painter,point,likes,hit,detail_url,image_url,regdate
          FROM cartoon
@@ -36,9 +103,11 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
       </select>
       
       
+      <!-- 만화 detail 읽을 때마다 조회수 update -->
       <update id="update_hit" parameterType="int">
          update cartoon set hit=hit+1 where num=#{num}
       </update>
+      
       
       <select id="select_hit" parameterType="int" resultType="int">
          select hit from cartoon where num=#{num}
@@ -52,8 +121,8 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
     
       <!-- 여기부터는 cartooncomentdto -->      
      <insert id="insertpoint" parameterType="cartooncommentdto">
-        insert into cartoon_point(cartoon_num,userid,point,comment)
-        value(#{cartoon_num},#{userid},#{point},#{comment})
+        insert into cartoon_point(cartoon_num,userid,point,comment,gender,age)
+        value(#{cartoon_num},#{userid},#{point},#{comment},(select gender from member where userid=#{userid}),(select age from member where userid=#{userid}))
      
      </insert>
      
@@ -91,13 +160,15 @@ ON DUPLICATE KEY UPDATE days=#{days},title=#{title},description=#{description},p
            update cartoon_point set notgood=notgood+1 where cartoon_num=#{cartoon_num} and userid=#{userid}
      </update>
      
+     <!-- 특정 유저가 만화를 좋아하는지 체크 -->
      <insert id="insertlike" parameterType="likeordislikedto">
            insert into onelike_or_dislike(cartoon_num,userid,is_selected) value(#{cartoon_num},#{userid},#{is_selected})
      </insert>
      
-     
+     	<!-- 추천 데이터 입력, gender도 넣어야함 -->
      <select id="insert_recomm" parameterType="cartoonlikedto">
-           insert into cartoon_recomm(cartoon_num,userid,recomm) value(#{cartoon_num},#{userid},1)
+           insert into cartoon_recomm(cartoon_num,userid,recomm,gender,age) 
+           value(#{cartoon_num},#{userid},1,(select gender from member where userid=#{userid}),(select age from member where age=#{age}))
      </select>
      
      <update id="update_likes" parameterType="int">

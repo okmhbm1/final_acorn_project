@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.bob.please.cartoon.dto.CartoonCommentDto;
 import com.bob.please.cartoon.dto.CartoonDto;
 import com.bob.please.cartoon.dto.CartoonLikeDto;
+import com.bob.please.cartoon.dto.SelectCartoonInfoDto;
 import com.bob.please.cartoon.dto.onelike_or_dislikeDto;
 import com.bob.please.member.dto.member_linkDto;
 
@@ -28,13 +29,30 @@ public class CartoonDaoImpl implements CartoonDao {
 	      session.selectList("cartoon.selectall", dto);
 	   }
 
-
+		//요일별
 	   @Override
 	   public List<CartoonDto> selectlist(CartoonDto dto) {
 	      
 
 		   return session.selectList("cartoon.selectlist",dto);
 	   }
+	   
+	   
+	   //추천별
+	   @Override
+		public List<SelectCartoonInfoDto> select_sort_by_recommend(SelectCartoonInfoDto dto) {
+			
+			return session.selectList("cartoon.select_sort_by_recommend",dto);
+		}
+
+	   //성별 추천별
+		@Override
+		public List<SelectCartoonInfoDto> select_sort_by_gender(SelectCartoonInfoDto dto) {
+			// TODO Auto-generated method stub
+			return session.selectList("cartoon.select_sort_by_gender",dto);
+		}
+		
+		
 
 	   @Override
 	      public CartoonDto selectdetail(int num) {
@@ -170,6 +188,9 @@ public class CartoonDaoImpl implements CartoonDao {
 	@Override
 	public List<member_linkDto> select_member_link_all(member_linkDto dto) {
 		return session.selectList("cartoon.select_member_link_all", dto);	}
+
+
+	
 
 
 	

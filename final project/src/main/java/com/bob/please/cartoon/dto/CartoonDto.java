@@ -1,3 +1,4 @@
+
 package com.bob.please.cartoon.dto;
 
 
@@ -17,15 +18,21 @@ public class CartoonDto {
 	      String image_url;
 	      String portal; 
 	      String regdate;
-	      
+	      int portal_filter;
 	      public CartoonDto(){
 	         
 	      }
+	
+		public int getPortal_filter() {
+			return portal_filter;
+		}
 
-	      
-	      	
+		public void setPortal_filter(int portal_filter) {
+			this.portal_filter = portal_filter;
+		}
+
 		public CartoonDto(int num, String days, String title, String description, String painter, String category,
-				int point, int likes, int hit, String detail_url, String image_url, String portal, String regdate) {
+				int point, int likes, int hit, String detail_url, String image_url, String portal, String regdate,int portal_filter) {
 			super();
 			this.num = num;
 			this.days = days;
@@ -40,6 +47,7 @@ public class CartoonDto {
 			this.image_url = image_url;
 			this.portal = portal;
 			this.regdate = regdate;
+			this.portal_filter=portal_filter;
 		}
 
 

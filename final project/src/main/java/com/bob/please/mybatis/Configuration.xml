@@ -7,7 +7,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    	<typeAlias type="com.bob.please.cartoon.dto.CartoonDto" alias="cartoondto"/>
    	<typeAlias type="com.bob.please.cartoon.dto.CartoonCommentDto" alias="cartooncommentdto"/>   
    	<typeAlias type="com.bob.please.cartoon.dto.onelike_or_dislikeDto" alias="likeordislikedto"/>
-   	<typeAlias type="com.bob.please.cartoon.dto.CartoonLikeDto" alias="cartoonlikedto"/>  
+   	<typeAlias type="com.bob.please.cartoon.dto.CartoonLikeDto" alias="cartoonlikedto"/>
+   	<typeAlias type="com.bob.please.cartoon.dto.SelectCartoonInfoDto" alias="selectcartooninfodto"/>   
 	<typeAlias type="com.bob.please.member.dto.MemberDto" alias="memberdto"/>     
 	<typeAlias type="com.bob.please.member.dto.member_linkDto" alias="memberlinkdto"/>
 	<typeAlias type="com.bob.please.board.review.dto.BoardReviewDto" alias="boardreviewDto"/>

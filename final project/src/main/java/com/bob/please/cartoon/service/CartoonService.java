@@ -16,7 +16,15 @@ public interface CartoonService {
 	
 	  public void selectall(CartoonDto dto);
 	 
-	   public void selectlist(HttpServletRequest request);
+	  
+	  /*필터별 리스트*/
+	   public void selectlist(HttpServletRequest request); // 요일별
+	   public void selectcategory(HttpServletRequest request); // 장르별 추천
+	   public void select_sort_by_recommend(HttpServletRequest request); //성별 종합 추천순
+		public void select_sort_by_gender(HttpServletRequest request); // 성별 추천순
+		
+	   
+	   
 	   public CartoonDto selectdetail(ModelAndView mView, int num);
 	
 	
@@ -43,7 +51,7 @@ public interface CartoonService {
 	
 	public void update_likes(int cartoon_num);
 	
-	public void selectcategory(HttpServletRequest request);
+
 	
 	//회원이 어떤 만화를 링크했는지
 	int is_linked(member_linkDto dto);
@@ -51,4 +59,5 @@ public interface CartoonService {
 	public void insert_member_linkDto(member_linkDto dto);
 	
 	public List<member_linkDto> select_member_link_all(member_linkDto dto);
+	
 }
